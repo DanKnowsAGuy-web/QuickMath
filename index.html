@@ -41,7 +41,7 @@ body {
 .field-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
-/* RE-ENGINEERED COMPACT ACCORDION HORIZON GAUGES */
+/* POSITION 3.5: GAUGE TRACK LAYOUT SYSTEMS */
 .gauge-section { padding: 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
 .gauge-section.summary-track { border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); background: #0b0f14; margin-top: 8px; }
 
@@ -66,7 +66,7 @@ body {
 .gauge-initialized .gauge-labels { color: var(--slate); }
 .gauge-labels .active-zone-text { color: #fff; font-weight: 900; }
 
-/* GRID SYSTEMS WITH CONDENSED BACK STRIPS FOR MOBILE OVERLAY REALIZATION */
+/* CHIP GRIDS VISIBILITY LAYOUTS */
 .state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
 @media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 @media(min-width: 600px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
@@ -83,7 +83,7 @@ body {
 .fac-opt:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
 .fac-ico { display: block; width: 18px; height: 18px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
 
-/* CONDENSED CARDS ARRAYS SPEC SHEET SPECIFIC DESIGN HOOKS */
+/* CONDENSED SELECTION CARDS SHIFTS */
 .condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s ease; }
 @keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -96,7 +96,7 @@ body {
 .back-btn:hover { border-color: var(--red); background: rgba(245, 101, 101, 0.05); }
 .selection-block { flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--gold-rule); background: rgba(200,169,110,0.06); border-radius: 2px; }
 
-/* TWO-TRACK MATRICES SPLIT COUPLING MODULES */
+/* TWO-TRACK MATRICES */
 .click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 20px; }
 @media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 16px; } }
 
@@ -105,19 +105,21 @@ body {
 .matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
 .matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-/* LOOSE CONFIGURATION DATA HOUSING BLOCK */
+/* MUTED GRAY DESIGN HOOKS FOR MTR CONTROLS PANEL */
 .loose-intensity-panel {
-  background: rgba(0, 0, 0, 0.15); border: 1px solid var(--gold-rule); border-left: 5px solid var(--gold);
+  background: rgba(0, 0, 0, 0.15); border: 1px solid rgba(255,255,255,0.06); border-left: 5px solid rgba(255,255,255,0.15);
   padding: 16px; margin-top: 16px; border-radius: 2px;
 }
-.loose-intensity-note { font-size: 12px; line-height: 1.4; color: var(--gold-light); font-weight: 600; margin-bottom: 12px; font-style: italic; }
+.loose-intensity-note { font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.45); font-weight: 600; margin-bottom: 12px; font-style: italic; letter-spacing: 0.02em; text-transform: uppercase; }
 .intensity-btn-grid { display: grid; grid-template-columns: 1fr; gap: 4px; }
 @media(min-width: 480px) { .intensity-btn-grid { grid-template-columns: repeat(2, 1fr); } }
-.intensity-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 12px 4px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 2px; }
-.intensity-btn:hover { background: rgba(255,255,255,0.04); color: #fff; }
+
+/* Muted desaturated grey base state buttons */
+.intensity-btn { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 12px 4px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 2px; }
+.intensity-btn:hover { background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.7); }
 .intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; }
 
-/* THE ASSUMPTIONS DROPDOWN CONTROL EXTENSIONS */
+/* ASSUMPTIONS ACCORDION EXTENSIONS */
 .accordion-wrapper { margin-top: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; background: rgba(0,0,0,0.1); }
 .accordion-trigger { width: 100%; padding: 14px 16px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .accordion-trigger:active { background: rgba(255,255,255,0.02); }
@@ -134,7 +136,7 @@ body {
 .slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 
-/* POSITION 3: CLEAN WORKSPACE LAYOUT DIRECTIVE VIEWPORTS */
+/* POSITION 3: STRIPPED PLAYBOOK WINDOW MATRIX CONFIGS */
 .playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
@@ -149,7 +151,7 @@ body {
 .active-override-val { color: var(--override-cyan) !important; }
 .active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; }
 
-/* VISUAL HARDWARE BLOCK MUTING SHIELDS (100% INVISIBLE) */
+/* ABSOLUTE BACKEND HIDDEN MUTING SHIELDS */
 #scoreboard_root_box, .override-panel { display: none !important; }
 </style>
 </head>
@@ -158,11 +160,14 @@ body {
 <div class="calc">
   <div class="calc-head">
     <h1 class="calc-title">Contract value is dictated by building DNA, <em>not just bill size.</em></h1>
-    <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
+    <!-- StoryBrand Configured Call To Action Path -->
+    <p class="calc-sub">Select geography, facility type, footprint scale, and monthly overhead to diagnose project viability.</p>
   </div>
 
+  <!-- INPUT CONTROLS GRIDS HUB CONSOLE -->
   <div class="calc-body">
     
+    <!-- STEP 01: LOCATION ARRAYS SHEET (WITH COLLAPSE AND RETURN FEATURES INTEGRATED) -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Regional Location Geography</span></div>
       <div id="state-full-view">
@@ -176,6 +181,7 @@ body {
       </div>
     </div>
 
+    <!-- STEP 02: FACILITY TYPE COMPACT CARDS (RENAMED WITH ACCORDION COLLAPSE PACKAGES) -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
       <div id="fac-full-view">
@@ -189,6 +195,7 @@ body {
       </div>
     </div>
 
+    <!-- STEP 03: FOOTPRINT FIELDS SCALING NODES -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
       <div class="click-matrix-stack">
@@ -214,13 +221,15 @@ body {
       </div>
     </div>
 
+    <!-- LOOSE PANEL: HOURS IN OPERATION DESATURATED COUPLING VIEWPORT -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 6px;">
         <span style="color: var(--white);">Hours in Operation</span>
         <span class="override-indicator-lbl" id="intensity_override_flag">⚡ OVERRIDE ACTIVE</span>
       </div>
+      <!-- Compressed StoryBrand Context Instruction String Line -->
       <div class="loose-intensity-note">
-        These were put on defaults based on the state and facility you chose. Change them if incorrect; otherwise, leave them at their default settings.
+        System defaults applied. Leave as-is unless on-site schedule is verified.
       </div>
       <div class="intensity-btn-grid">
         <button class="intensity-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT (&lt;20 HRS/WK)</button>
@@ -231,6 +240,7 @@ body {
       </div>
     </div>
 
+    <!-- EXPANDABLE OPTIONS CONTROL ASSUMPTIONS BLOCK -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -264,6 +274,7 @@ body {
 
   </div>
 
+  <!-- POSITION 3.5: CLOSING GRAPH SYSTEM (RENAMED TO DEAL QUALITY WITH SOLID YELLOW DOT MAPPING) -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
@@ -277,17 +288,19 @@ body {
     </div>
     <div class="gauge-labels">
       <span id="lbl_skip_mirror">Skip Lead</span>
-      <span id="lbl_linear_mirror">Thin Margins</span>
+      <span id="lbl_linear_mirror">● Thin Margins</span>
       <span id="lbl_viability_mirror">Viable</span>
       <span id="lbl_sovereign_mirror">Highest Priority</span>
     </div>
   </div>
 
+  <!-- POSITION 4: CLEAN STRIPPED PLAYBOOK CORE SCREEN CONSOLE -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
   </div>
 
+  <!-- SHADOW MUTING SHIELDS -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Muted System Layer</span>
     <div class="score-container"><div class="score-num" id="score_out">0</div></div>
@@ -316,7 +329,7 @@ const FACILITY_PROFILES = {
   cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "A+", name: "Cold Storage", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
   datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "A+", name: "Data Center", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
   health:  { weeklyHours: 168, hvacShare: 0.50, tier: "A+", name: "Healthcare / Hosp.", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
-  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "A-", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h20 M20 12h2"/></svg>' },
+  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "A-", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
   super:   { weeklyHours: 112, hvacShare: 0.60, tier: "A+", name: "Supermarket", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
   edu:     { weeklyHours: 65,  hvacShare: 0.50, tier: "A-", name: "Education Facility", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="12,3 22,8 12,13 2,8"/><path d="M7 10.8v4.7a7 2.8 0 0010 0v-4.7"/></svg>' },
   whse:    { weeklyHours: 50,  hvacShare: 0.20, tier: "F",  name: "Distribution Whse", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"/></svg>' },
@@ -536,7 +549,7 @@ function runEngine() {
   if (!selectedState || !selectedFacility || currentActiveBillValue === 0 || currentActiveFacCountValue === 0) {
     gaugeMirrorRoot.classList.remove("gauge-initialized");
     document.getElementById("gauge_needle_mirror").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting grid selection configuration variables checks above...";
+    document.getElementById("playbook_text_out").textContent = "Awaiting grid criteria choices parameters fields values context above...";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
@@ -712,7 +725,7 @@ function runEngine() {
     pText.textContent = "Strong operational profile match. The facility equipment density and utility profile line up cleanly with our technology deployment standards.";
   } else if (activeZone === "yellow") {
     playbookBox.classList.add("congruent-yellow");
-    pTitle.textContent = "💛 BREAD-AND-BUTTER LINEAR MARGIN: CONDITIONAL DISCOVERY";
+    pTitle.textContent = "💛 THIN MARGINS PROFILE: CONDITIONAL INFRASTRUCTURE DISCOVERY";
     pText.textContent = "Standard commercial profile. Project viability depends on centralized HVAC/R infrastructure to keep field installation overhead low.";
   } else {
     playbookBox.classList.add("congruent-red");
