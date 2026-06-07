@@ -71,7 +71,7 @@ body {
 .gauge-initialized .gauge-labels { color: var(--slate); }
 .gauge-labels .active-zone-text { color: #fff; font-weight: 900; }
 
-/* FIXED PERMANENT UN-COLLAPSED GRIDS */
+/* CHIP GRIDS FIXED PERMANENT VISIBILITY */
 .state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
 @media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 @media(min-width: 600px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
@@ -116,7 +116,7 @@ body {
 .matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
 .matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-/* UNRESTRICTED LOOSE INTENSITY OPERATIONAL PANEL */
+/* LOOSE CONFIGURATION HOUSING TRACK */
 .loose-intensity-panel {
   background: rgba(0, 0, 0, 0.15); border: 1px solid var(--gold-rule); border-left: 5px solid var(--gold);
   padding: 16px; margin-top: 16px; border-radius: 2px;
@@ -128,7 +128,7 @@ body {
 .intensity-btn:hover { background: rgba(255,255,255,0.04); color: #fff; }
 .intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; }
 
-/* THE ASSUMPTIONS ACCORDION EXTENSIONS */
+/* DROPDOWN ACCORDION ARCHITECTURE MODULES */
 .accordion-wrapper { margin-top: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; background: rgba(0,0,0,0.1); }
 .accordion-trigger { width: 100%; padding: 14px 16px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .accordion-trigger:active { background: rgba(255,255,255,0.02); }
@@ -145,7 +145,7 @@ body {
 .slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 
-/* POSITION 3: STRIPPED PLAYBOOK OUTPUT DESKTOP HOOK */
+/* POSITION 3: CLEAN PLAYBOOK CORE DISPLAY WINDOW */
 .playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
@@ -160,7 +160,7 @@ body {
 .active-override-val { color: var(--override-cyan) !important; }
 .active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; }
 
-/* STRICT MUTED STATE OVERRIDE (100% VISUALLY HIDDEN OUTSIDE COMPUTING STACK) */
+/* ENFORCED VISUAL MUTING MATRIX (100% INVISIBLE FRAMEWORKS) */
 #scoreboard_root_box, .override-panel { display: none !important; }
 </style>
 </head>
@@ -481,14 +481,15 @@ function runEngine() {
     document.getElementById("score_out").textContent = "- -";
     document.getElementById("gauge_needle").style.left = "50%";
     document.getElementById("gauge_needle_mirror").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting selection choices across parameters above...";
+    document.getElementById("playbook_text_out").textContent = "Awaiting structural field choices across metrics selection matrix fields context parameters above...";
     document.getElementById("temp_badge").textContent = "Awaiting Configuration";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
 
-  gaugeRoot.add("gauge-initialized");
-  gaugeMirrorRoot.add("gauge-initialized");
+  // FIXED: Standard string interpolation calls restored cleanly
+  gaugeRoot.classList.add("gauge-initialized");
+  gaugeMirrorRoot.classList.add("gauge-initialized");
 
   let tierData = US_STATE_TIERS[selectedState];
   let rateMultiplier = tierData.mult;
@@ -497,4 +498,208 @@ function runEngine() {
   
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
-  let
+  let bracketString = "1 Location";
+
+  if (facilitiesCount === 1) {
+    firewallRequiredFloor = 5000; bracketString = "1 Location";
+    if (monthlyBill < 5000) isFirewallDisqualified = true;
+  } else if (facilitiesCount === 5) {
+    firewallRequiredFloor = 3500; bracketString = "5 Locations";
+    if (monthlyBill < 3500) isFirewallDisqualified = true;
+  } else if (facilitiesCount === 10) {
+    firewallRequiredFloor = 2000; bracketString = "10 Locations";
+    if (monthlyBill < 2000) isFirewallDisqualified = true;
+  } else if (facilitiesCount === 20) {
+    firewallRequiredFloor = 1500; bracketString = "20+ Locations";
+    if (monthlyBill < 1500) isFirewallDisqualified = true;
+  }
+
+  let weeklyHours = automatedActiveHoursValue;
+  if (isIntensityOverridden) {
+    let activeChip = document.querySelector('.intensity-btn.active');
+    if (activeChip) {
+      if (activeChip.id === 'chip_hours_15') weeklyHours = 15;
+      else if (activeChip.id === 'chip_hours_45') weeklyHours = 45;
+      else if (activeChip.id === 'chip_hours_75') weeklyHours = 75;
+      else if (activeChip.id === 'chip_hours_112') weeklyHours = 112;
+      else if (activeChip.id === 'chip_hours_168') weeklyHours = 168;
+    }
+  } else {
+    if (automatedActiveHoursValue === 15) syncIntensityButtonsUI('chip_hours_15');
+    else if (automatedActiveHoursValue === 45) syncIntensityButtonsUI('chip_hours_45');
+    else if (automatedActiveHoursValue === 75) syncIntensityButtonsUI('chip_hours_75');
+    else if (automatedActiveHoursValue === 112) syncIntensityButtonsUI('chip_hours_112');
+    else if (automatedActiveHoursValue === 168) syncIntensityButtonsUI('chip_hours_168');
+  }
+  
+  let hvacFractionPercent = automatedActiveHvacValue;
+  if (isHvacOverridden) {
+    hvacFractionPercent = parseInt(document.getElementById("hvac_slider").value);
+  } else {
+    document.getElementById("hvac_slider").value = automatedActiveHvacValue;
+  }
+  document.getElementById("hvac_val").textContent = hvacFractionPercent + "%";
+  let hvacFraction = hvacFractionPercent / 100;
+
+  let currentCents = automatedActiveRateCents;
+  if (isRateOverridden) {
+    let rawCentsInput = document.getElementById("rate_cents_in").value;
+    if (rawCentsInput !== "" && !isNaN(rawCentsInput)) {
+      currentCents = parseFloat(rawCentsInput);
+      if (currentCents > 99) currentCents = 99;
+      if (currentCents < 1) currentCents = 1;
+      rateMultiplier = (currentCents / 100) / 0.13;
+    }
+  } else {
+    document.getElementById("rate_cents_in").value = currentCents;
+  }
+  
+  let annualHours = weeklyHours * 52;
+  
+  let schedulePoints = 3;
+  if (annualHours >= 7000) schedulePoints = 10;
+  else if (annualHours >= 5000) schedulePoints = 7;
+  else if (annualHours >= 3500) schedulePoints = 5;
+  else if (annualHours >= 2000) schedulePoints = 3;
+  else schedulePoints = 0; 
+  
+  let hvacPoints = 5;
+  if (hvacFraction >= 0.65) hvacPoints = 10;
+  else if (hvacFraction >= 0.50) hvacPoints = 7;
+  else if (hvacFraction >= 0.15) hvacPoints = 5;
+  else hvacPoints = 1;
+
+  if (selectedFacility === "datactr" && !isHvacOverridden) {
+    hvacPoints = 10; 
+  }
+  
+  let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
+  if (schedulePoints === 0) finalScore = 0;
+  
+  let billVol = "standard";
+  if (monthlyBill < 1500) billVol = "anthill";
+  else if (monthlyBill >= 10000) billVol = "whale";
+
+  if (selectedFacility === "datactr" && !isHvacOverridden && billVol === "whale") {
+    finalScore = 300;
+  }
+  
+  finalScore = Math.round(finalScore);
+  
+  if (isFirewallDisqualified) {
+    document.getElementById("score_out").textContent = "0";
+  } else {
+    document.getElementById("score_out").textContent = finalScore;
+  }
+
+  // NEEDLE INDICATOR ADJUSTMENTS 
+  let needle = document.getElementById("gauge_needle");
+  let needleMirror = document.getElementById("gauge_needle_mirror");
+  
+  gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
+  gaugeMirrorRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
+  document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
+
+  let pctPosition = 0;
+
+  if (isFirewallDisqualified) {
+    gaugeRoot.classList.add("gauge-override-disqualified");
+    gaugeMirrorRoot.classList.add("gauge-override-disqualified");
+    pctPosition = 0;
+  } else {
+    if (billVol === "whale") {
+      gaugeRoot.classList.add("gauge-override-whale");
+      gaugeMirrorRoot.classList.add("gauge-override-whale");
+      if (finalScore >= 65) pctPosition = 50 + ((finalScore - 65) / (300 - 65)) * 50;
+      else if (finalScore >= 25) pctPosition = 30 + ((finalScore - 25) / (65 - 25)) * 20;
+      else if (finalScore >= 10) pctPosition = 15 + ((finalScore - 10) / (25 - 10)) * 15;
+      else pctPosition = (finalScore / 10) * 15;
+    } else {
+      gaugeRoot.classList.add("gauge-override-whale");
+      gaugeMirrorRoot.classList.add("gauge-override-whale");
+      if (finalScore >= 65) pctPosition = 75 + ((finalScore - 65) / (300 - 65)) * 25;
+      else if (finalScore >= 25) pctPosition = 50 + ((finalScore - 25) / (65 - 25)) * 25;
+      else if (finalScore >= 10) pctPosition = 25 + ((finalScore - 10) / (25 - 10)) * 25;
+      else pctPosition = (finalScore / 10) * 25;
+    }
+  }
+
+  if (schedulePoints === 0) pctPosition = 0;
+  if (pctPosition > 100) pctPosition = 100;
+  if (pctPosition < 0) pctPosition = 0;
+
+  needle.style.left = pctPosition + "%";
+  needleMirror.style.left = pctPosition + "%";
+
+  let activeZone = "red";
+  let activeZoneWidthThreshold = billVol === "whale" ? 15 : 25;
+  let midZoneWidthThreshold = billVol === "whale" ? 30 : 50;
+  let highZoneWidthThreshold = billVol === "whale" ? 50 : 75;
+
+  if (pctPosition < activeZoneWidthThreshold) {
+    activeZone = "red";
+    document.getElementById("lbl_skip").classList.add("active-zone-text");
+    document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
+  } else if (pctPosition < midZoneWidthThreshold) {
+    activeZone = "yellow";
+    document.getElementById("lbl_linear").classList.add("active-zone-text");
+    document.getElementById("lbl_linear_mirror").classList.add("active-zone-text");
+  } else if (pctPosition < highZoneWidthThreshold) {
+    activeZone = "green";
+    document.getElementById("lbl_viability").classList.add("active-zone-text");
+    document.getElementById("lbl_viability_mirror").classList.add("active-zone-text");
+  } else {
+    activeZone = "purple";
+    document.getElementById("lbl_sovereign").classList.add("active-zone-text");
+    document.getElementById("lbl_sovereign_mirror").classList.add("active-zone-text");
+  }
+
+  if (isFirewallDisqualified) {
+    activeZone = "red";
+    document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
+    document.getElementById("lbl_skip").classList.add("active-zone-text");
+    document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
+  }
+
+  const pTitle = document.getElementById("playbook_title_out");
+  const pText = document.getElementById("playbook_text_out");
+
+  if (isFirewallDisqualified) {
+    playbookBox.classList.add("congruent-red");
+    pTitle.textContent = "🛑 DEAL DISQUALIFIED: INSUFFICIENT DEPLOYMENT VOLUMES";
+    pText.textContent = `The monthly energy bill is too low for a portfolio of this size. The cost of mobilizing installation crews to ${bracketString} separate locations will exceed our project margins.`;
+  } else if (schedulePoints === 0) {
+    playbookBox.classList.add("congruent-red");
+    pTitle.textContent = "🛑 DEAL DISQUALIFIED: BASELINE RUNTIME HOURS COMPRESSION";
+    pText.textContent = "This facility operates under 40 hours a week. The on-site thermal equipment does not run enough total annual hours to generate viable energy savings.";
+  } 
+  else if (activeZone === "purple") {
+    playbookBox.classList.add("congruent-purple");
+    if (selectedFacility === "datactr") {
+      pTitle.textContent = "🔮 HIGHEST PRIORITY MATCH: CLOUD COMPUTE CORE MATCH";
+      pText.textContent = "Data Center infrastructure profile confirmed. High continuous baseload equipment density maximizes total contract value potential.";
+    } else {
+      pTitle.textContent = "🔮 HIGHEST PRIORITY MATCH: INVESTMENT MATCH TARGET";
+      pText.textContent = "High-intensity commercial asset footprint operating within a premium-rate utility market. Next step requires collecting 12 months of utility history.";
+    }
+  } else if (activeZone === "green") {
+    playbookBox.classList.add("congruent-green");
+    pTitle.textContent = "🟢 QUALIFIED LEAD: SYSTEM TECHNOLOGY COMPLIANCE STANDARDS";
+    pText.textContent = "Strong operational profile match. The facility equipment density and utility profile line up cleanly with our technology deployment standards.";
+  } else if (activeZone === "yellow") {
+    playbookBox.classList.add("congruent-yellow");
+    pTitle.textContent = "💛 BREAD-AND-BUTTER LINEAR MARGIN: CONDITIONAL DISCOVERY";
+    pText.textContent = "Standard commercial profile. Project viability depends on centralized HVAC/R infrastructure to keep field installation overhead low.";
+  } else {
+    playbookBox.classList.add("congruent-red");
+    pTitle.textContent = "🔴 LEAD DISQUALIFIED: REGIONAL ECONOMIC OVERHEAD BALANCER";
+    pText.textContent = "Low-density profile. The combination of cheap regional utility rates and low asset power draw cannot recover basic engineering overhead.";
+  }
+}
+
+initStatesGrid();
+initFacilityMatrix();
+runEngine();
+</script>
+</body>
+</html>
