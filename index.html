@@ -36,15 +36,15 @@ body {
 .calc-title em { font-style: italic; color: var(--gold); }
 .calc-sub { font-size: 13px; color: var(--slate); font-weight: 600; }
 
-.calc-body { padding: 20px 16px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); border-bottom: 1px solid var(--gold-rule); }
+.calc-body { padding: 20px 16px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
 .field { margin-bottom: 24px; scroll-margin-top: 100px; transition: all 0.2s ease; }
 .field-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
-/* POSITION 1 & POSITION 3.5: STRUCTURAL TWIN TRACK ARRAYS */
+/* POSITION 1 & POSITION 3.5: GAUGE TRACK LAYOUT SYSTEMS */
 .gauge-section { padding: 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
 .gauge-section.sticky-track { position: sticky; top: 0; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
-.gauge-section.summary-track { border-top: 1px solid var(--gold-rule); border-bottom: none; background: #0b0f14; }
+.gauge-section.summary-track { border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); background: #0b0f14; margin-top: 8px; }
 
 .gauge-header { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; font-weight: 700; text-align: center; }
 .horizon-track-container { position: relative; width: 100%; height: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 10px; border-radius: 2px; }
@@ -118,7 +118,7 @@ body {
 .back-btn:hover { border-color: var(--red); color: #fff; }
 .selection-block { flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border-radius: 0 2px 2px 0; }
 
-/* TWO-TRACK MATRICES CLICK FIELDS */
+/* TWO-TRACK MATRICES CHIP WORKSPACE */
 .click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 20px; }
 @media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 16px; } }
 
@@ -127,7 +127,37 @@ body {
 .matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
 .matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-/* POSITION 4: CLEAN FINAL PRESCRIPTION AND PLAYBOOK WORKSPACE */
+/* NEW: FREE & LOOSE ENHANCED RUNTIME CONFIG BLOCK */
+.loose-intensity-panel {
+  background: rgba(0, 0, 0, 0.15); border: 1px solid var(--gold-rule); border-left: 5px solid var(--gold);
+  padding: 16px; margin-top: 16px; border-radius: 2px;
+}
+.loose-intensity-note { font-size: 12px; line-height: 1.4; color: var(--gold-light); font-weight: 600; margin-bottom: 12px; font-style: italic; }
+.intensity-btn-grid { display: grid; grid-template-columns: 1fr; gap: 4px; }
+@media(min-width: 480px) { .intensity-btn-grid { grid-template-columns: repeat(2, 1fr); } }
+.intensity-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 12px 4px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 2px; }
+.intensity-btn:hover { background: rgba(255,255,255,0.04); color: #fff; }
+.intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; }
+
+/* NEW: CHANGE ASSUMPTIONS ACCORDION CONSTRUCTS */
+.accordion-wrapper { margin-top: 8px; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; background: rgba(0,0,0,0.1); }
+.accordion-trigger { width: 100%; padding: 14px 16px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.accordion-trigger:active { background: rgba(255,255,255,0.02); }
+.accordion-arrow { font-size: 12px; transition: transform 0.2s ease; color: var(--gold); }
+.accordion-content { display: none; padding: 16px; border-top: 1px solid rgba(255,255,255,0.04); background: rgba(0,0,0,0.15); }
+
+/* ASSUMPTIONS INTERNAL SUB-FIELDS CONTAINER LAYOUTS */
+.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); max-width: 200px; }
+.spend-currency { font-family: 'Playfair Display', serif; font-size: 18px; color: #fff; padding: 0 4px 0 12px; font-weight: 700; }
+.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; color: #fff; padding: 6px 4px; width: 100%; }
+.spend-suffix { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 12px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
+
+.rng { width: 100%; height: 2px; margin: 10px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
+.rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
+.slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
+.slider-val { color: var(--gold-light); font-weight: 700; }
+
+/* POSITION 3: STRIPPED PLAYBOOK CORE INTERFACE */
 .playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
@@ -137,56 +167,14 @@ body {
 .congruent-green { border-left-color: var(--green) !important; background: rgba(72, 187, 120, 0.02) !important; }
 .congruent-purple { border-left-color: var(--purple) !important; background: rgba(159, 122, 234, 0.03) !important; }
 
-/* POSITION 5: AUXILIARY OVERRIDES MATRIX PANEL */
-.override-panel { background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06); padding: 24px 16px; opacity: 0.2; pointer-events: none; }
-.gauge-initialized-wrapper.override-panel { opacity: 1; pointer-events: auto; }
-.override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 16px; }
-.takeover-chip-row { display: grid; grid-template-columns: 1fr; gap: 4px; width: 100%; }
-@media(min-width: 480px) { .takeover-chip-row { grid-template-columns: repeat(3, 1fr); } }
-@media(min-width: 640px) { .takeover-chip-row { grid-template-columns: repeat(5, 1fr); } }
-.takeover-chip-btn { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 10px 4px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 2px; line-height: 1.2; }
-.takeover-chip-btn.active { background: rgba(255,255,255,0.05) !important; border-color: var(--gold) !important; color: #fff !important; }
+/* CORE OVERRIDE LABELS SIGNALS */
+.override-indicator-lbl { font-size: 10px; font-weight: 800; color: var(--override-cyan); letter-spacing: 0.04em; margin-left: 8px; display: none; }
+.active-override-border { border-color: var(--override-cyan) !important; }
+.active-override-val { color: var(--override-cyan) !important; }
+.active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; }
 
-.takeover-meta-container { display: flex; align-items: center; gap: 10px; }
-.takeover-active-indicator { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; color: var(--override-cyan); text-transform: uppercase; display: none; }
-.reset-auto-link { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; cursor: pointer; display: none; text-decoration: underline; }
-
-.intensity-manual-state #intensity_takeover_lbl, .intensity-manual-state #intensity_reset_lnk { display: block; }
-.hvac-manual-state #hvac_takeover_lbl, .hvac-manual-state #hvac_reset_lnk { display: block; }
-.rate-manual-state #rate_takeover_lbl, .rate-manual-state #rate_reset_lnk { display: block; }
-.intensity-manual-state #chip_hours_block .takeover-chip-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; }
-.rate-manual-state #rate_input_container { border-color: var(--override-cyan) !important; background: var(--override-cyan-dim); }
-
-.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s ease, background-color 0.2s ease; }
-.spend-currency { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; padding: 0 4px 0 14px; font-weight: 700; }
-.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: #fff; padding: 8px 4px; width: 100%; }
-.spend-suffix { font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 14px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
-
-.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
-.rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
-.hvac-manual-state .rng::-webkit-slider-thumb { background: var(--override-cyan); }
-.slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
-.slider-val { color: var(--gold-light); font-weight: 700; }
-.hvac-manual-state .slider-val { color: var(--override-cyan); }
-
-/* QUANTITATIVE PRESENTATION SCOREBOARD FOOTER */
-.scoreboard { padding: 32px 16px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
-.score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); opacity: 0.4; }
-.gauge-initialized .score-badge { opacity: 1; }
-.score-num-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 2px; font-weight: 700; }
-.score-num { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.15); }
-.gauge-initialized .score-num { color: #fff; }
-.savings-output { display: flex; flex-direction: column; gap: 4px; background: var(--gold-rule); margin-top: 24px; border: 1px solid var(--gold-rule); opacity: 0.3; }
-@media(min-width: 480px) { .savings-output { flex-direction: row; gap: 1px; } }
-.gauge-initialized .savings-output { opacity: 1; }
-.savings-cell { flex: 1; background: var(--ink-2); padding: 16px; text-align: center; }
-.savings-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
-.savings-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
-
-.bg-purple { background-color: var(--purple); color: #fff !important; }
-.bg-green  { background-color: var(--green); color: #fff !important; }
-.bg-yellow { background-color: var(--yellow); color: var(--ink) !important; }
-.bg-red    { background-color: var(--red); color: #fff !important; }
+/* SCOREBOARD MUTED LAYER STYLE (100% INVISIBLE IN THE UI) */
+#scoreboard_root_box { display: none !important; }
 </style>
 </head>
 <body>
@@ -197,7 +185,6 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
-  <!-- TRACK TRACK 1: INITIAL STICKY CALIBRATION HORIZON LAYER -->
   <div class="gauge-section sticky-track" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
@@ -217,7 +204,6 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 2: NATIVE CHIP ARRAYS WORKSPACE -->
   <div class="calc-body">
     
     <div class="field" id="field_geo_root">
@@ -246,7 +232,7 @@ body {
       </div>
     </div>
 
-    <div class="field" id="field_spend_root" style="margin-bottom: 4px;">
+    <div class="field" id="field_spend_root" style="margin-bottom: 0;">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
       <div class="click-matrix-stack">
         <div>
@@ -271,9 +257,56 @@ body {
       </div>
     </div>
 
+    <div class="loose-intensity-panel" id="loose_hours_panel_root" style="opacity: 0.2; pointer-events: none;">
+      <div class="field-label" style="margin-bottom: 6px;">
+        <span style="color: var(--white);">Hours in Operation</span>
+        <span class="override-indicator-lbl" id="intensity_override_flag">⚡ OVERRIDE ACTIVE</span>
+      </div>
+      <div class="loose-intensity-note">
+        These were put on defaults based on the state and facility you chose. Change them if incorrect; otherwise, leave them at their default settings.
+      </div>
+      <div class="intensity-btn-grid">
+        <button class="intensity-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT (&lt;20 HRS/WK)</button>
+        <button class="intensity-btn" id="chip_hours_45" onclick="manualIntensityTakeover(45, 'chip_hours_45')">SINGLE-SHIFT (40-50 HRS/WK)</button>
+        <button class="intensity-btn" id="chip_hours_75" onclick="manualIntensityTakeover(75, 'chip_hours_75')">DOUBLE-SHIFT (60-90 HRS/WK)</button>
+        <button class="intensity-btn" id="chip_hours_112" onclick="manualIntensityTakeover(112, 'chip_hours_112')">HEAVY COMM. (100-130 HRS/WK)</button>
+        <button class="intensity-btn" style="grid-column: 1 / -1;" id="chip_hours_168" onclick="manualIntensityTakeover(168, 'chip_hours_168')">24/7</button>
+      </div>
+    </div>
+
+    <div class="accordion-wrapper" id="accordion_root" style="opacity: 0.2; pointer-events: none;">
+      <button class="accordion-trigger" onclick="toggleAccordion()">
+        <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
+        <span class="accordion-arrow" id="acc_arrow">▼</span>
+      </button>
+      <div class="accordion-content" id="acc_content">
+        
+        <div style="margin-bottom: 20px;">
+          <div class="field-label" style="margin-bottom: 4px;">
+            <span style="color: var(--white);">HVAC/R End-Use Load Fraction</span>
+            <span class="slider-val" id="hvac_val">50%</span>
+          </div>
+          <div style="font-size: 11px; color: var(--slate); font-style: italic; margin-bottom: 4px;">Keep defaults unless you know otherwise.</div>
+          <input type="range" id="hvac_slider" class="rng" min="5" max="90" value="50" oninput="manualHvacTakeover()">
+          <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
+        </div>
+
+        <div>
+          <div class="field-label" style="margin-bottom: 6px;">
+            <span style="color: var(--white);">Blended Commercial Power Rate</span>
+          </div>
+          <div class="spend-input-row" id="rate_input_container">
+            <span class="spend-currency">¢</span>
+            <input type="number" id="rate_cents_in" class="spend-input" style="font-size: 18px;" placeholder="24" oninput="manualRateTakeover()">
+            <span class="spend-suffix">/ kWh</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
-  <!-- TRACK TRACK 2: CLOSING PRESCRIPTIVE VALIDATION LAYER -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Prescriptive Diagnostic Horizon</div>
     <div class="horizon-track-container">
@@ -293,79 +326,15 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 3: STRIPPED CONGRUENT PLAYBOOK AREA -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting selection discovery parameters modifications...</div>
   </div>
 
-  <!-- POSITION 5: AUXILIARY OVERRIDES PANEL -->
-  <div class="override-panel" id="manual_override_wrapper">
-    <div class="override-panel-header">Manual Overrides Matrix Context</div>
-    
-    <div class="field" style="margin-bottom: 24px;" id="chip_hours_block">
-      <div class="field-label">
-        <span style="color: var(--white);">Operational Intensity Tier</span>
-        <div class="takeover-meta-container">
-          <span class="takeover-active-indicator" id="intensity_takeover_lbl">⚡ MANUAL TAKEOVER</span>
-          <span class="reset-auto-link" id="intensity_reset_lnk" onclick="resetIntensityToAuto()">✕ Reset to Auto</span>
-        </div>
-      </div>
-      <div class="takeover-chip-row">
-        <div class="takeover-chip-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT</div>
-        <div class="takeover-chip-btn" id="chip_hours_45" onclick="manualIntensityTakeover(45, 'chip_hours_45')">1-SHIFT</div>
-        <div class="takeover-chip-btn" id="chip_hours_75" onclick="manualIntensityTakeover(75, 'chip_hours_75')">2-SHIFT</div>
-        <div class="takeover-chip-btn" id="chip_hours_112" onclick="manualIntensityTakeover(112, 'chip_hours_112')">HEAVY COMM.</div>
-        <div class="takeover-chip-btn" id="chip_hours_168" onclick="manualIntensityTakeover(168, 'chip_hours_168')">24/7</div>
-      </div>
-    </div>
-
-    <div class="field" style="margin-bottom: 24px;" id="hvac_field_container">
-      <div class="field-label">
-        <span style="color: var(--white);">HVAC/R End-Use Load Fraction</span>
-        <div class="takeover-meta-container">
-          <span class="slider-val" id="hvac_val">50%</span>
-          <span class="takeover-active-indicator" id="hvac_takeover_lbl">⚡ MANUAL TAKEOVER</span>
-          <span class="reset-auto-link" id="hvac_reset_lnk" onclick="resetHvacToAuto()">✕ Reset to Auto</span>
-        </div>
-      </div>
-      <input type="range" id="hvac_slider" class="rng" min="5" max="90" value="50" oninput="manualHvacTakeover()">
-      <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
-    </div>
-
-    <div class="field" style="margin-bottom: 0;">
-      <div class="field-label">
-        <span style="color: var(--white);">Blended Commercial Power Rate (Whole Cents)</span>
-        <div class="takeover-meta-container">
-          <span class="takeover-active-indicator" id="rate_takeover_lbl">⚡ MANUAL TAKEOVER</span>
-          <span class="reset-auto-link" id="rate_reset_lnk" onclick="resetRateToAuto()">✕ Reset to Auto</span>
-        </div>
-      </div>
-      <div class="spend-input-row" style="max-width: 250px;" id="rate_input_container">
-        <span class="spend-currency" style="font-size: 16px;">¢</span>
-        <input type="number" id="rate_cents_in" class="spend-input" style="font-size: 20px; padding: 6px 4px;" placeholder="e.g. 24" oninput="manualRateTakeover()">
-        <span class="spend-suffix" style="font-size: 11px;">/ kWh</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- POSITION 6: Scoreboard Footer -->
   <div class="scoreboard" id="scoreboard_root_box">
-    <span class="score-badge" id="temp_badge">Awaiting Configuration</span>
-    <div class="score-container">
-      <div class="score-num-label">Calculated Temperature Rating</div>
-      <div class="score-num" id="score_out">- -</div>
-    </div>
-    <div class="savings-output">
-      <div class="savings-cell">
-        <div class="savings-val" id="sav_floor">$0</div>
-        <div class="savings-lbl">Contract Floor (2-Yr Value)</div>
-      </div>
-      <div class="savings-cell">
-        <div class="savings-val" id="sav_ceil">$0</div>
-        <div class="savings-lbl">Contract Max (2-Yr Value)</div>
-      </div>
-    </div>
+    <span class="score-badge" id="temp_badge">Muted System Layer</span>
+    <div class="score-container"><div class="score-num" id="score_out">0</div></div>
+    <div class="savings-output"><div id="sav_floor">0</div><div id="sav_ceil">0</div></div>
   </div>
 </div>
 
@@ -405,6 +374,7 @@ const FACILITY_PROFILES = {
   mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "mid",  name: "Mixed Use Property", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
 };
 
+let accordionExpanded = false;
 let selectedState = "";
 let selectedFacility = "";
 
@@ -527,6 +497,7 @@ function selectFacilitiesCount(count, btnId) {
   document.querySelectorAll("[id^='fac_count_']").forEach(btn => btn.classList.remove("active"));
   document.getElementById(btnId).classList.add("active");
   currentActiveFacCountValue = count;
+  evaluateActivationUnlocks();
   runEngine();
 }
 
@@ -534,7 +505,31 @@ function selectMonthlySpend(amount, btnId) {
   document.querySelectorAll("[id^='spend_amt_']").forEach(btn => btn.classList.remove("active"));
   document.getElementById(btnId).classList.add("active");
   currentActiveBillValue = amount;
+  evaluateActivationUnlocks();
   runEngine();
+}
+
+function evaluateActivationUnlocks() {
+  if (currentActiveBillValue !== 0 && currentActiveFacCountValue !== 0 && selectedState !== "" && selectedFacility !== "") {
+    let pnl = document.getElementById("loose_hours_panel_root");
+    let acc = document.getElementById("accordion_root");
+    pnl.style.opacity = "1"; pnl.style.pointerEvents = "auto";
+    acc.style.opacity = "1"; acc.style.pointerEvents = "auto";
+  }
+}
+
+function toggleAccordion() {
+  let content = document.getElementById("acc_content");
+  let arrow = document.getElementById("acc_arrow");
+  accordionExpanded = !accordionExpanded;
+  if (accordionExpanded) {
+    content.style.display = "block";
+    arrow.textContent = "▲";
+    smoothScrollToElement("accordion_root");
+  } else {
+    content.style.display = "none";
+    arrow.textContent = "▼";
+  }
 }
 
 function smoothScrollToElement(targetId) {
@@ -548,52 +543,54 @@ function smoothScrollToElement(targetId) {
 
 function manualIntensityTakeover(hoursVal, activeBtnId) {
   isIntensityOverridden = true;
-  document.getElementById("manual_override_wrapper").classList.add("intensity-manual-state");
+  document.getElementById("intensity_override_flag").style.display = "block";
   syncIntensityButtonsUI(activeBtnId);
   runEngine();
 }
 
 function resetIntensityToAuto() {
   isIntensityOverridden = false;
-  document.getElementById("manual_override_wrapper").classList.remove("intensity-manual-state");
-  document.getElementById("intensity_takeover_lbl").style.display = "none";
-  document.getElementById("intensity_reset_lnk").style.display = "none";
+  document.getElementById("intensity_override_flag").style.display = "none";
   if (selectedFacility) {
     automatedActiveHoursValue = FACILITY_PROFILES[selectedFacility].weeklyHours;
     syncIntensityButtonsUI(FACILITY_PROFILES[selectedFacility].targetIntensityBtn);
   } else {
-    document.querySelectorAll('.takeover-chip-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
   }
   runEngine();
 }
 
 function manualHvacTakeover() {
   isHvacOverridden = true;
-  document.getElementById("manual_override_wrapper").classList.add("hvac-manual-state");
+  let s = document.getElementById("hvac_slider");
+  s.classList.add("active-override-thumb");
+  document.getElementById("hvac_val").classList.add("active-override-val");
   runEngine();
 }
 
 function resetHvacToAuto() {
   isHvacOverridden = false;
-  document.getElementById("manual_override_wrapper").classList.remove("hvac-manual-state");
+  let s = document.getElementById("hvac_slider");
+  s.classList.remove("active-override-thumb");
+  document.getElementById("hvac_val").classList.remove("active-override-val");
   if (selectedFacility) {
     automatedActiveHvacValue = Math.round(FACILITY_PROFILES[selectedFacility].hvacShare * 100);
   } else {
     automatedActiveHvacValue = 50;
   }
-  document.getElementById("hvac_slider").value = automatedActiveHvacValue;
+  s.value = automatedActiveHvacValue;
   runEngine();
 }
 
 function manualRateTakeover() {
   isRateOverridden = true;
-  document.getElementById("manual_override_wrapper").classList.add("rate-manual-state");
+  document.getElementById("rate_input_container").classList.add("active-override-border");
   runEngine();
 }
 
 function resetRateToAuto() {
   isRateOverridden = false;
-  document.getElementById("manual_override_wrapper").classList.remove("rate-manual-state");
+  document.getElementById("rate_input_container").classList.remove("active-override-border");
   if (selectedState) {
     automatedActiveRateCents = US_STATE_TIERS[selectedState].avgCents;
   } else {
@@ -604,7 +601,7 @@ function resetRateToAuto() {
 }
 
 function syncIntensityButtonsUI(activeBtnId) {
-  document.querySelectorAll('.takeover-chip-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
   let activeElement = document.getElementById(activeBtnId);
   if (activeElement) activeElement.classList.add('active');
 }
@@ -628,7 +625,6 @@ function runEngine() {
     document.getElementById("temp_badge").className = "score-badge";
     document.getElementById("sav_floor").textContent = "$0";
     document.getElementById("sav_ceil").textContent = "$0";
-    
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
@@ -642,7 +638,7 @@ function runEngine() {
   let monthlyBill = currentActiveBillValue;
   let facilitiesCount = currentActiveFacCountValue;
   
-  // LOGIC MOUNT SECURITY FIREWALLS
+  // COMPLIANCE GATES
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
   let bracketString = "1 Location";
@@ -663,7 +659,7 @@ function runEngine() {
 
   let weeklyHours = automatedActiveHoursValue;
   if (isIntensityOverridden) {
-    let activeChip = document.querySelector('.takeover-chip-btn.active');
+    let activeChip = document.querySelector('.intensity-btn.active');
     if (activeChip) {
       if (activeChip.id === 'chip_hours_15') weeklyHours = 15;
       else if (activeChip.id === 'chip_hours_45') weeklyHours = 45;
@@ -671,11 +667,20 @@ function runEngine() {
       else if (activeChip.id === 'chip_hours_112') weeklyHours = 112;
       else if (activeChip.id === 'chip_hours_168') weeklyHours = 168;
     }
+  } else {
+    // Dynamically match button highlights to active auto values cleanly
+    if (automatedActiveHoursValue === 15) syncIntensityButtonsUI('chip_hours_15');
+    else if (automatedActiveHoursValue === 45) syncIntensityButtonsUI('chip_hours_45');
+    else if (automatedActiveHoursValue === 75) syncIntensityButtonsUI('chip_hours_75');
+    else if (automatedActiveHoursValue === 112) syncIntensityButtonsUI('chip_hours_112');
+    else if (automatedActiveHoursValue === 168) syncIntensityButtonsUI('chip_hours_168');
   }
   
   let hvacFractionPercent = automatedActiveHvacValue;
   if (isHvacOverridden) {
     hvacFractionPercent = parseInt(document.getElementById("hvac_slider").value);
+  } else {
+    document.getElementById("hvac_slider").value = automatedActiveHvacValue;
   }
   document.getElementById("hvac_val").textContent = hvacFractionPercent + "%";
   let hvacFraction = hvacFractionPercent / 100;
@@ -731,7 +736,7 @@ function runEngine() {
     document.getElementById("score_out").textContent = finalScore;
   }
 
-  // INTERPOLATE PROGRAMMATIC NEEDLE LAYERS ACROSS BOTH TWIN TRACK SYSTEM HOOKS
+  // INTERPOLATE NEEDLES ACROSS TWIN TRACK SYSTEMS
   let needle = document.getElementById("gauge_needle");
   let needleMirror = document.getElementById("gauge_needle_mirror");
   
@@ -800,69 +805,10 @@ function runEngine() {
     document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
   }
 
-  // DYNAMIC UNIFIED PLAYBOOK OUTPUT TERMINALS
+  // DYNAMIC UNPLAYED STRIPPED PROTOCOL INSIGHT STRINGS
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
 
   if (isFirewallDisqualified) {
     playbookBox.classList.add("congruent-red");
     pTitle.textContent = "🛑 DEAL DISQUALIFIED: INSUFFICIENT DEPLOYMENT VOLUMES";
-    pText.textContent = `The monthly energy bill is too low for a portfolio of this size. The cost of mobilizing installation crews to ${bracketString} separate locations will exceed our project margins.`;
-  } else if (schedulePoints === 0) {
-    playbookBox.classList.add("congruent-red");
-    pTitle.textContent = "🛑 DEAL DISQUALIFIED: BASELINE RUNTIME HOURS COMPRESSION";
-    pText.textContent = "This facility operates under 40 hours a week. The on-site thermal equipment does not run enough total annual hours to generate viable energy savings.";
-  } 
-  else if (activeZone === "purple") {
-    playbookBox.classList.add("congruent-purple");
-    if (selectedFacility === "datactr") {
-      pTitle.textContent = "🔮 HIGHEST PRIORITY MATCH: CLOUD COMPUTE CORE MATCH";
-      pText.textContent = "Data Center infrastructure profile confirmed. High continuous baseload equipment density maximizes total contract value potential.";
-    } else {
-      pTitle.textContent = "🔮 HIGHEST PRIORITY MATCH: INVESTMENT MATCH TARGET";
-      pText.textContent = "High-intensity commercial asset footprint operating within a premium-rate utility market. Next step requires collecting 12 months of utility history.";
-    }
-  } else if (activeZone === "green") {
-    playbookBox.classList.add("congruent-green");
-    pTitle.textContent = "🟢 QUALIFIED LEAD: SYSTEM TECHNOLOGY COMPLIANCE STANDARDS";
-    pText.textContent = "Strong operational profile match. The facility equipment density and utility profile line up cleanly with our technology deployment standards.";
-  } else if (activeZone === "yellow") {
-    playbookBox.classList.add("congruent-yellow");
-    pTitle.textContent = "💛 BREAD-AND-BUTTER LINEAR MARGIN: CONDITIONAL DISCOVERY";
-    pText.textContent = "Standard commercial profile. Project viability depends on centralized HVAC/R infrastructure to keep field installation overhead low.";
-  } else {
-    playbookBox.classList.add("congruent-red");
-    pTitle.textContent = "🔴 LEAD DISQUALIFIED: REGIONAL ECONOMIC OVERHEAD BALANCER";
-    pText.textContent = "Low-density profile. The combination of cheap regional utility rates and low asset power draw cannot recover basic engineering overhead.";
-  }
-
-  let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24 * facilitiesCount; 
-  let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24 * facilitiesCount;
-  
-  let badge = document.getElementById("temp_badge");
-  badge.className = "score-badge"; 
-  
-  if (isFirewallDisqualified || schedulePoints === 0) {
-    badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
-    floorSavings = 0; ceilSavings = 0;
-  } else if (activeZone === "purple") {
-    badge.textContent = "Highest Priority Match"; badge.classList.add("bg-purple");
-  } else if (activeZone === "green") {
-    badge.textContent = "High Viability"; badge.classList.add("bg-green");
-  } else if (activeZone === "yellow") {
-    badge.textContent = "Linear Margin"; badge.classList.add("bg-yellow");
-  } else {
-    badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
-    floorSavings = 0; ceilSavings = 0;
-  }
-  
-  document.getElementById("sav_floor").textContent = "$" + Math.round(floorSavings).toLocaleString("en-US");
-  document.getElementById("sav_ceil").textContent = "$" + Math.round(ceilSavings).toLocaleString("en-US");
-}
-
-initStatesGrid();
-initFacilityMatrix();
-runEngine();
-</script>
-</body>
-</html>
