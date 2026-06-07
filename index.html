@@ -37,9 +37,9 @@ body {
 .calc-sub { font-size: 18px; color: var(--slate); font-weight: 700; line-height: 1.4; }
 
 .calc-body { padding: 24px 20px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
-.field { margin-bottom: 36px; scroll-margin-top: 100px; transition: all 0.2s ease; }
+.field { margin-bottom: 36px; scroll-margin-top: 10px; transition: all 0.2s ease; }
 
-.field-label { font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
+.field-label { font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
 .field-label .step { color: var(--gold); font-weight: 900; font-size: 20px; }
 
 .gauge-section { padding: 24px 20px; background: var(--ink); border-bottom: 2px solid var(--gold-rule); }
@@ -69,7 +69,6 @@ body {
 .state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
 @media(min-width: 500px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* ACCESSIBILITY AUDIT: Stacked state name and calculation metric rating line breaks cleanly */
 .state-chip { 
   background: rgba(255,255,255,0.03); padding: 10px 4px; text-align: center; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.1s ease;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3; min-height: 64px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px;
@@ -114,7 +113,6 @@ body {
 .intensity-btn:hover { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.8); }
 .intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; border-width: 2px; }
 
-/* RE-SIZED DYNAMIC SUB-CONTROL BUTTONS SET */
 .sub-toggle-btn { background: rgba(255,255,255,0.03); border: 2px dashed rgba(255,255,255,0.2); color: var(--override-cyan); padding: 12px 6px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 800; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.1s ease; }
 .sub-toggle-btn:hover { background: rgba(11, 197, 234, 0.06); border-color: var(--override-cyan); }
 
@@ -156,7 +154,7 @@ body {
 
   <div class="calc-body">
     
-    <!-- STEP 01: CHOOSE STATE (RENAMED FROM REGIONAL GEOGRAPHY) -->
+    <!-- STEP 01: CHOOSE STATE (WITH SMART SCROLL SHIFT ADJUSTMENTS) -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Choose State</span></div>
       <div id="state-full-view">
@@ -170,7 +168,7 @@ body {
       </div>
     </div>
 
-    <!-- STEP 02: FACILITY TYPE -->
+    <!-- STEP 02: FACILITY TYPE (WITH SMART SCROLL SHIFT ADJUSTMENTS) -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
       <div id="fac-full-view">
@@ -184,15 +182,13 @@ body {
       </div>
     </div>
 
-    <!-- STEP 03: PORTFOLIO FOOTPRINT (RENAMED FROM OPERATIONAL FOOTPRINT) -->
+    <!-- STEP 03: PORTFOLIO FOOTPRINT -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Portfolio Footprint</span></div>
       <div class="click-matrix-stack">
         <div>
-          <!-- Renamed header label fields cleanly -->
           <div style="font-size: 15px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 10px;"># of locations</div>
           <div class="clickable-grid-row">
-            <!-- Adjusted layout boundaries bracket values -->
             <button class="matrix-btn" id="fac_count_1" onclick="selectFacilitiesCount(1, 'fac_count_1')">1-4 Sites</button>
             <button class="matrix-btn" id="fac_count_5" onclick="selectFacilitiesCount(5, 'fac_count_5')">5-9 Sites</button>
             <button class="matrix-btn" id="fac_count_10" onclick="selectFacilitiesCount(10, 'fac_count_10')">10-19 Sites</button>
@@ -212,7 +208,7 @@ body {
       </div>
     </div>
 
-    <!-- DYNAMIC HOURS IN OPERATION SECTION WITH FILTERED DEFAULT STATE VIEWPORTS -->
+    <!-- LOOSE ACTION MODULE: ACCESSIBILITY BOOSTED RUNTIMES CONSOLE -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 8px;">
         <span style="color: var(--white);">Hours in Operation</span>
@@ -222,7 +218,6 @@ body {
         System defaults applied. Leave as-is unless on-site schedule is verified.
       </div>
       
-      <!-- Split-load sub toggles that show only the current defaulted button vs change action link link -->
       <div id="intensity_adaptive_isolated_view" class="clickable-grid-row" style="grid-template-columns: 1fr 1fr; gap:6px;">
         <button class="intensity-btn active" id="isolated_default_placeholder_btn" style="pointer-events:none;">Awaiting Configuration</button>
         <button class="sub-toggle-btn" onclick="revealAllIntensityOptions()">Change Default</button>
@@ -237,7 +232,7 @@ body {
       </div>
     </div>
 
-    <!-- EXPANDABLE EXTRA SLIDER FIELD LAYOUT ARRAYS -->
+    <!-- ACCORDION ASSUMPTIONS BLOCK -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -271,7 +266,7 @@ body {
 
   </div>
 
-  <!-- POSITION 3.5: DEAL QUALITY VERIFICATION GAUGE SCALE -->
+  <!-- POSITION 3.5: DEAL QUALITY HORIZON SCALE -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
@@ -291,13 +286,12 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 4: RENDERED PLAYBOOK FIELD OBJECTS DIRECTIVE CARD -->
+  <!-- POSITION 4: RENDERED LOGIC PLATFORM STRATEGY DIRECTIVES CARD -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
   </div>
 
-  <!-- INVISIBLE COMPILING MATRICES SHADOW SHEETS -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Muted Layer</span>
     <div class="score-container"><div class="score-num" id="score_out">0</div></div>
@@ -306,7 +300,6 @@ body {
 </div>
 
 <script>
-// Audited state list: all previous A- indicators globally mapped to B+ cleanly
 const US_STATE_TIERS = {
   "Alabama": { tier: "B+", mult: 1.5, avgCents: 15 }, "Alaska": { tier: "A+", mult: 3.0, avgCents: 28 }, "Arizona": { tier: "B+", mult: 1.5, avgCents: 14 }, "Arkansas": { tier: "C-", mult: 1.0, avgCents: 11 },
   "California": { tier: "A+", mult: 3.0, avgCents: 34 }, "Colorado": { tier: "B+", mult: 1.5, avgCents: 13 }, "Connecticut": { tier: "A+", mult: 2.2, avgCents: 24 }, "Delaware": { tier: "B+", mult: 1.5, avgCents: 15 },
@@ -323,12 +316,11 @@ const US_STATE_TIERS = {
   "Wisconsin": { tier: "B+", mult: 1.5, avgCents: 14 }, "Wyoming": { tier: "C-", mult: 1.0, avgCents: 11 }
 };
 
-// Audited facility list: all previous A- indicators globally mapped to B+ cleanly
 const FACILITY_PROFILES = {
   cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "A+", name: "Cold Storage", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
   datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "A+", name: "Data Center", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
   health:  { weeklyHours: 168, hvacShare: 0.50, tier: "A+", name: "Healthcare / Hosp.", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
-  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "B+", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
+  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "B+", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h20 M20 12h2"/></svg>' },
   super:   { weeklyHours: 112, hvacShare: 0.60, tier: "A+", name: "Supermarket", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
   edu:     { weeklyHours: 65,  hvacShare: 0.50, tier: "B+", name: "Education Facility", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="12,3 22,8 12,13 2,8"/><path d="M7 10.8v4.7a7 2.8 0 0010 0v-4.7"/></svg>' },
   whse:    { weeklyHours: 50,  hvacShare: 0.20, tier: "F",  name: "Distribution Whse", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"/></svg>' },
@@ -343,21 +335,6 @@ const FACILITY_PROFILES = {
   mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "B+", name: "Mixed Use Property", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
 };
 
-let accordionExpanded = false;
-let selectedState = "";
-let selectedFacility = "";
-
-let currentActiveBillValue = 0;
-let currentActiveFacCountValue = 0;
-
-let isIntensityOverridden = false;
-let isHvacOverridden = false;
-let isRateOverridden = false;
-
-let automatedActiveHoursValue = 168;
-let automatedActiveHvacValue = 50;
-let automatedActiveRateCents = 15;
-
 function selectStateDirectly(stateName) {
   selectedState = stateName;
   collapseStateSection();
@@ -366,6 +343,8 @@ function selectStateDirectly(stateName) {
     document.getElementById("rate_cents_in").value = automatedActiveRateCents;
   }
   runEngine();
+  // SHIFT GATES: Snap top boundary coordinate layout to section title viewport anchor link
+  smoothScrollToElement("field_geo_root");
 }
 
 function collapseStateSection() {
@@ -400,6 +379,8 @@ function selectFacilityDirectly(key) {
     document.getElementById("hvac_slider").value = automatedActiveHvacValue;
   }
   runEngine();
+  // SHIFT GATES: Snap top boundary coordinate layout to section title viewport anchor link
+  smoothScrollToElement("field_fac_root");
 }
 
 function collapseFacilitySection() {
@@ -428,7 +409,6 @@ function initStatesGrid() {
     let tData = US_STATE_TIERS[stateName];
     let chip = document.createElement("div");
     chip.className = "state-chip";
-    // Split layout lines for clean visibility focus mapping loops
     chip.innerHTML = `<span>${stateName}</span><span class="tier-sub-lbl">(${tData.tier})</span>`;
     chip.onclick = function() { selectStateDirectly(stateName); };
     box.appendChild(chip);
@@ -546,11 +526,18 @@ function syncIntensityButtonsUI(activeBtnId) {
   let activeElement = document.getElementById(activeBtnId);
   if (activeElement) {
     activeElement.classList.add('active');
-    
-    // Updates isolated text button view directly
     let placeholderBtn = document.getElementById("isolated_default_placeholder_btn");
     placeholderBtn.textContent = activeElement.textContent;
   }
+}
+
+function smoothScrollToElement(targetId) {
+  setTimeout(() => {
+    let target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 150); // Fluid animation timeline buffering delay block
 }
 
 function runEngine() {
