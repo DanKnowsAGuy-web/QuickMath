@@ -18,11 +18,11 @@
 body {
   font-family: 'Barlow', sans-serif; background: var(--ink); color: var(--white);
   font-size: 17px; line-height: 1.6; padding: 24px 16px; min-height: 100vh;
-  display: flex; align-items: flex-start; justify-content:center;
+  display: flex; align-items: flex-start; justify-content: center;
 }
 .calc {
-  width: 100%; max-width: 700px; background: var(--ink-2); border: 1px solid var(--gold-rule);
-  box-shadow: 0 24px 60px -28px rgba(0,0,0,0.72); overflow: hidden;
+  width: 100%; max-width: 720px; background: var(--ink-2); border: 1px solid var(--gold-rule);
+  box-shadow: 0 24px 60px -28px rgba(0,0,0,0.72); overflow: hidden; margin-bottom: 60px;
 }
 .calc-head { padding: 34px 38px 30px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
 .calc-eyebrow {
@@ -35,43 +35,64 @@ body {
 .calc-sub { font-size: 16px; color: rgba(255,255,255,0.66); }
 
 .calc-body { padding: 32px 38px 24px; background: linear-gradient(162deg, #131921 0%, var(--ink-2) 100%); }
-.field { margin-bottom: 24px; }
-.field-label { font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; display: flex; justify-content: space-between; }
+.field { margin-bottom: 32px; }
+.field-label { font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
 .field-label .step { color: var(--gold); font-weight: 600; }
+.active-pill-readout { background: rgba(200,169,110,0.15); border: 1px solid var(--gold); color: var(--gold-light); font-size: 12px; padding: 2px 10px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
 
-.sel-wrap { position: relative; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); }
-.sel-wrap select { width: 100%; border: none; background: transparent; outline: none; font-family: 'Barlow', sans-serif; font-size: 16px; color: #fff; padding: 14px; cursor: pointer; -webkit-appearance: none; appearance: none; }
-.sel-wrap::after { content: '\25BE'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--gold); pointer-events: none; }
-.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); }
+/* 50-State Grid Styling */
+.state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 6px; max-height: 195px; overflow-y: auto; padding-right: 6px; border: 1px solid rgba(255,255,255,0.08); padding: 10px; background: rgba(0,0,0,0.2); }
+.state-grid::-webkit-scrollbar { width: 6px; }
+.state-grid::-webkit-scrollbar-track { background: var(--ink); }
+.state-grid::-webkit-scrollbar-thumb { background: rgba(200,169,110,0.3); border-radius: 3px; }
+.state-chip { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); padding: 8px 4px; text-align: center; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.15s; }
+.state-chip:hover { border-color: var(--gold); background: rgba(200,169,110,0.1); transform: translateY(-1px); color: #fff; }
+.state-chip.active { background: linear-gradient(135deg, rgba(200,169,110,0.25) 0%, rgba(200,169,110,0.08) 100%); border-color: var(--gold); color: #fff; font-weight: 700; box-shadow: inset 0 1px 0 rgba(200,169,110,0.2); }
+
+/* 16-Facility Grid Architecture */
+.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+@media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
+.fac-opt { border: 1px solid rgba(200,169,110,0.16); background: rgba(255,255,255,0.04); padding: 16px 10px; text-align: center; cursor: pointer; transition: all 0.18s; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 92px; }
+.fac-opt:hover { border-color: var(--gold); background: rgba(200,169,110,0.12); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.4); color: #fff; }
+.fac-opt.active { background: linear-gradient(135deg, rgba(200,169,110,0.26) 0%, rgba(200,169,110,0.12) 100%); border-color: var(--gold); color: #fff; font-weight: 700; box-shadow: inset 0 1px 0 rgba(200,169,110,0.2); }
+.fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
+.fac-opt.active .fac-ico { color: var(--gold-light); }
+.fac-opt:hover:not(.active) .fac-ico { color: var(--gold); }
+
+/* High-Contrast Inputs */
+.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); }
 .spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: rgba(255,255,255,0.7); padding: 0 4px 0 18px; font-weight: 700; }
-.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 10px 4px; width: 100%; }
+.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 12px 4px; width: 100%; }
 .spend-suffix { font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.7); padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.15); align-self: stretch; display: flex; align-items: center; }
 
-.mode-toggle { display: flex; gap: 1px; background: var(--gold-rule); margin: 28px 0; border: 1px solid var(--gold-rule); }
+/* Mode Shifter */
+.mode-toggle { display: flex; gap: 1px; background: var(--gold-rule); margin: 32px 0 20px; border: 1px solid var(--gold-rule); }
 .mode-btn { flex: 1; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px; background: transparent; border: none; color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.18s; }
 .mode-btn.active { background: var(--gold); color: var(--ink); }
 .mode-btn:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.02); }
 
+/* Overrides Section */
 .adjust-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-.adjust-panel.open { max-height: 500px; }
-.adjust-inner { padding: 12px 0 24px; border-bottom: 1px solid var(--gold-rule); }
+.adjust-panel.open { max-height: 600px; }
+.adjust-inner { padding: 16px 0 8px; border-top: 1px solid var(--gold-rule); margin-top: 12px; }
 .rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.15); outline: none; }
 .rng::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: var(--gold); border: 1px solid var(--gold-light); cursor: pointer; }
-.slider-readout { display: flex; justify-content: space-between; font-size: 14px; color: var(--slate); text-transform: uppercase; }
+.slider-readout { display: flex; justify-content: space-between; font-size: 13px; color: var(--slate); text-transform: uppercase; }
 .slider-val { color: var(--gold-light); font-weight: 600; }
 
-.scoreboard { padding: 24px 38px; background: rgba(200,169,110,0.05); border-top: 1px solid var(--gold-rule); text-align: center; }
-.score-badge { display: inline-block; padding: 6px 16px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 12px; color: var(--ink); }
-.score-container { margin: 12px 0; }
+/* Output Summary Blocks */
+.scoreboard { padding: 28px 38px; background: rgba(200,169,110,0.04); border-top: 1px solid var(--gold-rule); text-align: center; }
+.score-badge { display: inline-block; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); transition: background-color 0.2s; }
+.score-container { margin: 8px 0; }
 .score-num-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 2px; }
-.score-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; line-height: 1; color: #fff; }
-.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 20px; border: 1px solid var(--gold-rule); }
-.savings-cell { flex: 1; background: var(--ink); padding: 18px; }
-.savings-val { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 6px; }
-.savings-lbl { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
-.gate-msg { font-size: 14px; font-style: italic; color: var(--slate); margin-top: 16px; line-height: 1.5; padding: 0 12px; }
+.score-num { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; line-height: 1; color: #fff; }
+.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 24px; border: 1px solid var(--gold-rule); }
+.savings-cell { flex: 1; background: var(--ink); padding: 20px; }
+.savings-val { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 6px; }
+.savings-lbl { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.gate-msg { font-size: 14px; font-style: italic; color: var(--slate); margin-top: 18px; line-height: 1.5; padding: 0 16px; }
 
-/* Dynamic Temp Colors */
+/* Status Classes */
 .bg-purple { background-color: var(--purple); color: #fff !important; }
 .bg-green  { background-color: var(--green); color: #fff !important; }
 .bg-yellow { background-color: var(--yellow); color: var(--ink) !important; }
@@ -82,52 +103,51 @@ body {
 
 <div class="calc">
   <div class="calc-head">
-    <div class="calc-eyebrow">Field PIE System</div>
+    <div class="calc-eyebrow">Field PIE Valuation Engine</div>
     <h1 class="calc-title">Contract value is dictated by building DNA, <em>not bill size.</em></h1>
-    <p class="calc-sub">Mode 1 filters out low-margin mirages in 10 seconds. Mode 2 maps precision engineering field overrides.</p>
+    <p class="calc-sub">Select geography and asset profile to verify waste concentration density metrics.</p>
   </div>
 
   <div class="calc-body">
+    
+    <!-- SECTION 1: 50 STATES ALPHABETICAL CHIP GRID -->
     <div class="field">
-      <div class="field-label"><span><span class="step">01</span> &nbsp;Regional Location</span><span id="state-tier-lbl">Sovereign Tier</span></div>
-      <div class="sel-wrap">
-        <select id="state_in" onchange="runEngine()">
-          <option value="CA" selected>California (S-Tier Sovereign Market)</option>
-          <option value="NY">New York (A-Tier Premium High Rate)</option>
-          <option value="TX">Texas (B-Tier National Average)</option>
-          <option value="NC">North Carolina (C-Tier Subsidized Low Rate)</option>
-          <option value="WA">Washington (D-Tier Grid Dead Zone)</option>
-        </select>
+      <div class="field-label">
+        <span><span class="step">01</span> &nbsp;Regional Location Geography</span>
+        <span class="active-pill-readout" id="state-tier-lbl">Select State</span>
+      </div>
+      <div class="state-grid" id="state-grid-box">
+        <!-- Generated alphabetically inside JavaScript system -->
       </div>
     </div>
 
+    <!-- SECTION 2: 16-FACILITY PROFILES MATRIX -->
     <div class="field">
-      <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Operation Profile</span></div>
-      <div class="sel-wrap">
-        <select id="fac_in" onchange="onFacChange()">
-          <option value="cold" selected>Cold Storage / Refrigerated Warehouse</option>
-          <option value="super">Supermarket / Heavy Grocery</option>
-          <option value="cstore">Convenience Store (24/7 Operations)</option>
-          <option value="office">Commercial Office Building</option>
-          <option value="church">Place of Worship (Intermittent Usage)</option>
-        </select>
+      <div class="field-label">
+        <span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span>
+      </div>
+      <div class="fac-grid" id="fac-matrix-box">
+        <!-- Complete 16 asset array structure generated with icons below -->
       </div>
     </div>
 
+    <!-- SECTION 3: MONTHLY POWER OVERHEAD SPEND -->
     <div class="field">
-      <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead</span></div>
+      <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
       <div class="spend-input-row">
         <span class="spend-currency">$</span>
-        <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="12,500" oninput="onBillInput()">
+        <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()">
         <span class="spend-suffix">/ Month</span>
       </div>
     </div>
 
+    <!-- MODE SHIFTER SWITCH -->
     <div class="mode-toggle">
       <button type="button" class="mode-btn active" id="btn_m1" onclick="shiftMode('mode_1')">Mode 1: Quick Scan</button>
       <button type="button" class="mode-btn" id="btn_m2" onclick="shiftMode('mode_2')">Mode 2: Deep Dial Overrides</button>
     </div>
 
+    <!-- MODE 2 DRAWER EXPANSION OVERRIDES -->
     <div class="adjust-panel" id="override_drawer">
       <div class="adjust-inner">
         <div class="field">
@@ -141,7 +161,7 @@ body {
           <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
         </div>
         <div class="field">
-          <div class="field-label"><span>Blended Commercial Power Rate</span></div>
+          <div class="field-label"><span>Blended Commercial Power Rate Override</span></div>
           <div class="spend-input-row" style="max-width: 250px;">
             <span class="spend-currency" style="font-size: 16px;">$</span>
             <input type="number" step="0.001" id="rate_override" class="spend-input" style="font-size: 20px;" placeholder="e.g. 0.24" oninput="runEngine()">
@@ -152,11 +172,12 @@ body {
     </div>
   </div>
 
+  <!-- MULTI-LAYER EVALUATION OUTPUT FACEPLATE -->
   <div class="scoreboard">
-    <span class="score-badge bg-purple" id="temp_badge">Sovereign Asset</span>
+    <span class="score-badge bg-purple" id="temp_badge">Select Parameters</span>
     <div class="score-container">
       <div class="score-num-label">Lead Temperature Rating</div>
-      <div class="score-num" id="score_out">300</div>
+      <div class="score-num" id="score_out">0</div>
     </div>
     <div class="savings-output">
       <div class="savings-cell">
@@ -168,29 +189,88 @@ body {
         <div class="savings-lbl">Contract Max (2-Yr)</div>
       </div>
     </div>
-    <div class="gate-msg" id="gate_msg_out">Checking deal engineering vectors...</div>
+    <div class="gate-msg" id="gate_msg_out">Awaiting field criteria selections...</div>
   </div>
 </div>
 
 <script>
-const MATRIX_DEFAULTS = {
-  states: {
-    "CA": { multiplier: 3.0, label: "Sovereign Tier" },
-    "NY": { multiplier: 2.2, label: "Premium High Rate" },
-    "TX": { multiplier: 1.5, label: "National Average" },
-    "NC": { multiplier: 1.0, label: "Subsidized Low Rate" },
-    "WA": { multiplier: 0.7, label: "Grid Dead Zone" }
-  },
-  facilities: {
-    cold:   { weeklyHours: 168, hvacShare: 0.75 },
-    super:  { weeklyHours: 110, hvacShare: 0.60 },
-    cstore: { weeklyHours: 168, hvacShare: 0.55 },
-    office: { weeklyHours: 55,  hvacShare: 0.40 },
-    church: { weeklyHours: 15,  hvacShare: 0.45 }
-  }
+// Alphabetical State Tier Assignments
+const US_STATE_TIERS = {
+  "Alabama": { tier: "B", mult: 1.5 }, "Alaska": { tier: "S", mult: 3.0 }, "Arizona": { tier: "B", mult: 1.5 }, "Arkansas": { tier: "C", mult: 1.0 },
+  "California": { tier: "S", mult: 3.0 }, "Colorado": { tier: "B", mult: 1.5 }, "Connecticut": { tier: "A", mult: 2.2 }, "Delaware": { tier: "B", mult: 1.5 },
+  "Florida": { tier: "C", mult: 1.0 }, "Georgia": { tier: "C", mult: 1.0 }, "Hawaii": { tier: "S", mult: 3.0 }, "Idaho": { tier: "D", mult: 0.7 },
+  "Illinois": { tier: "B", mult: 1.5 }, "Indiana": { tier: "B", mult: 1.5 }, "Iowa": { tier: "D", mult: 0.7 }, "Kansas": { tier: "C", mult: 1.0 },
+  "Kentucky": { tier: "B", mult: 1.5 }, "Louisiana": { tier: "C", mult: 1.0 }, "Maine": { tier: "S", mult: 3.0 }, "Maryland": { tier: "B", mult: 1.5 },
+  "Massachusetts": { tier: "S", mult: 3.0 }, "Michigan": { tier: "B", mult: 1.5 }, "Minnesota": { tier: "C", mult: 1.0 }, "Mississippi": { tier: "B", mult: 1.5 },
+  "Missouri": { tier: "C", mult: 1.0 }, "Montana": { tier: "C", mult: 1.0 }, "Nebraska": { tier: "D", mult: 0.7 }, "Nevada": { tier: "B", mult: 1.5 },
+  "New Hampshire": { tier: "A", mult: 2.2 }, "New Jersey": { tier: "A", mult: 2.2 }, "New Mexico": { tier: "C", mult: 1.0 }, "New York": { tier: "A", mult: 2.2 },
+  "North Carolina": { tier: "C", mult: 1.0 }, "North Dakota": { tier: "D", mult: 0.7 }, "Ohio": { tier: "B", mult: 1.5 }, "Oklahoma": { tier: "C", mult: 1.0 },
+  "Oregon": { tier: "D", mult: 0.7 }, "Pennsylvania": { tier: "B", mult: 1.5 }, "Rhode Island": { tier: "A", mult: 2.2 }, "South Carolina": { tier: "C", mult: 1.0 },
+  "South Dakota": { tier: "C", mult: 1.0 }, "Tennessee": { tier: "C", mult: 1.0 }, "Texas": { tier: "B", mult: 1.5 }, "Utah": { tier: "D", mult: 0.7 },
+  "Vermont": { tier: "A", mult: 2.2 }, "Virginia": { tier: "B", mult: 1.5 }, "Washington": { tier: "D", mult: 0.7 }, "West Virginia": { tier: "D", mult: 0.7 },
+  "Wisconsin": { tier: "B", mult: 1.5 }, "Wyoming": { tier: "C", mult: 1.0 }
 };
 
+// 16 Asset Data Blueprint Profiles containing specific vector profiles
+const FACILITY_PROFILES = {
+  cold:    { weeklyHours: 168, hvacShare: 0.75, name: "Cold Storage", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
+  datactr: { weeklyHours: 168, hvacShare: 0.12, name: "Data Center", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
+  health:  { weeklyHours: 168, hvacShare: 0.50, name: "Healthcare / Hosp.", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
+  research:{ weeklyHours: 120, hvacShare: 0.30, name: "Research Lab", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
+  super:   { weeklyHours: 112, hvacShare: 0.60, name: "Supermarket", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
+  edu:     { weeklyHours: 65,  hvacShare: 0.50, name: "Education Facility", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="12,3 22,8 12,13 2,8"/><path d="M7 10.8v4.7a7 2.8 0 0010 0v-4.7"/></svg>' },
+  whse:    { weeklyHours: 50,  hvacShare: 0.20, name: "Distribution Whse", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"/></svg>' },
+  hotel:   { weeklyHours: 168, hvacShare: 0.45, name: "Hospitality / Hotel", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="13" width="20" height="8" rx="1"/><path d="M6 13V9a6 6 0 0112 0v4"/></svg>' },
+  multi:   { weeklyHours: 168, hvacShare: 0.35, name: "Multifamily Lobby", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="16" x2="21" y2="16"/></svg>' },
+  office:  { weeklyHours: 60,  hvacShare: 0.40, name: "Commercial Office", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>' },
+  fitness: { weeklyHours: 105, hvacShare: 0.45, name: "Fitness / Gym", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/><line x1="6" y1="12" x2="18" y2="12"/></svg>' },
+  retail:  { weeklyHours: 84,  hvacShare: 0.40, name: "Big-Box Retail", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/></svg>' },
+  qsr:     { weeklyHours: 115, hvacShare: 0.40, name: "Fast Food Kitchen", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 8h16M4 12h16M4 16h16"/><path d="M4 8Q4 3 12 3 20 3 20 8"/></svg>' },
+  cstore:  { weeklyHours: 168, hvacShare: 0.45, name: "Convenience Store", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 22V6a2 2 0 012-2h8a2 2 0 012 2v16M4 22h12"/></svg>' },
+  ind:     { weeklyHours: 144, hvacShare: 0.10, name: "Industrial / Mfg", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>' },
+  mixed:   { weeklyHours: 90,  hvacShare: 0.35, name: "Mixed Use Property", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
+};
+
+let selectedState = "CA";
+let selectedFacility = "cold";
 let currentMode = "mode_1";
+
+// Populate Alphabetical State Selection Grid Workspace
+function initStatesGrid() {
+  const box = document.getElementById("state-grid-box");
+  box.innerHTML = "";
+  Object.keys(US_STATE_TIERS).sort().forEach(stateName => {
+    let chip = document.createElement("div");
+    chip.className = "state-chip" + (stateName === selectedState ? " active" : "");
+    chip.textContent = stateName;
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".state-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      selectedState = stateName;
+      runEngine();
+    });
+    box.appendChild(chip);
+  });
+}
+
+// Populate the full 16 Iconic Option Grid Matrix
+function initFacilityMatrix() {
+  const box = document.getElementById("fac-matrix-box");
+  box.innerHTML = "";
+  Object.keys(FACILITY_PROFILES).forEach(key => {
+    let prof = FACILITY_PROFILES[key];
+    let opt = document.createElement("div");
+    opt.className = "fac-opt" + (key === selectedFacility ? " active" : "");
+    opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div>${prof.name}</div>`;
+    opt.addEventListener("click", () => {
+      document.querySelectorAll(".fac-opt").forEach(o => o.classList.remove("active"));
+      opt.classList.add("active");
+      selectedFacility = key;
+      onFacChange();
+    });
+    box.appendChild(opt);
+  });
+}
 
 function onBillInput() {
   let el = document.getElementById("bill_in");
@@ -201,8 +281,7 @@ function onBillInput() {
 
 function onFacChange() {
   if (currentMode === "mode_1") {
-    let facKey = document.getElementById("fac_in").value;
-    let defs = MATRIX_DEFAULTS.facilities[facKey];
+    let defs = FACILITY_PROFILES[selectedFacility];
     document.getElementById("hours_slider").value = defs.weeklyHours;
     document.getElementById("hvac_slider").value = Math.round(defs.hvacShare * 100);
   }
@@ -214,97 +293,82 @@ function shiftMode(mode) {
   document.getElementById("btn_m1").classList.toggle("active", mode === "mode_1");
   document.getElementById("btn_m2").classList.toggle("active", mode === "mode_2");
   document.getElementById("override_drawer").classList.toggle("open", mode === "mode_2");
-  
-  if (mode === "mode_1") {
-    // Reset slider overrides back to automated profile tracking defaults
-    onFacChange();
-  } else {
-    runEngine();
-  }
+  if (mode === "mode_1") onFacChange();
+  else runEngine();
 }
 
 function runEngine() {
-  let stateKey = document.getElementById("state_in").value;
-  let facKey = document.getElementById("fac_in").value;
+  let tierData = US_STATE_TIERS[selectedState];
+  let rateMultiplier = tierData.mult;
+  document.getElementById("state-tier-lbl").textContent = `${selectedState} (${tierData.tier}-Tier Market)`;
+  
   let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
+  let weeklyHours = FACILITY_PROFILES[selectedFacility].weeklyHours;
+  let hvacFraction = FACILITY_PROFILES[selectedFacility].hvacShare;
   
-  // Set default metric indicators tracking
-  let rateMultiplier = MATRIX_DEFAULTS.states[stateKey].multiplier;
-  document.getElementById("state-tier-lbl").textContent = MATRIX_DEFAULTS.states[stateKey].label;
-  
-  let weeklyHours = MATRIX_DEFAULTS.facilities[facKey].weeklyHours;
-  let hvacFraction = MATRIX_DEFAULTS.facilities[facKey].hvacShare;
-  
-  // Apply sliders if Mode 2 handles data overrides
   if (currentMode === "mode_2") {
     weeklyHours = parseInt(document.getElementById("hours_slider").value);
     hvacFraction = parseInt(document.getElementById("hvac_slider").value) / 100;
-    
     let rateOverride = parseFloat(document.getElementById("rate_override").value) || 0;
-    if (rateOverride > 0) {
-      rateMultiplier = rateOverride / 0.13; // Calibrates live rate back to weighted scalar point curve
-    }
+    if (rateOverride > 0) rateMultiplier = rateOverride / 0.13;
   }
   
-  // Sync the visual reading numbers on expanded parameters sliders
   document.getElementById("hours_val").textContent = weeklyHours + " Hrs/Wk";
   document.getElementById("hvac_val").textContent = Math.round(hvacFraction * 100) + "%";
   
-  // Convert weekly execution hours to annual baseline limits runtime
   let annualHours = weeklyHours * 52;
   
-  // --- CALCULATE ACCURATE GRID SCORING POINTS ---
+  // Matrix Physics Value Assignments
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
   else if (annualHours >= 3500) schedulePoints = 5;
-  else if (annualHours < 2000) schedulePoints = 0; // Automatic Internal Kill Switch Activation
+  else if (annualHours < 2000) schedulePoints = 0; 
   
   let hvacPoints = 5;
   if (hvacFraction >= 0.65) hvacPoints = 10;
   else if (hvacFraction >= 0.50) hvacPoints = 7;
-  else if (hvacFraction < 0.15) hvacPoints = 1; // Overcomes processing traps
-  
+  else if (hvacFraction < 0.15) hvacPoints = 1; 
+
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   
-  // Absolute Engineering Overrides Rules Check
+  // Core Engineering Correction Overrides 
   if (schedulePoints === 0) finalScore = 0;
   if (schedulePoints === 10 && hvacPoints === 10) finalScore = 300;
   
   finalScore = Math.round(finalScore);
   document.getElementById("score_out").textContent = finalScore;
   
-  // --- SYSTEM TRANSLATION LAYER: RESULTS PRESENTATION MAPPING ---
   let badge = document.getElementById("temp_badge");
   let msg = document.getElementById("gate_msg_out");
-  badge.className = "score-badge"; // wipe clear classes
+  badge.className = "score-badge"; 
   
-  let calculatedSavingsFloor = (monthlyBill * hvacFraction) * 0.12 * 24; // Converts to standard 2-year value cycle 
-  let calculatedSavingsCeiling = (monthlyBill * hvacFraction) * 0.22 * 24;
+  let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
+  let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24;
   
   if (finalScore >= 65) {
     badge.textContent = "Sovereign Asset"; badge.classList.add("bg-purple");
-    msg.textContent = "High Tonnage / High Compressor Waste Density. Secure utility bills immediately.";
+    msg.textContent = "High Tonnage / Continuous Process Load. Target contains optimal engineering footprints.";
   } else if (finalScore >= 25) {
     badge.textContent = "High Viability"; badge.classList.add("bg-green");
-    msg.textContent = "Solid commercial target. Deploy full L0/L1 retrofit stack to capture value metrics.";
+    msg.textContent = "Solid commercial target profile. Deploy full mechanical L0/L1 retrofit optimization stack.";
   } else if (finalScore >= 10) {
     badge.textContent = "Linear Margin"; badge.classList.add("bg-yellow");
-    msg.textContent = "Viable entry only if building handles centralized tonnage (RTUs/Chillers) to reduce logging costs.";
+    msg.textContent = "Proceed only if mechanical architecture uses centralized tonnage to offset logger setup costs.";
   } else {
-    badge.textContent = "Dead Lead / Cancel"; badge.classList.add("bg-red");
-    msg.textContent = "Zero Margin Profile. Building thermal load characteristics fail deployment standards.";
-    calculatedSavingsFloor = 0;
-    calculatedSavingsCeiling = 0;
+    badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
+    msg.textContent = "Zero Margin Zone. Running hours or target component loads fall below operational execution limits.";
+    floorSavings = 0; ceilSavings = 0;
   }
   
-  // Formats dollar strings clearly to interface nodes
-  document.getElementById("sav_floor").textContent = "$" + Math.round(calculatedSavingsFloor).toLocaleString("en-US");
-  document.getElementById("sav_ceil").textContent = "$" + Math.round(calculatedSavingsCeiling).toLocaleString("en-US");
+  document.getElementById("sav_floor").textContent = "$" + Math.round(floorSavings).toLocaleString("en-US");
+  document.getElementById("sav_ceil").textContent = "$" + Math.round(ceilSavings).toLocaleString("en-US");
 }
 
-// Initial engine system initialization loop execution
-runEngine();
+// Initialize Application Modules
+initStatesGrid();
+initFacilityMatrix();
+onFacChange();
 </script>
 </body>
 </html>
