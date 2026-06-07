@@ -88,14 +88,18 @@ body {
 .state-chip.tier-c.active { background: rgba(236, 201, 75, 0.2) !important; color: #fff !important; }
 .state-chip.tier-d.active { background: rgba(245, 101, 101, 0.25) !important; }
 
+/* RE-ENGINEERED FACILITY CARD OUTLINES (SIDE STRIPS OVERHAUL) */
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
 @media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
-.fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border: 1px solid transparent; }
-.fac-opt.tier-high { border-top: 6px solid var(--purple); }
-.fac-opt.tier-mid  { border-top: 6px solid var(--green); }
-.fac-opt.tier-low  { border-top: 6px solid var(--red); }
+.fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
 
-.fac-opt.active { font-weight: 800; color: #fff !important; border-color: #fff !important; }
+/* Swapped from Top Borders to Dual-Thick Left and Right Side Borders */
+.fac-opt.tier-high { border-left: 5px solid var(--purple); border-right: 5px solid var(--purple); }
+.fac-opt.tier-mid  { border-left: 5px solid var(--green); border-right: 5px solid var(--green); }
+.fac-opt.tier-low  { border-left: 5px solid var(--red); border-right: 5px solid var(--red); }
+.fac-opt:hover { border-top-color: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; }
+
+.fac-opt.active { font-weight: 800; color: #fff !important; border-top-color: #fff !important; border-bottom-color: #fff !important; }
 .fac-opt.tier-high.active { background: rgba(159, 122, 234, 0.25) !important; }
 .fac-opt.tier-mid.active  { background: rgba(72, 187, 120, 0.25) !important; }
 .fac-opt.tier-low.active  { background: rgba(245, 101, 101, 0.25) !important; }
@@ -192,7 +196,7 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
-  <!-- POSITION 1: STICKY HORIZON GAUGE DESIGN CORE -->
+  <!-- POSITION 1: PERSISTENT GAUGE OVERVIEW -->
   <div class="gauge-section" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
@@ -595,7 +599,7 @@ function runEngine() {
     document.getElementById("manual_override_wrapper").classList.remove("gauge-initialized-wrapper");
     document.getElementById("score_out").textContent = "- -";
     document.getElementById("gauge_needle").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting selection parameters configurations metrics context above...";
+    document.getElementById("playbook_text_out").textContent = "Awaiting selection discovery parameters modifications...";
     document.getElementById("temp_badge").textContent = "Awaiting Configuration";
     document.getElementById("temp_badge").className = "score-badge";
     document.getElementById("sav_floor").textContent = "$0";
@@ -612,7 +616,7 @@ function runEngine() {
   let monthlyBill = currentActiveBillValue;
   let facilitiesCount = currentActiveFacCountValue;
   
-  // COMPLIANCE SAFETY GATES
+  // COMPLIANCE GATES
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
   let bracketString = "1 Location";
@@ -701,7 +705,7 @@ function runEngine() {
     document.getElementById("score_out").textContent = finalScore;
   }
 
-  // GAUGE PIN POINT INTERPOLATION CONTROLS
+  // GAUGES PIN POINT INTERPOLATOR CONTROLLER
   let needle = document.getElementById("gauge_needle");
   gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
   document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
@@ -757,9 +761,7 @@ function runEngine() {
     document.getElementById("lbl_skip").classList.add("active-zone-text");
   }
 
-  // -----------------------------------------------------------------
-  // POSITION 3 DYNAMIC SYSTEM CONGRUENT PLAYBOOK CORE (RENAMED TO HIGHEST PRIORITY)
-  // -----------------------------------------------------------------
+  // DYNAMIC COMPACT PLAYBOOK HUB INTERFACE TERMINALS
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
 
