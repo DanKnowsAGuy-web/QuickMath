@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field PIE System — Vector Horizon Mission Control</title>
+<title>Field PIE System — Mission Control Panel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@600;700;800&display=swap" rel="stylesheet">
@@ -14,13 +14,13 @@
   --gold: #c8a96e; --gold-light: #e8c98a; --gold-rule: rgba(200,169,110,0.18);
   --white: #f2ede4; --slate: rgba(242,237,228,0.55);
   
-  /* Matrix Theme Tones */
+  /* High-Contrast Flat Status Tones */
   --purple: #805ad5; 
   --green: #38a169;  
   --yellow: #ecc94b; 
   --red: #e53e3e;    
   
-  /* Dynamic Manual Takeover Accent */
+  /* Manual Takeover Signature Accent */
   --override-cyan: #0bc5ea;
   --override-cyan-dim: rgba(11, 197, 234, 0.08);
 }
@@ -57,8 +57,8 @@ body {
 .zone-sovereign { background: var(--purple); width: 25%; border-right: none; }
 
 /* Flat Elastic Modifiers */
-.gauge-override-anthill .zone-block { background: rgba(255,255,255,0.03) !important; }
-.gauge-override-anthill .zone-skip { background: var(--red) !important; width: 100% !important; }
+.gauge-override-disqualified .zone-block { background: rgba(255,255,255,0.03) !important; }
+.gauge-override-disqualified .zone-skip { background: var(--red) !important; width: 100% !important; }
 .gauge-override-whale .zone-skip { width: 15%; }
 .gauge-override-whale .zone-linear { width: 15%; }
 .gauge-override-whale .zone-viability { width: 20%; }
@@ -112,12 +112,18 @@ body {
 .back-btn:hover { background: rgba(229,62,62,0.08); border-color: var(--red); color: #fff; }
 .selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
 
+/* Section 03 Matrix Configuration Splits */
+.split-input-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media(min-width: 500px) { .split-input-container { grid-template-columns: 1fr 120px; } }
+
 .spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s ease, background-color 0.2s ease; }
 .spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; padding: 0 4px 0 18px; font-weight: 700; }
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 10px 4px; width: 100%; }
 .spend-suffix { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
-/* POSITION 3: INTEGRATED ENGINEERING DISCOVERY HUB */
+.fac-count-input { text-align: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; background: transparent; border: none; outline: none; width: 100%; padding: 10px 4px; }
+
+/* POSITION 3: MINIMALIST DISCOVERY AND FEEDBACK HUB */
 .firewall-ribbon {
   background: rgba(0, 0, 0, 0.2); padding: 12px 24px; border-left: 3px solid var(--gold);
   border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -139,8 +145,9 @@ body {
 /* POSITION 4: MINIMALIST OVERRIDES CONTAINER */
 .override-panel {
   background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06);
-  padding: 28px 38px; position: relative; transition: all 0.25s ease;
+  padding: 28px 38px; position: relative; transition: all 0.25s ease; opacity: 0.2; pointer-events: none;
 }
+.gauge-initialized-wrapper.override-panel { opacity: 1; pointer-events: auto; }
 .override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 20px; }
 .takeover-chip-row { display: flex; flex-direction: column; gap: 5px; width: 100%; }
 @media(min-width: 640px) { .takeover-chip-row { flex-direction: row; } }
@@ -152,13 +159,11 @@ body {
 .takeover-chip-btn:hover { border-color: rgba(255,255,255,0.12); color: #fff; }
 .takeover-chip-btn.active { background: rgba(255,255,255,0.05) !important; border-color: var(--gold) !important; color: #fff !important; }
 
-/* Takeover Trigger Typography Alignments */
 .takeover-meta-container { display: flex; align-items: center; gap: 12px; }
 .takeover-active-indicator { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; color: var(--override-cyan); text-transform: uppercase; display: none; }
 .reset-auto-link { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; cursor: pointer; display: none; text-decoration: underline; transition: color 0.15s; }
 .reset-auto-link:hover { color: var(--red); }
 
-/* Takeover Structural Layout Highlighting Hooks */
 .intensity-manual-state #intensity_takeover_lbl, .intensity-manual-state #intensity_reset_lnk { display: block; }
 .hvac-manual-state #hvac_takeover_lbl, .hvac-manual-state #hvac_reset_lnk { display: block; }
 .rate-manual-state #rate_takeover_lbl, .rate-manual-state #rate_reset_lnk { display: block; }
@@ -167,14 +172,14 @@ body {
 .hvac-manual-state #hvac_field_container { border-color: rgba(11, 197, 234, 0.2); }
 .rate-manual-state #rate_input_container { border-color: var(--override-cyan) !important; background: var(--override-cyan-dim); }
 
-.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
+.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); outline: none; }
 .rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
 .hvac-manual-state .rng::-webkit-slider-thumb { background: var(--override-cyan); }
 .slider-readout { display: flex; justify-content: space-between; font-size: 12px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 .hvac-manual-state .slider-val { color: var(--override-cyan); }
 
-/* POSITION 5: HIGH-END VALUATION PRESENTATION SCOREBOARD */
+/* POSITION 5: HIGH-END STRUCTURAL SCOREBOARD BASE */
 .scoreboard { padding: 40px 38px 44px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
 .score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 16px; color: var(--ink); opacity: 0.4; transition: opacity 0.3s ease; }
 .gauge-initialized .score-badge { opacity: 1; }
@@ -251,12 +256,23 @@ body {
       </div>
     </div>
 
+    <!-- RE-ENGINEERED 2-TRACK TWIN INPUT SYSTEMS CONTAINER -->
     <div class="field" style="margin-bottom: 8px;">
-      <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
-      <div class="spend-input-row" id="spend_input_main_container">
-        <span class="spend-currency">$</span>
-        <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()">
-        <span class="spend-suffix">/ Month</span>
+      <div class="split-input-container">
+        <div>
+          <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
+          <div class="spend-input-row" id="spend_input_main_container">
+            <span class="spend-currency">$</span>
+            <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()">
+            <span class="spend-suffix">/ Site Month</span>
+          </div>
+        </div>
+        <div>
+          <div class="field-label"><span>Facilities</span></div>
+          <div class="spend-input-row">
+            <input type="number" id="fac_count_in" class="fac-count-input" value="1" min="1" max="5000" oninput="onFacCountInput()">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -277,7 +293,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== POSITION 4: MANUAL OVERRIDES CONTAINER ==================== -->
+  <!-- ==================== POSITION 4: MANUAL OVERRIDES MATRIX PANEL ==================== -->
   <div class="override-panel" id="manual_override_wrapper">
     <div class="override-panel-header">Manual Overrides Matrix Context</div>
     
@@ -503,7 +519,13 @@ function onBillInput() {
   runEngine();
 }
 
-// ==================== MANUAL TAKEOVER & REVERSAL LAUNCH COUPLINGS ====================
+function onFacCountInput() {
+  let el = document.getElementById("fac_count_in");
+  let v = parseInt(el.value) || 1;
+  if (v < 1) el.value = 1;
+  runEngine();
+}
+
 function manualIntensityTakeover(hoursVal, activeBtnId) {
   isIntensityOverridden = true;
   document.getElementById("manual_override_wrapper").classList.add("intensity-manual-state");
@@ -567,13 +589,13 @@ function syncIntensityButtonsUI(activeBtnId) {
   if (activeElement) activeElement.classList.add('active');
 }
 
-// ==================== CALCULATION SYSTEM ASSESSMENT ENGINE ====================
 function runEngine() {
   let gaugeRoot = document.getElementById("gauge_component_root");
   
-  // Guard Check Rule Validation Layer
+  // Guard validation layer
   if (!selectedState || !selectedFacility) {
     gaugeRoot.classList.remove("gauge-initialized");
+    document.getElementById("manual_override_wrapper").classList.remove("gauge-initialized-wrapper");
     document.getElementById("score_out").textContent = "- -";
     document.getElementById("gauge_needle").style.left = "50%";
     document.getElementById("playbook_text_out").textContent = "Awaiting selection discovery parameters modifications above...";
@@ -591,7 +613,33 @@ function runEngine() {
   let tierData = US_STATE_TIERS[selectedState];
   let rateMultiplier = tierData.mult;
   let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
+  let facilitiesCount = parseInt(document.getElementById("fac_count_in").value) || 1;
   
+  // -----------------------------------------------------------------
+  // TRACK 1: HARD OPERATION SCALE BRACKET FIREWALL
+  // -----------------------------------------------------------------
+  let isFirewallDisqualified = false;
+  let firewallRequiredFloor = 5000;
+  let bracketString = "1 to 4 Sites";
+
+  if (facilitiesCount >= 1 && facilitiesCount <= 4) {
+    firewallRequiredFloor = 5000;
+    bracketString = "1-4 Locations";
+    if (monthlyBill < 5000) isFirewallDisqualified = true;
+  } else if (facilitiesCount >= 5 && facilitiesCount <= 9) {
+    firewallRequiredFloor = 3500;
+    bracketString = "5-9 Locations";
+    if (monthlyBill < 3500) isFirewallDisqualified = true;
+  } else if (facilitiesCount >= 10 && facilitiesCount <= 19) {
+    firewallRequiredFloor = 2000;
+    bracketString = "10-19 Locations";
+    if (monthlyBill < 2000) isFirewallDisqualified = true;
+  } else if (facilitiesCount >= 20) {
+    firewallRequiredFloor = 1500;
+    bracketString = "20+ Locations";
+    if (monthlyBill < 1500) isFirewallDisqualified = true;
+  }
+
   let weeklyHours = automatedActiveHoursValue;
   if (isIntensityOverridden) {
     let activeChip = document.querySelector('.takeover-chip-btn.active');
@@ -616,7 +664,6 @@ function runEngine() {
     let rawCentsInput = document.getElementById("rate_cents_in").value;
     if (rawCentsInput !== "" && !isNaN(rawCentsInput)) {
       currentCents = parseFloat(rawCentsInput);
-      // Defensive parameter clamping guardrails
       if (currentCents > 99) currentCents = 99;
       if (currentCents < 1) currentCents = 1;
       rateMultiplier = (currentCents / 100) / 0.13;
@@ -627,7 +674,7 @@ function runEngine() {
   
   let annualHours = weeklyHours * 52;
   
-  // PILLAR 2 Raw Scoring Evaluator Nodes
+  // PILLAR 2: Operational Tiers Weights
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
@@ -635,7 +682,7 @@ function runEngine() {
   else if (annualHours >= 2000) schedulePoints = 3;
   else schedulePoints = 0; 
   
-  // PILLAR 3 Raw Scoring Evaluator Nodes
+  // PILLAR 3: HVAC Load Density Bounds
   let hvacPoints = 5;
   if (hvacFraction >= 0.65) hvacPoints = 10;
   else if (hvacFraction >= 0.50) hvacPoints = 7;
@@ -646,7 +693,9 @@ function runEngine() {
     hvacPoints = 10; 
   }
   
+  // TRACK 2: CORE BUILDING DNA POINT SYSTEM
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
+  
   if (schedulePoints === 0) finalScore = 0;
   
   let billVol = "standard";
@@ -658,20 +707,27 @@ function runEngine() {
   }
   
   finalScore = Math.round(finalScore);
-  document.getElementById("score_out").textContent = finalScore;
+  
+  // Enforce Firewall output suppression on total tracking blocks
+  if (isFirewallDisqualified) {
+    document.getElementById("score_out").textContent = "0";
+  } else {
+    document.getElementById("score_out").textContent = finalScore;
+  }
 
   // -----------------------------------------------------------------
-  // HORIZON GAUGE RADIAL HORIZONTAL SCALE RENDERING RE-BINDING
+  // HORIZON TIMELINE POSITION INTERPOLATION MAPPER
   // -----------------------------------------------------------------
   let needle = document.getElementById("gauge_needle");
-  gaugeRoot.classList.remove("gauge-override-anthill", "gauge-override-whale");
+  gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
   document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
 
   let pctPosition = 0;
 
-  if (billVol === "anthill") {
-    gaugeRoot.classList.add("gauge-override-anthill");
-    pctPosition = Math.min(20, (finalScore / 300) * 100);
+  if (isFirewallDisqualified) {
+    // Peg needle immediately to zero if firewall blocks execution
+    gaugeRoot.classList.add("gauge-override-disqualified");
+    pctPosition = 0;
   } else {
     if (billVol === "whale") {
       gaugeRoot.classList.add("gauge-override-whale");
@@ -712,7 +768,7 @@ function runEngine() {
     document.getElementById("lbl_sovereign").classList.add("active-zone-text");
   }
 
-  if (billVol === "anthill") {
+  if (isFirewallDisqualified) {
     activeZone = "red";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     document.getElementById("lbl_skip").classList.add("active-zone-text");
@@ -733,19 +789,19 @@ function runEngine() {
   msgText.textContent = "SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED";
   redActions.style.display = "none";
 
-  if (schedulePoints === 0) {
+  if (isFirewallDisqualified) {
+    ribbon.classList.add("triggered");
+    statusText.textContent = "🛑 DISQUALIFIED / SCALE FIREWALL BLOCK";
+    msgText.textContent = `CRITICAL DEPLOYMENT GAP DETECTED — ACCOUNT VOLUME INSUFFICIENT`;
+    pTitle.textContent = "🛑 OPERATION REJECTED: PORTFOLIO SCALE REJECTION FLOOR";
+    pText.textContent = `This account falls below the clear operational line in the sand. A footprint of ${bracketString} requires a minimum power bill of $${firewallRequiredFloor.toLocaleString()}/month per location to absorb physical deployment crew mobilization. A current monthly footprint of $${monthlyBill.toLocaleString()} renders installation unprofitable due to site travel premiums. Terminate velocity path.`;
+    redActions.style.display = "block";
+  } else if (schedulePoints === 0) {
     ribbon.classList.add("triggered");
     statusText.textContent = "🛑 CRITICAL ERROR BLOCK";
     msgText.textContent = "FIREWALL CRITICAL TRIGGER: RUNTIME KILL SWITCH IN OPERATION";
     pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
     pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
-    redActions.style.display = "block";
-  } else if (billVol === "anthill") {
-    ribbon.classList.add("triggered");
-    statusText.textContent = "⚠️ LOW LEVEL EXCLUSION WALL";
-    msgText.textContent = "FIREWALL WARNING: SITE ENERGY OVERHEAD MATRICES COLLAPSED";
-    pTitle.textContent = "🛑 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
-    pText.textContent = "The prospective bill size volume represents an 'anthill'. Key financial metrics fail execution floor requirements regardless of local building profiles. Route lead out immediately.";
     redActions.style.display = "block";
   } else if (activeZone === "purple") {
     if (selectedFacility === "datactr") {
@@ -768,13 +824,13 @@ function runEngine() {
   }
 
   // Value Output Presentation Calculations
-  let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
-  let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24;
+  let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24 * facilitiesCount; 
+  let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24 * facilitiesCount;
   
   let badge = document.getElementById("temp_badge");
   badge.className = "score-badge"; 
   
-  if (schedulePoints === 0 || billVol === "anthill") {
+  if (isFirewallDisqualified || schedulePoints === 0) {
     badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
     floorSavings = 0; ceilSavings = 0;
   } else if (activeZone === "purple") {
