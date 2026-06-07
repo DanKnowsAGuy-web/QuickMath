@@ -36,13 +36,16 @@ body {
 .calc-title em { font-style: italic; color: var(--gold); }
 .calc-sub { font-size: 13px; color: var(--slate); font-weight: 600; }
 
-.calc-body { padding: 20px 16px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
+.calc-body { padding: 20px 16px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); border-bottom: 1px solid var(--gold-rule); }
 .field { margin-bottom: 24px; scroll-margin-top: 100px; transition: all 0.2s ease; }
 .field-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
-/* POSITION 1: PERSISTENT GAUGE OVERVIEW */
-.gauge-section { padding: 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); position: sticky; top: 0; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
+/* POSITION 1 & POSITION 3.5: STRUCTURAL TWIN TRACK ARRAYS */
+.gauge-section { padding: 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
+.gauge-section.sticky-track { position: sticky; top: 0; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
+.gauge-section.summary-track { border-top: 1px solid var(--gold-rule); border-bottom: none; background: #0b0f14; }
+
 .gauge-header { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; font-weight: 700; text-align: center; }
 .horizon-track-container { position: relative; width: 100%; height: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 10px; border-radius: 2px; }
 .horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; opacity: 0.3; transition: opacity 0.3s ease; }
@@ -68,7 +71,7 @@ body {
 .gauge-initialized .gauge-labels { color: var(--slate); }
 .gauge-labels .active-zone-text { color: #fff; font-weight: 900; }
 
-/* RE-GRIDDED ELEMENT SHEETS */
+/* THE INTERACTION CHIP GRIDS */
 .state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
 @media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 @media(min-width: 600px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
@@ -88,12 +91,10 @@ body {
 .state-chip.tier-c.active { background: rgba(236, 201, 75, 0.2) !important; color: #fff !important; }
 .state-chip.tier-d.active { background: rgba(245, 101, 101, 0.25) !important; }
 
-/* RE-ENGINEERED FACILITY CARD OUTLINES (SIDE STRIPS OVERHAUL) */
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
 @media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
 .fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
 
-/* Swapped from Top Borders to Dual-Thick Left and Right Side Borders */
 .fac-opt.tier-high { border-left: 5px solid var(--purple); border-right: 5px solid var(--purple); }
 .fac-opt.tier-mid  { border-left: 5px solid var(--green); border-right: 5px solid var(--green); }
 .fac-opt.tier-low  { border-left: 5px solid var(--red); border-right: 5px solid var(--red); }
@@ -117,7 +118,7 @@ body {
 .back-btn:hover { border-color: var(--red); color: #fff; }
 .selection-block { flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border-radius: 0 2px 2px 0; }
 
-/* TWO-TRACK METRIC TAP SWITCHES GRID */
+/* TWO-TRACK MATRICES CLICK FIELDS */
 .click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 20px; }
 @media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 16px; } }
 
@@ -126,8 +127,8 @@ body {
 .matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
 .matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-/* POSITION 3: CLEAN SYSTEM PROTOCOL ANALYSIS AREA */
-.playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); margin-top: 12px; }
+/* POSITION 4: CLEAN FINAL PRESCRIPTION AND PLAYBOOK WORKSPACE */
+.playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
 
@@ -136,7 +137,7 @@ body {
 .congruent-green { border-left-color: var(--green) !important; background: rgba(72, 187, 120, 0.02) !important; }
 .congruent-purple { border-left-color: var(--purple) !important; background: rgba(159, 122, 234, 0.03) !important; }
 
-/* POSITION 4: AUXILIARY MANUAL ADJUSTMENT WORKSPACE */
+/* POSITION 5: AUXILIARY OVERRIDES MATRIX PANEL */
 .override-panel { background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06); padding: 24px 16px; opacity: 0.2; pointer-events: none; }
 .gauge-initialized-wrapper.override-panel { opacity: 1; pointer-events: auto; }
 .override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 16px; }
@@ -168,7 +169,7 @@ body {
 .slider-val { color: var(--gold-light); font-weight: 700; }
 .hvac-manual-state .slider-val { color: var(--override-cyan); }
 
-/* QUANTITATIVE OUTCOME SHEET BASE */
+/* QUANTITATIVE PRESENTATION SCOREBOARD FOOTER */
 .scoreboard { padding: 32px 16px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
 .score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); opacity: 0.4; }
 .gauge-initialized .score-badge { opacity: 1; }
@@ -196,8 +197,8 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
-  <!-- POSITION 1: PERSISTENT GAUGE OVERVIEW -->
-  <div class="gauge-section" id="gauge_component_root">
+  <!-- TRACK TRACK 1: INITIAL STICKY CALIBRATION HORIZON LAYER -->
+  <div class="gauge-section sticky-track" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
       <div class="vector-needle" id="gauge_needle"></div>
@@ -216,7 +217,7 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 2: INPUT NODES WORKSPACE -->
+  <!-- POSITION 2: NATIVE CHIP ARRAYS WORKSPACE -->
   <div class="calc-body">
     
     <div class="field" id="field_geo_root">
@@ -245,7 +246,7 @@ body {
       </div>
     </div>
 
-    <div class="field" id="field_spend_root">
+    <div class="field" id="field_spend_root" style="margin-bottom: 4px;">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
       <div class="click-matrix-stack">
         <div>
@@ -272,13 +273,33 @@ body {
 
   </div>
 
-  <!-- POSITION 3: CLEAN PLAYBOOK PROTOCOL BOX -->
+  <!-- TRACK TRACK 2: CLOSING PRESCRIPTIVE VALIDATION LAYER -->
+  <div class="gauge-section summary-track" id="gauge_component_root_mirror">
+    <div class="gauge-header">Prescriptive Diagnostic Horizon</div>
+    <div class="horizon-track-container">
+      <div class="vector-needle" id="gauge_needle_mirror"></div>
+      <div class="horizon-track" id="gauge_track_mirror">
+        <div class="zone-block zone-skip"></div>
+        <div class="zone-block zone-linear"></div>
+        <div class="zone-block zone-viability"></div>
+        <div class="zone-block zone-sovereign"></div>
+      </div>
+    </div>
+    <div class="gauge-labels">
+      <span id="lbl_skip_mirror">Skip Lead</span>
+      <span id="lbl_linear_mirror">Linear</span>
+      <span id="lbl_viability_mirror">Viable</span>
+      <span id="lbl_sovereign_mirror">Highest Priority</span>
+    </div>
+  </div>
+
+  <!-- POSITION 3: STRIPPED CONGRUENT PLAYBOOK AREA -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting selection discovery parameters modifications...</div>
   </div>
 
-  <!-- POSITION 4: AUXILIARY OVERRIDES PANEL -->
+  <!-- POSITION 5: AUXILIARY OVERRIDES PANEL -->
   <div class="override-panel" id="manual_override_wrapper">
     <div class="override-panel-header">Manual Overrides Matrix Context</div>
     
@@ -328,7 +349,7 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 5: QUANTITATIVE PRESENTATION TRACKS -->
+  <!-- POSITION 6: Scoreboard Footer -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
@@ -590,25 +611,30 @@ function syncIntensityButtonsUI(activeBtnId) {
 
 function runEngine() {
   let gaugeRoot = document.getElementById("gauge_component_root");
+  let gaugeMirrorRoot = document.getElementById("gauge_component_root_mirror");
   let playbookBox = document.getElementById("playbook_box_container");
 
   playbookBox.className = "playbook-box";
   
   if (!selectedState || !selectedFacility || currentActiveBillValue === 0 || currentActiveFacCountValue === 0) {
     gaugeRoot.classList.remove("gauge-initialized");
+    gaugeMirrorRoot.classList.remove("gauge-initialized");
     document.getElementById("manual_override_wrapper").classList.remove("gauge-initialized-wrapper");
     document.getElementById("score_out").textContent = "- -";
     document.getElementById("gauge_needle").style.left = "50%";
+    document.getElementById("gauge_needle_mirror").style.left = "50%";
     document.getElementById("playbook_text_out").textContent = "Awaiting selection discovery parameters modifications...";
     document.getElementById("temp_badge").textContent = "Awaiting Configuration";
     document.getElementById("temp_badge").className = "score-badge";
     document.getElementById("sav_floor").textContent = "$0";
     document.getElementById("sav_ceil").textContent = "$0";
+    
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
 
   gaugeRoot.classList.add("gauge-initialized");
+  gaugeMirrorRoot.classList.add("gauge-initialized");
   document.getElementById("manual_override_wrapper").classList.add("gauge-initialized-wrapper");
 
   let tierData = US_STATE_TIERS[selectedState];
@@ -616,7 +642,7 @@ function runEngine() {
   let monthlyBill = currentActiveBillValue;
   let facilitiesCount = currentActiveFacCountValue;
   
-  // COMPLIANCE GATES
+  // LOGIC MOUNT SECURITY FIREWALLS
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
   let bracketString = "1 Location";
@@ -705,24 +731,31 @@ function runEngine() {
     document.getElementById("score_out").textContent = finalScore;
   }
 
-  // GAUGES PIN POINT INTERPOLATOR CONTROLLER
+  // INTERPOLATE PROGRAMMATIC NEEDLE LAYERS ACROSS BOTH TWIN TRACK SYSTEM HOOKS
   let needle = document.getElementById("gauge_needle");
+  let needleMirror = document.getElementById("gauge_needle_mirror");
+  
   gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
+  gaugeMirrorRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
   document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
 
   let pctPosition = 0;
 
   if (isFirewallDisqualified) {
     gaugeRoot.classList.add("gauge-override-disqualified");
+    gaugeMirrorRoot.classList.add("gauge-override-disqualified");
     pctPosition = 0;
   } else {
     if (billVol === "whale") {
       gaugeRoot.classList.add("gauge-override-whale");
+      gaugeMirrorRoot.classList.add("gauge-override-whale");
       if (finalScore >= 65) pctPosition = 50 + ((finalScore - 65) / (300 - 65)) * 50;
       else if (finalScore >= 25) pctPosition = 30 + ((finalScore - 25) / (65 - 25)) * 20;
       else if (finalScore >= 10) pctPosition = 15 + ((finalScore - 10) / (25 - 10)) * 15;
       else pctPosition = (finalScore / 10) * 15;
     } else {
+      gaugeRoot.classList.add("gauge-override-whale");
+      gaugeMirrorRoot.classList.add("gauge-override-whale");
       if (finalScore >= 65) pctPosition = 75 + ((finalScore - 65) / (300 - 65)) * 25;
       else if (finalScore >= 25) pctPosition = 50 + ((finalScore - 25) / (65 - 25)) * 25;
       else if (finalScore >= 10) pctPosition = 25 + ((finalScore - 10) / (25 - 10)) * 25;
@@ -735,6 +768,7 @@ function runEngine() {
   if (pctPosition < 0) pctPosition = 0;
 
   needle.style.left = pctPosition + "%";
+  needleMirror.style.left = pctPosition + "%";
 
   let activeZone = "red";
   let activeZoneWidthThreshold = billVol === "whale" ? 15 : 25;
@@ -744,24 +778,29 @@ function runEngine() {
   if (pctPosition < activeZoneWidthThreshold) {
     activeZone = "red";
     document.getElementById("lbl_skip").classList.add("active-zone-text");
+    document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
   } else if (pctPosition < midZoneWidthThreshold) {
     activeZone = "yellow";
     document.getElementById("lbl_linear").classList.add("active-zone-text");
+    document.getElementById("lbl_linear_mirror").classList.add("active-zone-text");
   } else if (pctPosition < highZoneWidthThreshold) {
     activeZone = "green";
     document.getElementById("lbl_viability").classList.add("active-zone-text");
+    document.getElementById("lbl_viability_mirror").classList.add("active-zone-text");
   } else {
     activeZone = "purple";
     document.getElementById("lbl_sovereign").classList.add("active-zone-text");
+    document.getElementById("lbl_sovereign_mirror").classList.add("active-zone-text");
   }
 
   if (isFirewallDisqualified) {
     activeZone = "red";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     document.getElementById("lbl_skip").classList.add("active-zone-text");
+    document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
   }
 
-  // DYNAMIC COMPACT PLAYBOOK HUB INTERFACE TERMINALS
+  // DYNAMIC UNIFIED PLAYBOOK OUTPUT TERMINALS
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
 
