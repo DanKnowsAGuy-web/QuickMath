@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field PIE System — Valuation Matrix</title>
+<title>Field PIE System — Intuition Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@ body {
   display: flex; align-items: flex-start; justify-content: center;
 }
 .calc {
-  width: 100%; max-width: 720px; background: var(--ink-2); border: 1px solid var(--gold-rule);
+  width: 100%; max-width: 740px; background: var(--ink-2); border: 1px solid var(--gold-rule);
   box-shadow: 0 24px 60px -28px rgba(0,0,0,0.72); overflow: hidden; margin-bottom: 60px;
 }
 .calc-head { padding: 34px 38px 30px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
@@ -40,8 +40,8 @@ body {
 .field-label .step { color: var(--gold); font-weight: 600; }
 .active-pill-readout { background: rgba(200,169,110,0.15); border: 1px solid var(--gold); color: var(--gold-light); font-size: 12px; padding: 2px 10px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
 
-/* 50-State Grid Styling */
-.state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 6px; max-height: 195px; overflow-y: auto; padding-right: 6px; border: 1px solid rgba(255,255,255,0.08); padding: 10px; background: rgba(0,0,0,0.2); }
+/* State Chip Grid Workspace */
+.state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 6px; max-height: 150px; overflow-y: auto; padding: 10px; border: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.2); }
 .state-grid::-webkit-scrollbar { width: 6px; }
 .state-grid::-webkit-scrollbar-track { background: var(--ink); }
 .state-grid::-webkit-scrollbar-thumb { background: rgba(200,169,110,0.3); border-radius: 3px; }
@@ -57,21 +57,18 @@ body {
 .fac-opt.active { background: linear-gradient(135deg, rgba(200,169,110,0.26) 0%, rgba(200,169,110,0.12) 100%); border-color: var(--gold); color: #fff; font-weight: 700; box-shadow: inset 0 1px 0 rgba(200,169,110,0.2); }
 .fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
 .fac-opt.active .fac-ico { color: var(--gold-light); }
-.fac-opt:hover:not(.active) .fac-ico { color: var(--gold); }
 
-/* High-Contrast Inputs */
+/* High-Contrast Volumetric Inputs */
 .spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); }
 .spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: rgba(255,255,255,0.7); padding: 0 4px 0 18px; font-weight: 700; }
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 12px 4px; width: 100%; }
 .spend-suffix { font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.7); padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.15); align-self: stretch; display: flex; align-items: center; }
 
-/* Mode Shifter */
-.mode-toggle { display: flex; gap: 1px; background: var(--gold-rule); margin: 32px 0 20px; border: 1px solid var(--gold-rule); }
+/* Shifter Toggle Mechanics */
+.mode-toggle { display: flex; gap: 1px; background: var(--gold-rule); margin: 32px 0 16px; border: 1px solid var(--gold-rule); }
 .mode-btn { flex: 1; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px; background: transparent; border: none; color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.18s; }
 .mode-btn.active { background: var(--gold); color: var(--ink); }
-.mode-btn:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.02); }
 
-/* Overrides Section */
 .adjust-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 .adjust-panel.open { max-height: 600px; }
 .adjust-inner { padding: 16px 0 8px; border-top: 1px solid var(--gold-rule); margin-top: 12px; }
@@ -80,19 +77,47 @@ body {
 .slider-readout { display: flex; justify-content: space-between; font-size: 13px; color: var(--slate); text-transform: uppercase; }
 .slider-val { color: var(--gold-light); font-weight: 600; }
 
-/* Output Summary Blocks */
-.scoreboard { padding: 28px 38px; background: rgba(200,169,110,0.04); border-top: 1px solid var(--gold-rule); text-align: center; }
-.score-badge { display: inline-block; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); transition: background-color 0.2s; }
-.score-container { margin: 8px 0; }
+/* Scoreboard Panel Section */
+.scoreboard { padding: 28px 38px 24px; background: rgba(200,169,110,0.03); border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); text-align: center; }
+.score-badge { display: inline-block; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); }
+.score-container { margin: 4px 0; }
 .score-num-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 2px; }
 .score-num { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; line-height: 1; color: #fff; }
-.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 24px; border: 1px solid var(--gold-rule); }
-.savings-cell { flex: 1; background: var(--ink); padding: 20px; }
-.savings-val { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 6px; }
-.savings-lbl { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
-.gate-msg { font-size: 14px; font-style: italic; color: var(--slate); margin-top: 18px; line-height: 1.5; padding: 0 16px; }
+.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 20px; border: 1px solid var(--gold-rule); }
+.savings-cell { flex: 1; background: var(--ink); padding: 16px; text-align: center; }
+.savings-val { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 4px; }
+.savings-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 
-/* Status Classes */
+/* LIVE INTERACTIVE INTUITION MATRIX GRID */
+.matrix-section { padding: 32px 38px; background: var(--ink); }
+.matrix-header { font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; font-weight: 600; text-align: center; }
+.matrix-table { display: grid; grid-template-rows: repeat(4, auto); gap: 4px; width: 100%; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
+.matrix-row { display: grid; grid-template-columns: 120px repeat(4, 1fr); gap: 4px; align-items: stretch; }
+.matrix-label-cell { display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 8px; color: var(--slate); text-transform: uppercase; font-size: 11px; font-weight: 700; border-left: 2px solid rgba(255,255,255,0.1); }
+.matrix-header-row .matrix-label-cell { border-left: none; background: transparent; justify-content: center; padding-bottom: 8px; }
+.matrix-cell { padding: 14px 6px; text-align: center; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: rgba(255,255,255,0.3); transition: all 0.2s; position: relative; }
+
+/* Focused Active Intersection Matrix Vectors */
+.matrix-cell.active-target {
+  color: #fff !important; transform: scale(1.02); z-index: 5;
+  box-shadow: 0 0 20px rgba(200,169,110,0.15), inset 0 0 0 1px var(--gold);
+}
+.matrix-cell.active-target.cell-purple { background: var(--purple) !important; border-color: #b794f4 !important; }
+.matrix-cell.active-target.cell-green  { background: var(--green) !important; border-color: #68d391 !important; }
+.matrix-cell.active-target.cell-yellow { background: var(--yellow) !important; border-color: #faf089 !important; color: var(--ink) !important; }
+.matrix-cell.active-target.cell-red    { background: var(--red) !important; border-color: #fc8181 !important; }
+
+.cell-lbl-str { font-size: 13px; font-weight: 700; text-transform: uppercase; display: none; }
+.matrix-cell.active-target .cell-lbl-str { display: block; }
+.matrix-cell.active-target .cell-tag-str { opacity: 0.9; font-size: 9px; }
+.cell-tag-str { font-size: 10px; font-weight: 500; opacity: 0.35; text-transform: uppercase; }
+
+/* Playbook Action Footer block */
+.playbook-box { margin: 20px 38px 38px; background: rgba(255,255,255,0.02); border-left: 3px solid var(--gold); padding: 20px 24px; }
+.playbook-title { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
+.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; }
+
+/* Status Tones */
 .bg-purple { background-color: var(--purple); color: #fff !important; }
 .bg-green  { background-color: var(--green); color: #fff !important; }
 .bg-yellow { background-color: var(--yellow); color: var(--ink) !important; }
@@ -103,35 +128,26 @@ body {
 
 <div class="calc">
   <div class="calc-head">
-    <div class="calc-eyebrow">Field PIE Valuation Engine</div>
+    <div class="calc-eyebrow">Field PIE System Dashboard</div>
     <h1 class="calc-title">Contract value is dictated by building DNA, <em>not bill size.</em></h1>
-    <p class="calc-sub">Select geography and asset profile to verify waste concentration density metrics.</p>
+    <p class="calc-sub">Toggle parameters to view properties cross-reference across the visual intuition map below in real time.</p>
   </div>
 
   <div class="calc-body">
     
-    <!-- SECTION 1: 50 STATES ALPHABETICAL CHIP GRID -->
     <div class="field">
       <div class="field-label">
         <span><span class="step">01</span> &nbsp;Regional Location Geography</span>
         <span class="active-pill-readout" id="state-tier-lbl">Select State</span>
       </div>
-      <div class="state-grid" id="state-grid-box">
-        <!-- Generated alphabetically inside JavaScript system -->
-      </div>
+      <div class="state-grid" id="state-grid-box"></div>
     </div>
 
-    <!-- SECTION 2: 16-FACILITY PROFILES MATRIX -->
     <div class="field">
-      <div class="field-label">
-        <span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span>
-      </div>
-      <div class="fac-grid" id="fac-matrix-box">
-        <!-- Complete 16 asset array structure generated with icons below -->
-      </div>
+      <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span></div>
+      <div class="fac-grid" id="fac-matrix-box"></div>
     </div>
 
-    <!-- SECTION 3: MONTHLY POWER OVERHEAD SPEND -->
     <div class="field">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
       <div class="spend-input-row">
@@ -141,13 +157,11 @@ body {
       </div>
     </div>
 
-    <!-- MODE SHIFTER SWITCH -->
     <div class="mode-toggle">
       <button type="button" class="mode-btn active" id="btn_m1" onclick="shiftMode('mode_1')">Mode 1: Quick Scan</button>
       <button type="button" class="mode-btn" id="btn_m2" onclick="shiftMode('mode_2')">Mode 2: Deep Dial Overrides</button>
     </div>
 
-    <!-- MODE 2 DRAWER EXPANSION OVERRIDES -->
     <div class="adjust-panel" id="override_drawer">
       <div class="adjust-inner">
         <div class="field">
@@ -172,11 +186,10 @@ body {
     </div>
   </div>
 
-  <!-- MULTI-LAYER EVALUATION OUTPUT FACEPLATE -->
   <div class="scoreboard">
-    <span class="score-badge bg-purple" id="temp_badge">Select Parameters</span>
+    <span class="score-badge bg-purple" id="temp_badge">Awaiting Input Vectors</span>
     <div class="score-container">
-      <div class="score-num-label">Lead Temperature Rating</div>
+      <div class="score-num-label">Calculated Temperature Rating</div>
       <div class="score-num" id="score_out">0</div>
     </div>
     <div class="savings-output">
@@ -189,12 +202,49 @@ body {
         <div class="savings-lbl">Contract Max (2-Yr)</div>
       </div>
     </div>
-    <div class="gate-msg" id="gate_msg_out">Awaiting field criteria selections...</div>
+  </div>
+
+  <div class="matrix-section">
+    <div class="matrix-header">Live 10-Second Intuition Intersection Map</div>
+    <div class="matrix-table">
+      <div class="matrix-row matrix-header-row">
+        <div></div>
+        <div class="matrix-label-cell">Whale ($10K+)</div>
+        <div class="matrix-label-cell">Sweet Spot ($3.5K+)</div>
+        <div class="matrix-label-cell">Boundary ($1.5K+)</div>
+        <div class="matrix-label-cell">Anthill (&lt;$1.5K)</div>
+      </div>
+      <div class="matrix-row" id="row_high">
+        <div class="matrix-label-cell">High Ore (25+)</div>
+        <div class="matrix-cell cell-purple" id="cell_high_whale"><span class="cell-lbl-str">🟣 S-Tier</span><span class="cell-tag-str">Jackpot</span></div>
+        <div class="matrix-cell cell-green" id="cell_high_sweet"><span class="cell-lbl-str">🟢 Green</span><span class="cell-tag-str">Premium Target</span></div>
+        <div class="matrix-cell cell-green" id="cell_high_bound"><span class="cell-lbl-str">🟢 Green</span><span class="cell-tag-str">Viable Density</span></div>
+        <div class="matrix-cell cell-red" id="cell_high_anthill"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Too Small</span></div>
+      </div>
+      <div class="matrix-row" id="row_mid">
+        <div class="matrix-label-cell">Mid Ore (10-24)</div>
+        <div class="matrix-cell cell-green" id="cell_mid_whale"><span class="cell-lbl-str">🟢 Green</span><span class="cell-tag-str">Scale Target</span></div>
+        <div class="matrix-cell cell-yellow" id="cell_mid_sweet"><span class="cell-lbl-str">🟡 Yellow</span><span class="cell-tag-str">Bread & Butter</span></div>
+        <div class="matrix-cell cell-red" id="cell_mid_bound"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Low Margin</span></div>
+        <div class="matrix-cell cell-red" id="cell_mid_anthill"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Skip Lead</span></div>
+      </div>
+      <div class="matrix-row" id="row_low">
+        <div class="matrix-label-cell">Low Ore (&lt;10)</div>
+        <div class="matrix-cell cell-red" id="cell_low_whale"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
+        <div class="matrix-cell cell-red" id="cell_low_sweet"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
+        <div class="matrix-cell cell-red" id="cell_low_bound"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Dead End</span></div>
+        <div class="matrix-cell cell-red" id="cell_low_anthill"><span class="cell-lbl-str">🔴 Red</span><span class="cell-tag-str">Dead End</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="playbook-box">
+    <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
+    <div class="playbook-text" id="playbook_text_out">Select mapping metrics to access standard field protocol tracks...</div>
   </div>
 </div>
 
 <script>
-// Alphabetical State Tier Assignments
 const US_STATE_TIERS = {
   "Alabama": { tier: "B", mult: 1.5 }, "Alaska": { tier: "S", mult: 3.0 }, "Arizona": { tier: "B", mult: 1.5 }, "Arkansas": { tier: "C", mult: 1.0 },
   "California": { tier: "S", mult: 3.0 }, "Colorado": { tier: "B", mult: 1.5 }, "Connecticut": { tier: "A", mult: 2.2 }, "Delaware": { tier: "B", mult: 1.5 },
@@ -211,7 +261,6 @@ const US_STATE_TIERS = {
   "Wisconsin": { tier: "B", mult: 1.5 }, "Wyoming": { tier: "C", mult: 1.0 }
 };
 
-// 16 Asset Data Blueprint Profiles containing specific vector profiles
 const FACILITY_PROFILES = {
   cold:    { weeklyHours: 168, hvacShare: 0.75, name: "Cold Storage", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
   datactr: { weeklyHours: 168, hvacShare: 0.12, name: "Data Center", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
@@ -235,7 +284,6 @@ let selectedState = "CA";
 let selectedFacility = "cold";
 let currentMode = "mode_1";
 
-// Populate Alphabetical State Selection Grid Workspace
 function initStatesGrid() {
   const box = document.getElementById("state-grid-box");
   box.innerHTML = "";
@@ -253,7 +301,6 @@ function initStatesGrid() {
   });
 }
 
-// Populate the full 16 Iconic Option Grid Matrix
 function initFacilityMatrix() {
   const box = document.getElementById("fac-matrix-box");
   box.innerHTML = "";
@@ -318,7 +365,7 @@ function runEngine() {
   
   let annualHours = weeklyHours * 52;
   
-  // Matrix Physics Value Assignments
+  // Dynamic Score Point Allocations
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
@@ -332,15 +379,28 @@ function runEngine() {
 
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   
-  // Core Engineering Correction Overrides 
+  // Rule Base Hardcoded Overrides
   if (schedulePoints === 0) finalScore = 0;
   if (schedulePoints === 10 && hvacPoints === 10) finalScore = 300;
   
   finalScore = Math.round(finalScore);
   document.getElementById("score_out").textContent = finalScore;
   
+  // Categorize Ore Quality Track
+  let oreTier = "mid";
+  if (finalScore >= 65) oreTier = "high";
+  else if (finalScore < 10) oreTier = "low";
+  
+  // Categorize Bill Volume Track
+  let billVol = "anthill";
+  if (monthlyBill >= 10000) billVol = "whale";
+  else if (monthlyBill >= 3500) billVol = "sweet";
+  else if (monthlyBill >= 1500) billVol = "bound";
+
+  // Trigger Matrix Visual Target Shift Real-time updates
+  updateIntuitionMatrix(oreTier, billVol);
+  
   let badge = document.getElementById("temp_badge");
-  let msg = document.getElementById("gate_msg_out");
   badge.className = "score-badge"; 
   
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
@@ -348,16 +408,12 @@ function runEngine() {
   
   if (finalScore >= 65) {
     badge.textContent = "Sovereign Asset"; badge.classList.add("bg-purple");
-    msg.textContent = "High Tonnage / Continuous Process Load. Target contains optimal engineering footprints.";
   } else if (finalScore >= 25) {
     badge.textContent = "High Viability"; badge.classList.add("bg-green");
-    msg.textContent = "Solid commercial target profile. Deploy full mechanical L0/L1 retrofit optimization stack.";
   } else if (finalScore >= 10) {
     badge.textContent = "Linear Margin"; badge.classList.add("bg-yellow");
-    msg.textContent = "Proceed only if mechanical architecture uses centralized tonnage to offset logger setup costs.";
   } else {
     badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
-    msg.textContent = "Zero Margin Zone. Running hours or target component loads fall below operational execution limits.";
     floorSavings = 0; ceilSavings = 0;
   }
   
@@ -365,7 +421,45 @@ function runEngine() {
   document.getElementById("sav_ceil").textContent = "$" + Math.round(ceilSavings).toLocaleString("en-US");
 }
 
-// Initialize Application Modules
+function updateIntuitionMatrix(ore, bill) {
+  // Clear layout vectors across grid
+  document.querySelectorAll(".matrix-cell").forEach(cell => {
+    cell.classList.remove("active-target");
+  });
+
+  // Calculate target target box intersection token key
+  const targetId = `cell_${ore}_${bill}`;
+  const targetCell = document.getElementById(targetId);
+  if (targetCell) {
+    targetCell.classList.add("active-target");
+  }
+
+  // Inject Custom Dynamic Actions Playbook Scripts
+  const pTitle = document.getElementById("playbook_title_out");
+  const pText = document.getElementById("playbook_text_out");
+
+  if (ore === "low") {
+    pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
+    pText.textContent = "Do not initiate contact. The property's thermal blueprint is empty or process-dominated. Savings volume will fail to clear Sandia logging and structural overhead limits.";
+  } else if (bill === "anthill") {
+    pTitle.textContent = "🔴 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
+    pText.textContent = "Ore metrics match specifications, but the bill volume represents an 'anthill'. Key execution vector limits are compromised. Recommend equipment-only purchase path with guided self-install options.";
+  } else if (ore === "high" && (bill === "whale" || bill === "sweet" || bill === "bound")) {
+    pTitle.textContent = "🔮 SOVEREIGN GOLD PROTOCOL: ENGAGE HIGHEST PRIORITY TRACK";
+    pText.textContent = "Holy grail vector matched. Extreme compressor footprint compounded by target financial utility premium levels. Request past 12 months' commercial utility statement data instantly for structural conversion.";
+  } else if (ore === "mid" && bill === "whale") {
+    pTitle.textContent = "🟢 SCALE VOLUME INTEGRATION PROTOCOL: ACTIVE PURSUIT";
+    pText.textContent = "Standard thermal profile, but the sheer financial footprint of the whale account allows high revenue scale. Deploy multiple technology combinations ($L_0 + $L_1 + $L_3$) to expand gross margins.";
+  } else if (ore === "mid" && bill === "sweet") {
+    pTitle.textContent = "💛 BREAD-AND-BUTTER PROTOCOL: CONDITIONAL DISCOVERY";
+    pText.textContent = "Classic mid-tier target. Verify equipment array parameters on next communication. Only pursue if engineering asset configuration uses centralized systems (RTUs or chillers) to reduce log phase setup costs.";
+  } else {
+    pTitle.textContent = "🔴 PROTOCOL: LOW MARGIN HAZARD ZONE";
+    pText.textContent = "The absolute financial pool cannot maintain engineering overhead balance loops. Archive prospect record automatically and redirect resources toward higher density coordinates.";
+  }
+}
+
+// Initial Run Initialization Sequence
 initStatesGrid();
 initFacilityMatrix();
 onFacChange();
