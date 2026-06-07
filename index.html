@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field PIE System — Mission Control Panel</title>
+<title>Field PIE System — Vector Horizon Mission Control</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@600;700;800&display=swap" rel="stylesheet">
@@ -11,18 +11,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --ink: #080b0d; --ink-2: #0f1318; --ink-3: #171d24;
-  --gold: #c8a96e; --gold-light: #e8c98a; --gold-rule: rgba(200,169,110,0.2);
-  --white: #f2ede4; --slate: rgba(242,237,228,0.6);
+  --gold: #c8a96e; --gold-light: #e8c98a; --gold-rule: rgba(200,169,110,0.18);
+  --white: #f2ede4; --slate: rgba(242,237,228,0.55);
   
-  /* High-Contrast Flat Status Tones */
+  /* Matrix Theme Tones */
   --purple: #805ad5; 
   --green: #38a169;  
   --yellow: #ecc94b; 
   --red: #e53e3e;    
   
-  /* Manual Takeover Signature Accent */
+  /* Dynamic Manual Takeover Accent */
   --override-cyan: #0bc5ea;
-  --override-cyan-dim: rgba(11, 197, 234, 0.1);
+  --override-cyan-dim: rgba(11, 197, 234, 0.08);
 }
 body {
   font-family: 'Barlow', sans-serif; background: var(--ink); color: var(--white);
@@ -31,7 +31,7 @@ body {
 }
 .calc {
   width: 100%; max-width: 760px; background: var(--ink-2); border: 1px solid var(--gold-rule);
-  box-shadow: 0 32px 64px -24px rgba(0,0,0,0.8); overflow: hidden; margin-bottom: 60px;
+  box-shadow: 0 32px 64px -24px rgba(0,0,0,0.85); overflow: hidden; margin-bottom: 60px;
 }
 .calc-head { padding: 34px 38px 24px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
 .calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 24px; line-height: 1.2; color: #fff; margin-bottom: 6px; }
@@ -39,15 +39,16 @@ body {
 .calc-sub { font-size: 15px; color: var(--slate); font-weight: 600; letter-spacing: 0.01em; }
 
 .calc-body { padding: 32px 38px 24px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
-.field { margin-bottom: 32px; }
+.field { margin-bottom: 32px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
 .field-label { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
 /* POSITION 1: PREMIUM CONTINUOUS HORIZON SCALE */
-.gauge-section { padding: 30px 38px 34px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
+.gauge-section { padding: 32px 38px 34px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); position: relative; }
 .gauge-header { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px; font-weight: 700; text-align: center; }
-.horizon-track-container { position: relative; width: 100%; height: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); margin-bottom: 18px; border-radius: 2px; }
-.horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; }
+.horizon-track-container { position: relative; width: 100%; height: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 18px; border-radius: 2px; }
+.horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; opacity: 0.3; transition: opacity 0.3s ease; }
+.gauge-initialized .horizon-track { opacity: 1; }
 
 .zone-block { height: 100%; transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1); border-right: 1px solid var(--ink); }
 .zone-skip      { background: var(--red); width: 25%; }
@@ -56,7 +57,7 @@ body {
 .zone-sovereign { background: var(--purple); width: 25%; border-right: none; }
 
 /* Flat Elastic Modifiers */
-.gauge-override-anthill .zone-block { background: rgba(255,255,255,0.05) !important; }
+.gauge-override-anthill .zone-block { background: rgba(255,255,255,0.03) !important; }
 .gauge-override-anthill .zone-skip { background: var(--red) !important; width: 100% !important; }
 .gauge-override-whale .zone-skip { width: 15%; }
 .gauge-override-whale .zone-linear { width: 15%; }
@@ -64,106 +65,125 @@ body {
 .gauge-override-whale .zone-sovereign { width: 50%; }
 
 /* Minimalist Pin Indicator Element */
-.vector-needle { position: absolute; top: -6px; left: 0%; width: 2px; height: 28px; background: #fff; transform: translateX(-50%); transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 0 10px 2px #fff; z-index: 10; }
-.gauge-labels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
-.gauge-labels span { transition: color 0.2s ease; }
-.gauge-labels .active-zone-text { color: #fff; text-decoration: underline; transform: translateY(-1px); }
+.vector-needle { position: absolute; top: -8px; left: 50%; width: 2px; height: 32px; background: rgba(255,255,255,0.2); transform: translateX(-50%); transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, box-shadow 0.3s ease; z-index: 10; }
+.gauge-initialized .vector-needle { background: #fff; box-shadow: 0 0 10px 2px rgba(255,255,255,0.8); }
+
+.gauge-labels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(242,237,228,0.3); transition: color 0.3s ease; }
+.gauge-initialized .gauge-labels { color: var(--slate); }
+.gauge-labels span { transition: all 0.2s ease; position: relative; }
+.gauge-labels .active-zone-text { color: #fff; transform: translateY(-1px); }
 
 /* GRID SYSTEMS & CORE INPUT WORKSPACES */
-.state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 12px; border: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.15); }
+.state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 12px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); transition: all 0.25s ease; }
 @media(min-width: 480px) { .state-grid { grid-template-columns: repeat(4, 1fr); } }
 @media(min-width: 640px) { .state-grid { grid-template-columns: repeat(5, 1fr); } }
 
 .state-chip { 
-  background: rgba(255,255,255,0.01); padding: 12px 4px; text-align: center; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.15s;
+  background: rgba(255,255,255,0.01); padding: 12px 4px; text-align: center; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.15s;
   display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 44px; text-transform: uppercase; border: 1px solid transparent;
 }
-.state-chip.tier-s, .state-chip.tier-a { border-left: 2px solid var(--purple); }
-.state-chip.tier-b { border-left: 2px solid var(--green); }
-.state-chip.tier-c { border-left: 2px solid var(--yellow); }
-.state-chip.tier-d { border-left: 2px solid var(--red); }
-.state-chip:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); color: #fff; }
-.state-chip.active { background: rgba(255,255,255,0.05) !important; border-color: var(--gold) !important; font-weight: 800; color: #fff; }
+.state-chip.tier-s, .state-chip.tier-a { border-left: 2px solid rgba(128,90,213,0.4); }
+.state-chip.tier-b { border-left: 2px solid rgba(56,161,105,0.4); }
+.state-chip.tier-c { border-left: 2px solid rgba(236,201,75,0.4); }
+.state-chip.tier-d { border-left: 2px solid rgba(229,62,62,0.4); }
+.state-chip:hover { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); color: #fff; }
+.state-chip.active { background: rgba(255,255,255,0.04) !important; border-color: var(--gold) !important; font-weight: 800; color: #fff; border-left-width: 2px !important; }
 
-.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; transition: all 0.25s ease; }
 @media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
-.fac-opt { background: rgba(255,255,255,0.01); padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.15s; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 100px; text-transform: uppercase; border: 1px solid transparent; }
-.fac-opt.tier-high { border-top: 2px solid var(--purple); }
-.fac-opt.tier-mid  { border-top: 2px solid var(--green); }
-.fac-opt.tier-low  { border-top: 2px solid var(--red); }
-.fac-opt:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; }
-.fac-opt.active { background: rgba(255,255,255,0.05) !important; border-color: var(--gold) !important; font-weight: 800; color: #fff; }
-.fac-ico { display: block; width: 22px; height: 22px; color: rgba(255,255,255,0.4); flex-shrink: 0; }
+.fac-opt { background: rgba(255,255,255,0.01); padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.15s; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 100px; text-transform: uppercase; border: 1px solid transparent; }
+.fac-opt.tier-high { border-top: 2px solid rgba(128,90,213,0.4); }
+.fac-opt.tier-mid  { border-top: 2px solid rgba(56,161,105,0.4); }
+.fac-opt.tier-low  { border-top: 2px solid rgba(229,62,62,0.4); }
+.fac-opt:hover { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #fff; }
+.fac-opt.active { background: rgba(255,255,255,0.04) !important; border-color: var(--gold) !important; font-weight: 800; color: #fff; border-top-width: 2px !important; }
+.fac-ico { display: block; width: 22px; height: 22px; color: rgba(255,255,255,0.35); flex-shrink: 0; transition: color 0.15s ease; }
 .fac-opt.active .fac-ico { color: var(--gold-light); }
 
-.condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; }
+.condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s cubic-bezier(0.25, 1, 0.5, 1); }
+@keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
 .back-btn {
-  flex: 0 0 120px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.1);
+  flex: 0 0 120px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.08);
   color: var(--slate); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: all 0.1s;
+  text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: all 0.15s;
   display: flex; align-items: center; justify-content: center; gap: 6px;
 }
-.back-btn:hover { background: rgba(229,62,62,0.1); border-color: var(--red); color: #fff; }
-.selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; }
+.back-btn:hover { background: rgba(229,62,62,0.08); border-color: var(--red); color: #fff; }
+.selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
 
-.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); }
+.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s ease, background-color 0.2s ease; }
 .spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; padding: 0 4px 0 18px; font-weight: 700; }
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 10px 4px; width: 100%; }
-.spend-suffix { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.1); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
+.spend-suffix { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
-/* POSITION 3: MINIMALIST DISCOVERY AND FEEDBACK HUB */
+/* POSITION 3: INTEGRATED ENGINEERING DISCOVERY HUB */
 .firewall-ribbon {
   background: rgba(0, 0, 0, 0.2); padding: 12px 24px; border-left: 3px solid var(--gold);
   border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);
   font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.2s ease;
 }
 .firewall-status { color: var(--gold-light); display: flex; align-items: center; gap: 6px; }
-.firewall-ribbon.triggered { border-left-color: var(--red); background: rgba(229,62,62,0.05); }
+.firewall-ribbon.triggered { border-left-color: var(--red); background: rgba(229,62,62,0.04); }
 .firewall-ribbon.triggered .firewall-status { color: var(--red); }
 
-.playbook-box { background: rgba(255,255,255,0.01); border-left: 3px solid var(--gold); padding: 20px 24px; }
+.playbook-box { background: rgba(255,255,255,0.01); border-left: 3px solid var(--gold); padding: 20px 24px; transition: border-color 0.2s ease; }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
-.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
+.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; transition: color 0.2s ease; }
 
 .hud-actions-wrapper { display: none; margin-top: 14px; }
 .hud-btn-route { background: transparent; color: var(--red); border: 1px solid var(--red); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 18px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
 .hud-btn-route:hover { background: var(--red); color: #fff; }
 
-/* POSITION 4: MINIMALIST OVERRIDES INPUT CONTEXT */
+/* POSITION 4: MINIMALIST OVERRIDES CONTAINER */
 .override-panel {
-  background: rgba(0, 0, 0, 0.15); border-top: 1px dashed rgba(255,255,255,0.08); border-bottom: 1px dashed rgba(255,255,255,0.08);
-  padding: 28px 38px; position: relative;
+  background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06);
+  padding: 28px 38px; position: relative; transition: all 0.25s ease;
 }
 .override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 20px; }
 .takeover-chip-row { display: flex; flex-direction: column; gap: 5px; width: 100%; }
 @media(min-width: 640px) { .takeover-chip-row { flex-direction: row; } }
 .takeover-chip-btn {
-  flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 12px 4px;
-  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.7); text-transform: uppercase;
-  text-align: center; cursor: pointer; transition: all 0.1s; border-radius: 2px; line-height: 1.2;
+  flex: 1; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 12px 4px;
+  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase;
+  text-align: center; cursor: pointer; transition: all 0.15s; border-radius: 2px; line-height: 1.2;
 }
-.takeover-chip-btn:hover { border-color: rgba(255,255,255,0.15); color: #fff; }
-.takeover-chip-btn.active { background: rgba(255,255,255,0.06) !important; border-color: var(--gold) !important; color: #fff !important; }
+.takeover-chip-btn:hover { border-color: rgba(255,255,255,0.12); color: #fff; }
+.takeover-chip-btn.active { background: rgba(255,255,255,0.05) !important; border-color: var(--gold) !important; color: #fff !important; }
 
+/* Takeover Trigger Typography Alignments */
+.takeover-meta-container { display: flex; align-items: center; gap: 12px; }
 .takeover-active-indicator { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; color: var(--override-cyan); text-transform: uppercase; display: none; }
-.manual-takeover-state .takeover-active-indicator { display: block; }
-.manual-takeover-state .takeover-chip-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; }
-.manual-takeover-state .spend-input-row { border-color: var(--override-cyan) !important; }
+.reset-auto-link { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; cursor: pointer; display: none; text-decoration: underline; transition: color 0.15s; }
+.reset-auto-link:hover { color: var(--red); }
 
-.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); outline: none; }
+/* Takeover Structural Layout Highlighting Hooks */
+.intensity-manual-state #intensity_takeover_lbl, .intensity-manual-state #intensity_reset_lnk { display: block; }
+.hvac-manual-state #hvac_takeover_lbl, .hvac-manual-state #hvac_reset_lnk { display: block; }
+.rate-manual-state #rate_takeover_lbl, .rate-manual-state #rate_reset_lnk { display: block; }
+
+.intensity-manual-state #chip_hours_block .takeover-chip-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; }
+.hvac-manual-state #hvac_field_container { border-color: rgba(11, 197, 234, 0.2); }
+.rate-manual-state #rate_input_container { border-color: var(--override-cyan) !important; background: var(--override-cyan-dim); }
+
+.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
 .rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
-.manual-takeover-state .rng::-webkit-slider-thumb { background: var(--override-cyan); }
+.hvac-manual-state .rng::-webkit-slider-thumb { background: var(--override-cyan); }
 .slider-readout { display: flex; justify-content: space-between; font-size: 12px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
-.manual-takeover-state .slider-val { color: var(--override-cyan); }
+.hvac-manual-state .slider-val { color: var(--override-cyan); }
 
-/* POSITION 5: HIGH-END STRUCTURAL SCOREBOARD BASE */
+/* POSITION 5: HIGH-END VALUATION PRESENTATION SCOREBOARD */
 .scoreboard { padding: 40px 38px 44px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
-.score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 16px; color: var(--ink); }
+.score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 16px; color: var(--ink); opacity: 0.4; transition: opacity 0.3s ease; }
+.gauge-initialized .score-badge { opacity: 1; }
 .score-container { margin: 4px 0; }
 .score-num-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 2px; font-weight: 700; }
-.score-num { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; line-height: 1; color: #fff; }
-.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 28px; border: 1px solid var(--gold-rule); }
+.score-num { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.15); transition: color 0.3s ease; }
+.gauge-initialized .score-num { color: #fff; }
+.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 28px; border: 1px solid var(--gold-rule); opacity: 0.3; transition: opacity 0.3s ease; }
+.gauge-initialized .savings-output { opacity: 1; }
 .savings-cell { flex: 1; background: var(--ink-2); padding: 20px; text-align: center; }
 .savings-val { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
 .savings-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
@@ -182,6 +202,7 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
+  <!-- ==================== POSITION 1: THE CONTINUOUS HORIZON SCALE ==================== -->
   <div class="gauge-section" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
@@ -194,16 +215,17 @@ body {
       </div>
     </div>
     <div class="gauge-labels">
-      <span id="lbl_skip">🚫 Skip Lead</span>
-      <span id="lbl_linear">🟡 Linear Margin</span>
-      <span id="lbl_viability">🟢 High Viability</span>
-      <span id="lbl_sovereign">🔮 Sovereign Jackpot</span>
+      <span id="lbl_skip">Skip Lead</span>
+      <span id="lbl_linear">Linear Margin</span>
+      <span id="lbl_viability">High Viability</span>
+      <span id="lbl_sovereign">Sovereign Jackpot</span>
     </div>
   </div>
 
+  <!-- ==================== POSITION 2: THE CORE INPUT PANELS ==================== -->
   <div class="calc-body">
     
-    <div class="field">
+    <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Regional Location Geography</span></div>
       <div id="state-full-view">
         <div class="state-grid" id="state-grid-box"></div>
@@ -216,7 +238,7 @@ body {
       </div>
     </div>
 
-    <div class="field">
+    <div class="field" id="field_fac-root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span></div>
       <div id="fac-full-view">
         <div class="fac-grid" id="fac-matrix-box"></div>
@@ -231,7 +253,7 @@ body {
 
     <div class="field" style="margin-bottom: 8px;">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
-      <div class="spend-input-row">
+      <div class="spend-input-row" id="spend_input_main_container">
         <span class="spend-currency">$</span>
         <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()">
         <span class="spend-suffix">/ Month</span>
@@ -240,27 +262,32 @@ body {
 
   </div>
 
+  <!-- ==================== POSITION 3: DISCOVERY HUB AND PLAYBOOK WINDOW ==================== -->
   <div class="firewall-ribbon" id="firewall_ribbon">
     <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
     <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
   </div>
 
-  <div class="playbook-box">
+  <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
-    <div class="playbook-text" id="playbook_text_out">Awaiting calculation diagnostics...</div>
+    <div class="playbook-text" id="playbook_text_out">Awaiting selection discovery parameters modifications...</div>
     
     <div class="hud-actions-wrapper" id="hud_red_actions">
       <button class="hud-btn-route" onclick="alert('Routing to Automated DIY Email Track...')">✉️ Route to Automated DIY Email Track</button>
     </div>
   </div>
 
+  <!-- ==================== POSITION 4: MANUAL OVERRIDES CONTAINER ==================== -->
   <div class="override-panel" id="manual_override_wrapper">
     <div class="override-panel-header">Manual Overrides Matrix Context</div>
     
-    <div class="field" style="margin-bottom: 24px;">
+    <div class="field" style="margin-bottom: 24px;" id="chip_hours_block">
       <div class="field-label">
         <span style="color: var(--white);">Operational Intensity Tier</span>
-        <span class="takeover-active-indicator" id="intensity_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+        <div class="takeover-meta-container">
+          <span class="takeover-active-indicator" id="intensity_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+          <span class="reset-auto-link" id="intensity_reset_lnk" onclick="resetIntensityToAuto()">✕ Reset to Auto</span>
+        </div>
       </div>
       <div class="takeover-chip-row">
         <div class="takeover-chip-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT (&lt;20 HRS/WK)</div>
@@ -271,10 +298,14 @@ body {
       </div>
     </div>
 
-    <div class="field" style="margin-bottom: 24px;">
+    <div class="field" style="margin-bottom: 24px;" id="hvac_field_container">
       <div class="field-label">
         <span style="color: var(--white);">HVAC/R End-Use Load Fraction</span>
-        <span class="slider-val" id="hvac_val">50%</span>
+        <div class="takeover-meta-container">
+          <span class="slider-val" id="hvac_val">50%</span>
+          <span class="takeover-active-indicator" id="hvac_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+          <span class="reset-auto-link" id="hvac_reset_lnk" onclick="resetHvacToAuto()">✕ Reset to Auto</span>
+        </div>
       </div>
       <input type="range" id="hvac_slider" class="rng" min="5" max="90" value="50" oninput="manualHvacTakeover()">
       <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
@@ -283,7 +314,10 @@ body {
     <div class="field" style="margin-bottom: 0;">
       <div class="field-label">
         <span style="color: var(--white);">Blended Commercial Power Rate (Whole Cents)</span>
-        <span class="takeover-active-indicator" id="rate_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+        <div class="takeover-meta-container">
+          <span class="takeover-active-indicator" id="rate_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+          <span class="reset-auto-link" id="rate_reset_lnk" onclick="resetRateToAuto()">✕ Reset to Auto</span>
+        </div>
       </div>
       <div class="spend-input-row" style="max-width: 250px;" id="rate_input_container">
         <span class="spend-currency" style="font-size: 16px;">¢</span>
@@ -293,11 +327,12 @@ body {
     </div>
   </div>
 
-  <div class="scoreboard">
-    <span class="score-badge bg-purple" id="temp_badge">Awaiting Configuration</span>
+  <!-- ==================== POSITION 5: QUANTITATIVE SCOREBOARD BASE ==================== -->
+  <div class="scoreboard" id="scoreboard_root_box">
+    <span class="score-badge" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
       <div class="score-num-label">Calculated Temperature Rating</div>
-      <div class="score-num" id="score_out">0</div>
+      <div class="score-num" id="score_out">- -</div>
     </div>
     <div class="savings-output">
       <div class="savings-cell">
@@ -348,7 +383,6 @@ const FACILITY_PROFILES = {
   mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "mid",  name: "Mixed Use Property", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
 };
 
-// State Flags for tracking initial user execution inputs
 let selectedState = "";
 let selectedFacility = "";
 
@@ -366,12 +400,11 @@ function initStatesGrid() {
   Object.keys(US_STATE_TIERS).sort().forEach(stateName => {
     let tData = US_STATE_TIERS[stateName];
     let chip = document.createElement("div");
-    chip.className = `state-chip tier-${tData.tier.toLowerCase()}` + (stateName === selectedState ? " active" : "");
+    chip.className = `state-chip tier-${tData.tier.toLowerCase()}`;
     chip.textContent = stateName;
     chip.addEventListener("click", () => {
       selectedState = stateName;
       collapseStateSection();
-      
       if (!isRateOverridden) {
         automatedActiveRateCents = US_STATE_TIERS[selectedState].avgCents;
         document.getElementById("rate_cents_in").value = automatedActiveRateCents;
@@ -388,7 +421,7 @@ function initFacilityMatrix() {
   Object.keys(FACILITY_PROFILES).forEach(key => {
     let prof = FACILITY_PROFILES[key];
     let opt = document.createElement("div");
-    opt.className = `fac-opt tier-${prof.tier}` + (key === selectedFacility ? " active" : "");
+    opt.className = `fac-opt tier-${prof.tier}`;
     opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div>${prof.name}</div>`;
     opt.addEventListener("click", () => {
       selectedFacility = key;
@@ -425,6 +458,7 @@ function resetStateSelection() {
   document.getElementById("state-condensed-view").style.display = "none";
   document.getElementById("state-full-view").style.display = "block";
   initStatesGrid();
+  resetRateToAuto();
   runEngine();
 }
 
@@ -444,13 +478,8 @@ function resetFacilitySelection() {
   document.getElementById("fac-condensed-view").style.display = "none";
   document.getElementById("fac-full-view").style.display = "block";
   initFacilityMatrix();
-  
-  if (!isIntensityOverridden) {
-    document.querySelectorAll('.takeover-chip-btn').forEach(btn => btn.classList.remove('active'));
-  }
-  if (!isHvacOverridden) {
-    document.getElementById("hvac_slider").value = 50;
-  }
+  resetIntensityToAuto();
+  resetHvacToAuto();
   runEngine();
 }
 
@@ -474,24 +503,61 @@ function onBillInput() {
   runEngine();
 }
 
+// ==================== MANUAL TAKEOVER & REVERSAL LAUNCH COUPLINGS ====================
 function manualIntensityTakeover(hoursVal, activeBtnId) {
   isIntensityOverridden = true;
-  document.getElementById("manual_override_wrapper").classList.add("manual-takeover-state");
+  document.getElementById("manual_override_wrapper").classList.add("intensity-manual-state");
   syncIntensityButtonsUI(activeBtnId);
+  runEngine();
+}
+
+function resetIntensityToAuto() {
+  isIntensityOverridden = false;
+  document.getElementById("manual_override_wrapper").classList.remove("intensity-manual-state");
+  document.getElementById("intensity_takeover_lbl").style.display = "none";
+  document.getElementById("intensity_reset_lnk").style.display = "none";
+  if (selectedFacility) {
+    automatedActiveHoursValue = FACILITY_PROFILES[selectedFacility].weeklyHours;
+    syncIntensityButtonsUI(FACILITY_PROFILES[selectedFacility].targetIntensityBtn);
+  } else {
+    document.querySelectorAll('.takeover-chip-btn').forEach(btn => btn.classList.remove('active'));
+  }
   runEngine();
 }
 
 function manualHvacTakeover() {
   isHvacOverridden = true;
-  document.getElementById("manual_override_wrapper").classList.add("manual-takeover-state");
+  document.getElementById("manual_override_wrapper").classList.add("hvac-manual-state");
+  runEngine();
+}
+
+function resetHvacToAuto() {
+  isHvacOverridden = false;
+  document.getElementById("manual_override_wrapper").classList.remove("hvac-manual-state");
+  if (selectedFacility) {
+    automatedActiveHvacValue = Math.round(FACILITY_PROFILES[selectedFacility].hvacShare * 100);
+  } else {
+    automatedActiveHvacValue = 50;
+  }
+  document.getElementById("hvac_slider").value = automatedActiveHvacValue;
   runEngine();
 }
 
 function manualRateTakeover() {
   isRateOverridden = true;
-  document.getElementById("manual_override_wrapper").classList.add("manual-takeover-state");
-  document.getElementById("rate_input_container").style.borderColor = "var(--override-cyan)";
-  document.getElementById("rate_takeover_lbl").style.display = "block";
+  document.getElementById("manual_override_wrapper").classList.add("rate-manual-state");
+  runEngine();
+}
+
+function resetRateToAuto() {
+  isRateOverridden = false;
+  document.getElementById("manual_override_wrapper").classList.remove("rate-manual-state");
+  if (selectedState) {
+    automatedActiveRateCents = US_STATE_TIERS[selectedState].avgCents;
+  } else {
+    automatedActiveRateCents = 15;
+  }
+  document.getElementById("rate_cents_in").value = automatedActiveRateCents;
   runEngine();
 }
 
@@ -499,19 +565,28 @@ function syncIntensityButtonsUI(activeBtnId) {
   document.querySelectorAll('.takeover-chip-btn').forEach(btn => btn.classList.remove('active'));
   let activeElement = document.getElementById(activeBtnId);
   if (activeElement) activeElement.classList.add('active');
-  if (isIntensityOverridden) {
-    document.getElementById("intensity_takeover_lbl").style.display = "block";
-  }
 }
 
+// ==================== CALCULATION SYSTEM ASSESSMENT ENGINE ====================
 function runEngine() {
-  // Await inputs protection validation layers
+  let gaugeRoot = document.getElementById("gauge_component_root");
+  
+  // Guard Check Rule Validation Layer
   if (!selectedState || !selectedFacility) {
-    document.getElementById("score_out").textContent = "0";
-    document.getElementById("gauge_needle").style.left = "0%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting discovery parameter modifications above...";
+    gaugeRoot.classList.remove("gauge-initialized");
+    document.getElementById("score_out").textContent = "- -";
+    document.getElementById("gauge_needle").style.left = "50%";
+    document.getElementById("playbook_text_out").textContent = "Awaiting selection discovery parameters modifications above...";
+    document.getElementById("temp_badge").textContent = "Awaiting Configuration";
+    document.getElementById("temp_badge").className = "score-badge";
+    document.getElementById("sav_floor").textContent = "$0";
+    document.getElementById("sav_ceil").textContent = "$0";
+    document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
+
+  gaugeRoot.classList.add("gauge-initialized");
+  document.getElementById("manual_override_wrapper").classList.add("gauge-initialized-wrapper");
 
   let tierData = US_STATE_TIERS[selectedState];
   let rateMultiplier = tierData.mult;
@@ -541,6 +616,9 @@ function runEngine() {
     let rawCentsInput = document.getElementById("rate_cents_in").value;
     if (rawCentsInput !== "" && !isNaN(rawCentsInput)) {
       currentCents = parseFloat(rawCentsInput);
+      // Defensive parameter clamping guardrails
+      if (currentCents > 99) currentCents = 99;
+      if (currentCents < 1) currentCents = 1;
       rateMultiplier = (currentCents / 100) / 0.13;
     }
   } else {
@@ -549,15 +627,15 @@ function runEngine() {
   
   let annualHours = weeklyHours * 52;
   
-  // PILLAR 2: Operational Tiers Weights
+  // PILLAR 2 Raw Scoring Evaluator Nodes
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
   else if (annualHours >= 3500) schedulePoints = 5;
   else if (annualHours >= 2000) schedulePoints = 3;
-  else schedulePoints = 0; // Runtime Kill switch trigger
+  else schedulePoints = 0; 
   
-  // PILLAR 3: HVAC Load Density Bounds
+  // PILLAR 3 Raw Scoring Evaluator Nodes
   let hvacPoints = 5;
   if (hvacFraction >= 0.65) hvacPoints = 10;
   else if (hvacFraction >= 0.50) hvacPoints = 7;
@@ -583,11 +661,9 @@ function runEngine() {
   document.getElementById("score_out").textContent = finalScore;
 
   // -----------------------------------------------------------------
-  // POSITION 1 METRIC INTERPOLATION LOGIC TRACK
+  // HORIZON GAUGE RADIAL HORIZONTAL SCALE RENDERING RE-BINDING
   // -----------------------------------------------------------------
-  let gaugeRoot = document.getElementById("gauge_component_root");
   let needle = document.getElementById("gauge_needle");
-
   gaugeRoot.classList.remove("gauge-override-anthill", "gauge-override-whale");
   document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
 
@@ -643,7 +719,7 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // POSITION 3 PLAYBOOK COMMUNICATIONS TERMINAL DISCOVERY
+  // POSITION 3 DYNAMIC CORE HUD COMMUNICATIONS MATRIX CONTEXT
   // -----------------------------------------------------------------
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
@@ -691,7 +767,7 @@ function runEngine() {
     redActions.style.display = "block";
   }
 
-  // Value Output Updates
+  // Value Output Presentation Calculations
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
   let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24;
   
@@ -719,7 +795,6 @@ function runEngine() {
 // Global Application Core Entry Blocks Initialization Sequence
 initStatesGrid();
 initFacilityMatrix();
-// Keep modules fully visible and uncollapsed during the boot up cycle
 runEngine();
 </script>
 </body>
