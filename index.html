@@ -112,7 +112,7 @@ body {
 .back-btn:hover { background: rgba(229,62,62,0.08); border-color: var(--red); color: #fff; }
 .selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
 
-/* Section 03 Splits inputs matrix */
+/* Section 03 Dynamic Layout Container */
 .split-input-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media(min-width: 500px) { .split-input-container { display: grid; grid-template-columns: 1fr 140px; } }
 
@@ -136,7 +136,7 @@ body {
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
 
-/* Structural Congruence Modifiers mapping rules */
+/* Structural Congruence Color Tokens */
 .congruent-red { border-left-color: var(--red) !important; }
 .congruent-red.firewall-ribbon { background: rgba(229,62,62,0.05); }
 .congruent-red .firewall-status { color: var(--red) !important; }
@@ -152,6 +152,10 @@ body {
 .congruent-purple { border-left-color: var(--purple) !important; }
 .congruent-purple.firewall-ribbon { background: rgba(128,90,213,0.04); }
 .congruent-purple .firewall-status { color: var(--purple) !important; }
+
+.hud-actions-wrapper { display: none; margin-top: 14px; }
+.hud-btn-route { background: transparent; color: var(--red); border: 1px solid var(--red); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 18px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+.hud-btn-route:hover { background: var(--red); color: #fff; }
 
 /* POSITION 4: OVERRIDES INPUT MATRIX STRUCTURE */
 .override-panel {
@@ -218,7 +222,6 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
-  <!-- ==================== POSITION 1: THE CONTINUOUS HORIZON SCALE ==================== -->
   <div class="gauge-section" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
@@ -238,7 +241,6 @@ body {
     </div>
   </div>
 
-  <!-- ==================== POSITION 2: CORE FIELD CHIP SELECTION matrices ==================== -->
   <div class="calc-body">
     
     <div class="field" id="field_geo_root">
@@ -273,15 +275,14 @@ body {
           <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
           <div class="spend-input-row" id="spend_input_main_container">
             <span class="spend-currency">$</span>
-            <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()">
+            <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()" onfocus="this.select()">
             <span class="spend-suffix">/ Site Month</span>
           </div>
         </div>
         <div>
           <div class="field-label"><span>Facilities</span></div>
           <div class="spend-input-row">
-            <!-- Spinner handles completely nuked from HTML footprint context layout structure -->
-            <input type="text" pattern="[0-9]*" inputmode="numeric" id="fac_count_in" class="fac-count-input" value="1" oninput="onFacCountInput()">
+            <input type="text" pattern="[0-9]*" inputmode="numeric" id="fac_count_in" class="fac-count-input" value="1" oninput="onFacCountInput()" onfocus="this.select()">
           </div>
         </div>
       </div>
@@ -289,7 +290,6 @@ body {
 
   </div>
 
-  <!-- ==================== POSITION 3: DYNAMIC UNIFIED HUD COUPLING FRAMEWORK ==================== -->
   <div class="firewall-ribbon" id="firewall_ribbon">
     <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
     <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
@@ -300,7 +300,6 @@ body {
     <div class="playbook-text" id="playbook_text_out">Awaiting selection discovery parameters modifications...</div>
   </div>
 
-  <!-- ==================== POSITION 4: OVERRIDES WORKSPACE DESIGN PANEL ==================== -->
   <div class="override-panel" id="manual_override_wrapper">
     <div class="override-panel-header">Manual Overrides Matrix Context</div>
     
@@ -350,7 +349,6 @@ body {
     </div>
   </div>
 
-  <!-- ==================== POSITION 5: QUANTITATIVE SCOREBOARD DISPLAY CORE ==================== -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
@@ -602,7 +600,7 @@ function runEngine() {
   let ribbon = document.getElementById("firewall_ribbon");
   let playbookBox = document.getElementById("playbook_box_container");
 
-  // Reset System congruence classes before computing checks
+  // Reset System congruence layout style states
   ribbon.className = "firewall-ribbon";
   playbookBox.className = "playbook-box";
   
@@ -628,9 +626,7 @@ function runEngine() {
   let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
   let facilitiesCount = parseInt(document.getElementById("fac_count_in").value.replace(/[^0-9]/g, "")) || 1;
   
-  // -----------------------------------------------------------------
-  // TRACK 1: HARD PORTFOLIO BRACKET FIREWALL GATES
-  // -----------------------------------------------------------------
+  // TRACK 1: HARD BRACKET EXCLUSION FIREWALL
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
   let bracketString = "1-4 Locations";
@@ -700,7 +696,7 @@ function runEngine() {
     hvacPoints = 10; 
   }
   
-  // TRACK 2: CORE BUILDING DNA MATHEMATICS
+  // TRACK 2: MAIN COMPREHENSIVE SCORE INTERSECTION CORE
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   if (schedulePoints === 0) finalScore = 0;
   
@@ -721,7 +717,7 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // HORIZON SCALE PIN POINT INTERPOLATOR CONTROLLER
+  // HORIZON SCALE PIN INDICATOR INTERPOLATION
   // -----------------------------------------------------------------
   let needle = document.getElementById("gauge_needle");
   gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
@@ -779,15 +775,12 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // POSITION 3 DYNAMIC CONGRUENT UI INTERACTION MAPPER
+  // POSITION 3 DYNAMIC SYSTEM CONGRUENCE CONSOLE DRIVER
   // -----------------------------------------------------------------
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
   const statusText = document.getElementById("firewall_status_text");
   const msgText = document.getElementById("firewall_message_text");
-
-  statusText.textContent = isIntensityOverridden || isHvacOverridden || isRateOverridden ? "⚡ MANUAL OVERRIDE ACTIVE" : "🔥 AUTOMATION MODE ACTIVE";
-  msgText.textContent = "SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED";
 
   if (isFirewallDisqualified) {
     ribbon.classList.add("congruent-red");
@@ -837,7 +830,7 @@ function runEngine() {
     pText.textContent = "Do not initiate contact. The property configuration parameters return sub-baseline values. Margins fail to clear tracking logging limits and technical engineering overhead thresholds.";
   }
 
-  // Value Output presentation matrices constants
+  // Value Output presentation calculations matrices
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24 * facilitiesCount; 
   let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24 * facilitiesCount;
   
