@@ -43,7 +43,6 @@ body {
 .field { margin-bottom: 32px; }
 .field-label { font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
-.active-pill-readout { background: rgba(200,169,110,0.15); border: 1px solid var(--gold); color: var(--gold-light); font-size: 12px; padding: 2px 10px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
 
 /* Committed Grid Layout Workspace */
 .state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.2); }
@@ -73,7 +72,7 @@ body {
 .fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.5); flex-shrink: 0; }
 .fac-opt.active .fac-ico { color: var(--gold-light); }
 
-/* NEW Condensing Selection Row Mechanics */
+/* Condensing Selection Row Mechanics */
 .condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.25s ease-out; }
 @keyframes rowEntrance { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -109,7 +108,7 @@ body {
 .slider-readout { display: flex; justify-content: space-between; font-size: 13px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 
-/* Live Analytical Map Engine */
+/* Live Intuition Table Grid Map */
 .matrix-section { padding: 32px 38px; background: var(--ink); border-top: 1px solid var(--gold-rule); }
 .matrix-header { font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; font-weight: 700; text-align: center; }
 .matrix-table { display: grid; grid-template-rows: repeat(4, auto); gap: 6px; width: 100%; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
@@ -117,14 +116,14 @@ body {
 .matrix-label-cell { display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 8px; color: var(--slate); text-transform: uppercase; font-size: 11px; font-weight: 800; border-left: 2px solid rgba(255,255,255,0.1); }
 .matrix-header-row .matrix-label-cell { border-left: none; background: transparent; justify-content: center; padding-bottom: 8px; }
 
-/* Persistent Map Baseline Visibility Styles */
+/* Persistent Map Background Styles */
 .matrix-cell { padding: 14px 4px; text-align: center; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1); position: relative; font-weight: 800; }
 .matrix-cell.cell-purple { background: rgba(128,90,213,0.15); color: rgba(183,148,244,0.45); }
 .matrix-cell.cell-green  { background: rgba(56,161,105,0.15);  color: rgba(104,211,145,0.45); }
 .matrix-cell.cell-yellow { background: rgba(236,201,75,0.08);  color: rgba(250,240,137,0.45); }
 .matrix-cell.cell-red    { background: rgba(229,62,62,0.12);   color: rgba(252,129,129,0.35); }
 
-/* Explosive Scale Focus Mechanics on Winning Vector Target Intersection */
+/* Focus Target Intersections Scaling Mechanics */
 .matrix-cell.active-target {
   color: #fff !important; transform: scale(1.06); z-index: 10;
   box-shadow: 0 12px 30px rgba(0,0,0,0.8), 0 0 0 1px var(--gold);
@@ -138,12 +137,12 @@ body {
 .matrix-cell.active-target .cell-lbl-str { opacity: 1; }
 .cell-tag-str { font-size: 10px; font-weight: 700; text-transform: uppercase; }
 
-/* Operational Playbook Box */
+/* Operational Protocols Playbook Box */
 .playbook-box { margin: 0 38px 24px; background: rgba(255,255,255,0.02); border-left: 3px solid var(--gold); padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.03); }
 .playbook-title { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
 
-/* Financial Output Summary Faceplate */
+/* Valuation Output Faceplate (Bottom Tier Hierarchy) */
 .scoreboard { padding: 32px 38px 38px; background: rgba(0,0,0,0.2); border-top: 1px solid var(--gold-rule); text-align: center; }
 .score-badge { display: inline-block; padding: 6px 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); }
 .score-container { margin: 4px 0; }
@@ -154,7 +153,7 @@ body {
 .savings-val { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
 .savings-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 
-/* Basic Utility Tones mapping */
+/* Basic Utility Mapping Tones */
 .bg-purple { background-color: var(--purple); color: #fff !important; }
 .bg-green  { background-color: var(--green); color: #fff !important; }
 .bg-yellow { background-color: var(--yellow); color: var(--ink) !important; }
@@ -172,7 +171,6 @@ body {
 
   <div class="calc-body">
     
-    <!-- SECTION 1: REGIONAL GEOGRAPHY GRID / CONSOLIDATED VIEW -->
     <div class="field">
       <div class="field-label">
         <span><span class="step">01</span> &nbsp;Regional Location Geography</span>
@@ -188,7 +186,6 @@ body {
       </div>
     </div>
 
-    <!-- SECTION 2: 16 CORE FACILITY ASSETS MATRIX / CONSOLIDATED VIEW -->
     <div class="field">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span></div>
       <div id="fac-full-view">
@@ -202,7 +199,6 @@ body {
       </div>
     </div>
 
-    <!-- FIELD OVERHEAD SPEND INPUT BOX -->
     <div class="field">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
       <div class="spend-input-row">
@@ -212,13 +208,11 @@ body {
       </div>
     </div>
 
-    <!-- KNOB TOGGLE MODULAR STATE CONTROL MODULE -->
     <div class="mode-toggle">
       <button type="button" class="mode-btn active" id="btn_m1" onclick="shiftMode('mode_1')">Mode 1: Quick Scan</button>
       <button type="button" class="mode-btn" id="btn_m2" onclick="shiftMode('mode_2')">Mode 2: Deep Dial Overrides</button>
     </div>
 
-    <!-- EXPANSION PANEL DRAW MECHANICS -->
     <div class="adjust-panel" id="override_drawer">
       <div class="adjust-inner">
         <div class="field">
@@ -243,7 +237,6 @@ body {
     </div>
   </div>
 
-  <!-- INTERACTIVE SYSTEM VISUAL MAP COMPASS -->
   <div class="matrix-section">
     <div class="matrix-header">Live 10-Second Intuition Intersection Map</div>
     <div class="matrix-table">
@@ -278,13 +271,11 @@ body {
     </div>
   </div>
 
-  <!-- DISCOVERY DISCOVERY PLAYBOOKS DIALOG MANAGER -->
   <div class="playbook-box">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
-    <div class="playbook-text" id="playbook_text_out">Awaiting field matrix vector tracking inputs...</div>
+    <div class="playbook-text" id="playbook_text_out">Awaiting analytical system parameters modifications...</div>
   </div>
 
-  <!-- CORE RESPONSIVE EVALUATION PANEL SUMMARY (REPOSITIONED BELOW GRID MAP) -->
   <div class="scoreboard">
     <span class="score-badge bg-purple" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
@@ -323,7 +314,8 @@ const US_STATE_TIERS = {
 
 const FACILITY_PROFILES = {
   cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "high", name: "Cold Storage", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
-  datactr: { weeklyHours: 168, hvacShare: 0.12, tier: "low",  name: "Data Center", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
+  // UPGRADED DATA CENTER LOAD MATRIX ENVIRONMENT LOGIC
+  datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "high", name: "Data Center", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
   health:  { weeklyHours: 168, hvacShare: 0.50, tier: "high", name: "Healthcare / Hosp.", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
   research:{ weeklyHours: 120, hvacShare: 0.30, tier: "mid",  name: "Research Lab", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
   super:   { weeklyHours: 112, hvacShare: 0.60, tier: "high", name: "Supermarket", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
@@ -398,7 +390,6 @@ function resetStateSelection() {
   stateSelectedFlag = false;
   document.getElementById("state-condensed-view").style.display = "none";
   document.getElementById("state-full-view").style.display = "block";
-  // Reset grid highlights
   initStatesGrid();
   runEngine();
 }
@@ -410,7 +401,7 @@ function collapseFacilitySection() {
   let block = document.getElementById("fac-selection-block");
   
   block.className = `selection-block bg-${getFacColorClass(prof.tier)}`;
-  block.innerHTML = `<span>${prof.name}</span><span style="font-size:12px; opacity:0.85;">${prof.tier.toUpperCase()} DENSITY</span>`;
+  block.innerHTML = `<span>${prof.name}</span><span style="font-size:12px; opacity:0.85;">CORE CONFIGURATION</span>`;
   condView.style.display = "block";
 }
 
@@ -545,7 +536,10 @@ function updateIntuitionMatrix(ore, bill) {
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
 
-  if (ore === "low") {
+  if (selectedFacility === "datactr" && bill === "whale") {
+    pTitle.textContent = "🔮 SYSTEM CONVERSION TIMEOUT: DATA CENTER INTEGRATION";
+    pText.textContent = "Non-linear plug load distortion detected. Extreme computing infrastructure density creates harmonic and line-loss billing metrics across the site meter. Deploy complete L0 Harmonization and L3 smart starts stack.";
+  } else if (ore === "low") {
     pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
     pText.textContent = "Do not initiate contact. The property's thermal blueprint is empty or process-dominated. Savings volume will fail to clear Sandia logging and structural overhead limits.";
   } else if (bill === "anthill") {
@@ -566,7 +560,7 @@ function updateIntuitionMatrix(ore, bill) {
   }
 }
 
-// Initial Core Modules Activation Loop
+// Global Application Core Entry Blocks
 initStatesGrid();
 initFacilityMatrix();
 onFacChange();
