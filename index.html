@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field PIE System — Mission Control Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Field PIE System — Mobile Control Panel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght=600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -14,39 +14,38 @@
   --gold: #c8a96e; --gold-light: #e8c98a; --gold-rule: rgba(200,169,110,0.18);
   --white: #f2ede4; --slate: rgba(242,237,228,0.55);
   
-  /* Pure, Saturated High-Impact Status Tones */
+  /* Pure High-Contrast Status Tones */
   --purple: #9f7aea; 
   --green: #48bb78;  
   --yellow: #ecc94b; 
   --red: #f56565;    
   
-  /* Manual Takeover Signature Accent */
   --override-cyan: #0bc5ea;
   --override-cyan-dim: rgba(11, 197, 234, 0.08);
 }
 body {
   font-family: 'Barlow', sans-serif; background: var(--ink); color: var(--white);
-  font-size: 17px; line-height: 1.6; padding: 24px 16px; min-height: 100vh;
+  font-size: 16px; line-height: 1.5; padding: 8px; min-height: 100vh;
   display: flex; align-items: flex-start; justify-content: center;
 }
 .calc {
   width: 100%; max-width: 760px; background: var(--ink-2); border: 1px solid var(--gold-rule);
-  box-shadow: 0 32px 64px -24px rgba(0,0,0,0.85); overflow: hidden; margin-bottom: 60px;
+  box-shadow: 0 32px 64px -24px rgba(0,0,0,0.85); overflow: hidden; margin-bottom: 40px;
 }
-.calc-head { padding: 34px 38px 24px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
-.calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 24px; line-height: 1.2; color: #fff; margin-bottom: 6px; }
+.calc-head { padding: 24px 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
+.calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; line-height: 1.2; color: #fff; margin-bottom: 6px; }
 .calc-title em { font-style: italic; color: var(--gold); }
-.calc-sub { font-size: 15px; color: var(--slate); font-weight: 600; letter-spacing: 0.01em; }
+.calc-sub { font-size: 14px; color: var(--slate); font-weight: 600; letter-spacing: 0.01em; }
 
-.calc-body { padding: 32px 38px 24px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
-.field { margin-bottom: 32px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-.field-label { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+.calc-body { padding: 24px 20px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
+.field { margin-bottom: 28px; scroll-margin-top: 140px; transition: all 0.2s ease; }
+.field-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
-/* POSITION 1: PREMIUM CONTINUOUS HORIZON SCALE */
-.gauge-section { padding: 32px 38px 34px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); position: relative; }
-.gauge-header { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px; font-weight: 700; text-align: center; }
-.horizon-track-container { position: relative; width: 100%; height: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 18px; border-radius: 2px; }
+/* POSITION 1: STICKY HORIZON SCALE */
+.gauge-section { padding: 24px 20px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); position: sticky; top: 0; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+.gauge-header { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; font-weight: 700; text-align: center; }
+.horizon-track-container { position: relative; width: 100%; height: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 12px; border-radius: 2px; }
 .horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; opacity: 0.3; transition: opacity 0.3s ease; }
 .gauge-initialized .horizon-track { opacity: 1; }
 
@@ -56,7 +55,6 @@ body {
 .zone-viability { background: var(--green); width: 25%; }
 .zone-sovereign { background: var(--purple); width: 25%; border-right: none; }
 
-/* Flat Elastic Modifiers */
 .gauge-override-disqualified .zone-block { background: rgba(255,255,255,0.03) !important; }
 .gauge-override-disqualified .zone-skip { background: var(--red) !important; width: 100% !important; }
 .gauge-override-whale .zone-skip { width: 15%; }
@@ -64,162 +62,114 @@ body {
 .gauge-override-whale .zone-viability { width: 20%; }
 .gauge-override-whale .zone-sovereign { width: 50%; }
 
-/* Minimalist Pin Indicator Element */
-.vector-needle { position: absolute; top: -8px; left: 50%; width: 2px; height: 32px; background: rgba(255,255,255,0.2); transform: translateX(-50%); transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, box-shadow 0.3s ease; z-index: 10; }
+.vector-needle { position: absolute; top: -6px; left: 50%; width: 2px; height: 26px; background: rgba(255,255,255,0.2); transform: translateX(-50%); transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10; }
 .gauge-initialized .vector-needle { background: #fff; box-shadow: 0 0 10px 2px rgba(255,255,255,0.8); }
 
-.gauge-labels { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(242,237,228,0.3); transition: color 0.3s ease; }
+.gauge-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: rgba(242,237,228,0.3); }
 .gauge-initialized .gauge-labels { color: var(--slate); }
-.gauge-labels span { transition: all 0.2s ease; position: relative; }
-.gauge-labels .active-zone-text { color: #fff; transform: translateY(-1px); }
+.gauge-labels span { transition: all 0.2s ease; }
+.gauge-labels .active-zone-text { color: #fff; }
 
-/* GRID SYSTEMS & CORE INPUT WORKSPACES WITH THICK OBSERVED CHANNELS */
-.state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 12px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); transition: all 0.25s ease; }
-@media(min-width: 480px) { .state-grid { grid-template-columns: repeat(4, 1fr); } }
-@media(min-width: 640px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
+/* HIGH-IMPACT INPUT GRIDS (THICK VISUAL SIGNALS) */
+.state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 6px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
+@media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
+@media(min-width: 600px) { .state-grid { grid-template-columns: repeat(5, 1fr); } }
 
 .state-chip { 
-  background: rgba(255,255,255,0.02); padding: 12px 4px; text-align: center; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.15s;
-  display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 44px; text-transform: uppercase; border: 1px solid transparent;
+  background: rgba(255,255,255,0.02); padding: 10px 2px; text-align: center; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 40px; text-transform: uppercase; border: 1px solid transparent;
 }
-/* Upgraded to thick 5px Left Borders for Instant Recognition */
 .state-chip.tier-s, .state-chip.tier-a { border-left: 5px solid var(--purple); }
 .state-chip.tier-b { border-left: 5px solid var(--green); }
 .state-chip.tier-c { border-left: 5px solid var(--yellow); }
 .state-chip.tier-d { border-left: 5px solid var(--red); }
-.state-chip:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); color: #fff; }
 
-/* Injected Full Solid Background Highlight Overwrites for Active Flags */
 .state-chip.active { font-weight: 800; color: #fff !important; border-color: #fff !important; }
 .state-chip.tier-s.active, .state-chip.tier-a.active { background: rgba(159, 122, 234, 0.25) !important; }
 .state-chip.tier-b.active { background: rgba(72, 187, 120, 0.25) !important; }
-.state-chip.tier-c.active { background: rgba(236, 201, 75, 0.2) !important; color: var(--ink) !important; }
+.state-chip.tier-c.active { background: rgba(236, 201, 75, 0.2) !important; color: #fff !important; }
 .state-chip.tier-d.active { background: rgba(245, 101, 101, 0.25) !important; }
 
-.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; transition: all 0.25s ease; }
-@media(min-width: 540px) { .fac-grid { display: grid; grid-template-columns: repeat(4, 1fr); } }
-.fac-opt { background: rgba(255,255,255,0.02); padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.15s; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 104px; text-transform: uppercase; border: 1px solid transparent; }
-
-/* Upgraded to thick 6px Top Borders for Instant Recognition */
+.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+@media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
+.fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border: 1px solid transparent; }
 .fac-opt.tier-high { border-top: 6px solid var(--purple); }
 .fac-opt.tier-mid  { border-top: 6px solid var(--green); }
 .fac-opt.tier-low  { border-top: 6px solid var(--red); }
-.fac-opt:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: #fff; }
 
 .fac-opt.active { font-weight: 800; color: #fff !important; border-color: #fff !important; }
 .fac-opt.tier-high.active { background: rgba(159, 122, 234, 0.25) !important; }
 .fac-opt.tier-mid.active  { background: rgba(72, 187, 120, 0.25) !important; }
 .fac-opt.tier-low.active  { background: rgba(245, 101, 101, 0.25) !important; }
-.fac-ico { display: block; width: 22px; height: 22px; color: rgba(255,255,255,0.35); flex-shrink: 0; transition: color 0.15s ease; }
+.fac-ico { display: block; width: 18px; height: 18px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
 .fac-opt.active .fac-ico { color: #fff; }
 
-.condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s cubic-bezier(0.25, 1, 0.5, 1); }
-@keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+.selection-block { flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border-radius: 0 2px 2px 0; }
 
-.back-btn {
-  flex: 0 0 120px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.08);
-  color: var(--slate); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: all 0.15s;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.back-btn:hover { background: rgba(229,62,62,0.08); border-color: var(--red); color: #fff; }
-.selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
+/* RE-ENGINEERED TWO-TRACK THUMB CLICKABLE WORKSPACE Matrix */
+.click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 16px; } }
 
-/* Section 03 Splits inputs container layout */
-.split-input-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
-@media(min-width: 500px) { .split-input-container { display: grid; grid-template-columns: 1fr 140px; } }
+.clickable-grid-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+.matrix-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 16px 4px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 800; color: rgba(255,255,255,0.7); text-align: center; cursor: pointer; border-radius: 2px; text-transform: uppercase; transition: all 0.1s ease; }
+.matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
+.matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s ease, background-color 0.2s ease; }
-.spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; padding: 0 4px 0 18px; font-weight: 700; }
-.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 10px 4px; width: 100%; }
-.spend-suffix { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
+/* POSITION 3: SINGLE-CONTAINER PROTOCOL BOX UNIFIED SYSTEM */
+.playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 20px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+.playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 8px; }
+.playbook-text { font-size: 15px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
 
-.fac-count-input { text-align: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; background: transparent; border: none; outline: none; width: 100%; padding: 10px 4px; appearance: textfield; -moz-appearance: textfield; }
-.fac-count-input::-webkit-outer-spin-button, .fac-count-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.congruent-red { border-left-color: var(--red) !important; background: rgba(245, 101, 101, 0.03) !important; }
+.congruent-yellow { border-left-color: var(--yellow) !important; background: rgba(236, 201, 75, 0.02) !important; }
+.congruent-green { border-left-color: var(--green) !important; background: rgba(72, 187, 120, 0.02) !important; }
+.congruent-purple { border-left-color: var(--purple) !important; background: rgba(159, 122, 234, 0.03) !important; }
 
-/* POSITION 3: CONGRUENT PLAYBOOK COMMUNICATIONS CENTER */
-.firewall-ribbon {
-  background: rgba(0, 0, 0, 0.2); padding: 12px 24px; border-left: 5px solid var(--gold);
-  border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);
-  font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.firewall-status { color: var(--gold-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; }
-.playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 20px 24px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-.playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
-.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
-
-/* System Solid State Mapping Classes */
-.congruent-red { border-left-color: var(--red) !important; }
-.congruent-red.firewall-ribbon { background: rgba(245, 101, 101, 0.05); }
-.congruent-red .firewall-status { color: var(--red) !important; }
-
-.congruent-yellow { border-left-color: var(--yellow) !important; }
-.congruent-yellow.firewall-ribbon { background: rgba(236, 201, 75, 0.03); }
-.congruent-yellow .firewall-status { color: var(--yellow) !important; }
-
-.congruent-green { border-left-color: var(--green) !important; }
-.congruent-green.firewall-ribbon { background: rgba(72, 187, 120, 0.04); }
-.congruent-green .firewall-status { color: var(--green) !important; }
-
-.congruent-purple { border-left-color: var(--purple) !important; }
-.congruent-purple.firewall-ribbon { background: rgba(159, 122, 234, 0.05); }
-.congruent-purple .firewall-status { color: var(--purple) !important; }
-
-.hud-actions-wrapper { display: none; margin-top: 14px; }
-.hud-btn-route { background: transparent; color: var(--red); border: 1px solid var(--red); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 18px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
-.hud-btn-route:hover { background: var(--red); color: #fff; }
-
-/* POSITION 4: OVERRIDES INPUT MATRIX PANEL */
-.override-panel {
-  background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06);
-  padding: 28px 38px; position: relative; transition: all 0.25s ease; opacity: 0.2; pointer-events: none;
-}
+/* POSITION 4: OVERRIDES CONTAINER LAYOUTS */
+.override-panel { background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06); padding: 24px 20px; opacity: 0.2; pointer-events: none; }
 .gauge-initialized-wrapper.override-panel { opacity: 1; pointer-events: auto; }
-.override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 20px; }
-.takeover-chip-row { display: flex; flex-direction: column; gap: 5px; width: 100%; }
-@media(min-width: 640px) { .takeover-chip-row { flex-direction: row; } }
-.takeover-chip-btn {
-  flex: 1; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 12px 4px;
-  font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase;
-  text-align: center; cursor: pointer; transition: all 0.15s; border-radius: 2px; line-height: 1.2;
-}
-.takeover-chip-btn:hover { border-color: rgba(255,255,255,0.12); color: #fff; }
+.override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 16px; }
+.takeover-chip-row { display: grid; grid-template-columns: 1fr; gap: 4px; width: 100%; }
+@media(min-width: 480px) { .takeover-chip-row { grid-template-columns: repeat(3, 1fr); } }
+@media(min-width: 640px) { .takeover-chip-row { grid-template-columns: repeat(5, 1fr); } }
+.takeover-chip-btn { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 10px 4px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 2px; line-height: 1.2; }
 .takeover-chip-btn.active { background: rgba(255,255,255,0.05) !important; border-color: var(--gold) !important; color: #fff !important; }
 
-.takeover-meta-container { display: flex; align-items: center; gap: 12px; }
+.takeover-meta-container { display: flex; align-items: center; gap: 10px; }
 .takeover-active-indicator { font-size: 10px; font-weight: 800; letter-spacing: 0.04em; color: var(--override-cyan); text-transform: uppercase; display: none; }
-.reset-auto-link { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; cursor: pointer; display: none; text-decoration: underline; transition: color 0.15s; }
-.reset-auto-link:hover { color: var(--red); }
+.reset-auto-link { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; cursor: pointer; display: none; text-decoration: underline; }
 
 .intensity-manual-state #intensity_takeover_lbl, .intensity-manual-state #intensity_reset_lnk { display: block; }
 .hvac-manual-state #hvac_takeover_lbl, .hvac-manual-state #hvac_reset_lnk { display: block; }
 .rate-manual-state #rate_takeover_lbl, .rate-manual-state #rate_reset_lnk { display: block; }
-
 .intensity-manual-state #chip_hours_block .takeover-chip-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; }
-.hvac-manual-state #hvac_field_container { border-color: rgba(11, 197, 234, 0.2); }
 .rate-manual-state #rate_input_container { border-color: var(--override-cyan) !important; background: var(--override-cyan-dim); }
+
+.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s ease, background-color 0.2s ease; }
+.spend-currency { font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; padding: 0 4px 0 14px; font-weight: 700; }
+.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 22px; color: #fff; padding: 8px 4px; width: 100%; }
+.spend-suffix { font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 14px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
 .rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
 .rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
 .hvac-manual-state .rng::-webkit-slider-thumb { background: var(--override-cyan); }
-.slider-readout { display: flex; justify-content: space-between; font-size: 12px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
+.slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 .hvac-manual-state .slider-val { color: var(--override-cyan); }
 
-/* POSITION 5: QUANTITATIVE SCOREBOARD CORE FACEPLATE */
-.scoreboard { padding: 40px 38px 44px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
-.score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 16px; color: var(--ink); opacity: 0.4; transition: opacity 0.3s ease; }
+/* POSITION 5: QUANTITATIVE SCOREBOARD BASE */
+.scoreboard { padding: 32px 20px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
+.score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); opacity: 0.4; }
 .gauge-initialized .score-badge { opacity: 1; }
-.score-container { margin: 4px 0; }
-.score-num-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 2px; font-weight: 700; }
-.score-num { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.15); transition: color 0.3s ease; }
+.score-num-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 2px; font-weight: 700; }
+.score-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; line-height: 1; color: rgba(255,255,255,0.15); }
 .gauge-initialized .score-num { color: #fff; }
-.savings-output { display: flex; gap: 1px; background: var(--gold-rule); margin-top: 28px; border: 1px solid var(--gold-rule); opacity: 0.3; transition: opacity 0.3s ease; }
+.savings-output { display: flex; flex-direction: column; gap: 4px; background: var(--gold-rule); margin-top: 24px; border: 1px solid var(--gold-rule); opacity: 0.3; }
+@media(min-width: 480px) { .savings-output { flex-direction: row; gap: 1px; } }
 .gauge-initialized .savings-output { opacity: 1; }
-.savings-cell { flex: 1; background: var(--ink-2); padding: 20px; text-align: center; }
-.savings-val { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
-.savings-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.savings-cell { flex: 1; background: var(--ink-2); padding: 16px; text-align: center; }
+.savings-val { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 4px; }
+.savings-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 
 .bg-purple { background-color: var(--purple); color: #fff !important; }
 .bg-green  { background-color: var(--green); color: #fff !important; }
@@ -235,6 +185,7 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
+  <!-- ==================== POSITION 1: STICKY HORIZON SCALE ==================== -->
   <div class="gauge-section" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
@@ -248,12 +199,13 @@ body {
     </div>
     <div class="gauge-labels">
       <span id="lbl_skip">Skip Lead</span>
-      <span id="lbl_linear">Linear Margin</span>
-      <span id="lbl_viability">High Viability</span>
-      <span id="lbl_sovereign">Sovereign Jackpot</span>
+      <span id="lbl_linear">Linear</span>
+      <span id="lbl_viability">Viable</span>
+      <span id="lbl_sovereign">Sovereign</span>
     </div>
   </div>
 
+  <!-- ==================== POSITION 2: INPUT NODES WORKSPACE ==================== -->
   <div class="calc-body">
     
     <div class="field" id="field_geo_root">
@@ -269,7 +221,7 @@ body {
       </div>
     </div>
 
-    <div class="field" id="field_fac-root">
+    <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span></div>
       <div id="fac-full-view">
         <div class="fac-grid" id="fac-matrix-box"></div>
@@ -282,20 +234,28 @@ body {
       </div>
     </div>
 
-    <div class="field" style="margin-bottom: 8px;">
-      <div class="split-input-container">
+    <!-- RE-ENGINEERED STEP 03 TWO-TRACK THUMB TAP CORE METRIC GRID -->
+    <div class="field" id="field_spend_root" style="margin-bottom: 8px;">
+      <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
+      
+      <div class="click-matrix-stack">
         <div>
-          <div class="field-label"><span><span class="step">03</span> &nbsp;Current Utility Overhead Volume</span></div>
-          <div class="spend-input-row" id="spend_input_main_container">
-            <span class="spend-currency">$</span>
-            <input type="text" inputmode="numeric" id="bill_in" class="spend-input" value="15,000" oninput="onBillInput()" onfocus="this.select()">
-            <span class="spend-suffix">/ Site Month</span>
+          <div style="font-size: 11px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 8px;">Portfolio Facility Footprint</div>
+          <div class="clickable-grid-row">
+            <button class="matrix-btn" id="fac_count_1" onclick="selectFacilitiesCount(1, 'fac_count_1')">1 Site</button>
+            <button class="matrix-btn" id="fac_count_5" onclick="selectFacilitiesCount(5, 'fac_count_5')">5 Sites</button>
+            <button class="matrix-btn" id="fac_count_10" onclick="selectFacilitiesCount(10, 'fac_count_10')">10 Sites</button>
+            <button class="matrix-btn" id="fac_count_20" onclick="selectFacilitiesCount(20, 'fac_count_20')">20+ Sites</button>
           </div>
         </div>
         <div>
-          <div class="field-label"><span>Facilities</span></div>
-          <div class="spend-input-row">
-            <input type="text" pattern="[0-9]*" inputmode="numeric" id="fac_count_in" class="fac-count-input" value="1" oninput="onFacCountInput()" onfocus="this.select()">
+          <div style="font-size: 11px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 8px;">Utility Overhead Per Location</div>
+          <div class="clickable-grid-row">
+            <button class="matrix-btn" id="spend_amt_1500" onclick="selectMonthlySpend(1500, 'spend_amt_1500')">$1,500</button>
+            <button class="matrix-btn" id="spend_amt_2000" onclick="selectMonthlySpend(2000, 'spend_amt_2000')">$2,000</button>
+            <button class="matrix-btn" id="spend_amt_3500" onclick="selectMonthlySpend(3500, 'spend_amt_3500')">$3,500</button>
+            <button class="matrix-btn" id="spend_amt_5000" onclick="selectMonthlySpend(5000, 'spend_amt_5000')">$5,000</button>
+            <button class="matrix-btn" style="grid-column: span 2;" id="spend_amt_10000" onclick="selectMonthlySpend(10000, 'spend_amt_10000')">$10,000+ Whale</button>
           </div>
         </div>
       </div>
@@ -303,16 +263,13 @@ body {
 
   </div>
 
-  <div class="firewall-ribbon" id="firewall_ribbon">
-    <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
-    <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
-  </div>
-
+  <!-- ==================== POSITION 3: SIMPLIFIED COMPACT PLAYBOOK HUB ==================== -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting selection discovery parameters modifications...</div>
   </div>
 
+  <!-- ==================== POSITION 4: MANUAL OVERRIDES CONTAINER ==================== -->
   <div class="override-panel" id="manual_override_wrapper">
     <div class="override-panel-header">Manual Overrides Matrix Context</div>
     
@@ -325,11 +282,11 @@ body {
         </div>
       </div>
       <div class="takeover-chip-row">
-        <div class="takeover-chip-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT (&lt;20 HRS/WK)</div>
-        <div class="takeover-chip-btn" id="chip_hours_45" onclick="manualIntensityTakeover(45, 'chip_hours_45')">SINGLE-SHIFT (40-50 HRS/WK)</div>
-        <div class="takeover-chip-btn" id="chip_hours_75" onclick="manualIntensityTakeover(75, 'chip_hours_75')">DOUBLE-SHIFT (60-90 HRS/WK)</div>
-        <div class="takeover-chip-btn" id="chip_hours_112" onclick="manualIntensityTakeover(112, 'chip_hours_112')">HEAVY COMM. (100-130 HRS/WK)</div>
-        <div class="takeover-chip-btn" id="chip_hours_168" onclick="manualIntensityTakeover(168, 'chip_hours_168')">CONTINUOUS 24/7 (144-168 HRS/WK)</div>
+        <div class="takeover-chip-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT</div>
+        <div class="takeover-chip-btn" id="chip_hours_45" onclick="manualIntensityTakeover(45, 'chip_hours_45')">1-SHIFT</div>
+        <div class="takeover-chip-btn" id="chip_hours_75" onclick="manualIntensityTakeover(75, 'chip_hours_75')">2-SHIFT</div>
+        <div class="takeover-chip-btn" id="chip_hours_112" onclick="manualIntensityTakeover(112, 'chip_hours_112')">HEAVY COMM.</div>
+        <div class="takeover-chip-btn" id="chip_hours_168" onclick="manualIntensityTakeover(168, 'chip_hours_168')">24/7</div>
       </div>
     </div>
 
@@ -362,6 +319,7 @@ body {
     </div>
   </div>
 
+  <!-- ==================== POSITION 5: QUANTITATIVE SCOREBOARD BASE ==================== -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
@@ -420,6 +378,10 @@ const FACILITY_PROFILES = {
 let selectedState = "";
 let selectedFacility = "";
 
+// Two-Track Clickable Matrix Global Variables
+let currentActiveBillValue = 0;
+let currentActiveFacCountValue = 0;
+
 let isIntensityOverridden = false;
 let isHvacOverridden = false;
 let isRateOverridden = false;
@@ -444,6 +406,7 @@ function initStatesGrid() {
         document.getElementById("rate_cents_in").value = automatedActiveRateCents;
       }
       runEngine();
+      smoothScrollToElement("field_fac_root");
     });
     box.appendChild(chip);
   });
@@ -471,6 +434,7 @@ function initFacilityMatrix() {
         document.getElementById("hvac_slider").value = automatedActiveHvacValue;
       }
       runEngine();
+      smoothScrollToElement("field_spend_root");
     });
     box.appendChild(opt);
   });
@@ -524,26 +488,34 @@ function getTierColorClass(tier) {
   return 'red';
 }
 
-// Fixed color registers string parameters matches
 function getFacColorClass(tier) {
   if (tier === 'high') return 'purple';
   if (tier === 'mid') return 'green';
   return 'red';
 }
 
-function onBillInput() {
-  let el = document.getElementById("bill_in");
-  let v = parseInt(el.value.replace(/[^0-9]/g, "")) || 0;
-  el.value = v ? v.toLocaleString("en-US") : "";
+// Click Matrix Execution Selections Track Interceptors
+function selectFacilitiesCount(count, btnId) {
+  document.querySelectorAll("[id^='fac_count_']").forEach(btn => btn.classList.remove("active"));
+  document.getElementById(btnId).classList.add("active");
+  currentActiveFacCountValue = count;
   runEngine();
 }
 
-function onFacCountInput() {
-  let el = document.getElementById("fac_count_in");
-  let v = parseInt(el.value.replace(/[^0-9]/g, "")) || 1;
-  if (v < 1) v = 1;
-  el.value = v;
+function selectMonthlySpend(amount, btnId) {
+  document.querySelectorAll("[id^='spend_amt_']").forEach(btn => btn.classList.remove("active"));
+  document.getElementById(btnId).classList.add("active");
+  currentActiveBillValue = amount;
   runEngine();
+}
+
+function smoothScrollToElement(targetId) {
+  setTimeout(() => {
+    let target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 180);
 }
 
 function manualIntensityTakeover(hoursVal, activeBtnId) {
@@ -611,13 +583,12 @@ function syncIntensityButtonsUI(activeBtnId) {
 
 function runEngine() {
   let gaugeRoot = document.getElementById("gauge_component_root");
-  let ribbon = document.getElementById("firewall_ribbon");
   let playbookBox = document.getElementById("playbook_box_container");
 
-  ribbon.className = "firewall-ribbon";
   playbookBox.className = "playbook-box";
   
-  if (!selectedState || !selectedFacility) {
+  // Await core layout initialization gates
+  if (!selectedState || !selectedFacility || currentActiveBillValue === 0 || currentActiveFacCountValue === 0) {
     gaugeRoot.classList.remove("gauge-initialized");
     document.getElementById("manual_override_wrapper").classList.remove("gauge-initialized-wrapper");
     document.getElementById("score_out").textContent = "- -";
@@ -636,24 +607,26 @@ function runEngine() {
 
   let tierData = US_STATE_TIERS[selectedState];
   let rateMultiplier = tierData.mult;
-  let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
-  let facilitiesCount = parseInt(document.getElementById("fac_count_in").value.replace(/[^0-9]/g, "")) || 1;
+  let monthlyBill = currentActiveBillValue;
+  let facilitiesCount = currentActiveFacCountValue;
   
-  // TRACK 1: HARD OPERATION SCALE FIREWALL
+  // -----------------------------------------------------------------
+  // TRACK 1: TWO-TRACK MATRIX COMPLIANCE SAFETY FIREWALL GATES
+  // -----------------------------------------------------------------
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
   let bracketString = "1-4 Locations";
 
-  if (facilitiesCount >= 1 && facilitiesCount <= 4) {
-    firewallRequiredFloor = 5000; bracketString = "1-4 Locations";
+  if (facilitiesCount === 1) {
+    firewallRequiredFloor = 5000; bracketString = "1 Location";
     if (monthlyBill < 5000) isFirewallDisqualified = true;
-  } else if (facilitiesCount >= 5 && facilitiesCount <= 9) {
-    firewallRequiredFloor = 3500; bracketString = "5-9 Locations";
+  } else if (facilitiesCount === 5) {
+    firewallRequiredFloor = 3500; bracketString = "5 Locations";
     if (monthlyBill < 3500) isFirewallDisqualified = true;
-  } else if (facilitiesCount >= 10 && facilitiesCount <= 19) {
-    firewallRequiredFloor = 2000; bracketString = "10-19 Locations";
+  } else if (facilitiesCount === 10) {
+    firewallRequiredFloor = 2000; bracketString = "10 Locations";
     if (monthlyBill < 2000) isFirewallDisqualified = true;
-  } else if (facilitiesCount >= 20) {
+  } else if (facilitiesCount === 20) {
     firewallRequiredFloor = 1500; bracketString = "20+ Locations";
     if (monthlyBill < 1500) isFirewallDisqualified = true;
   }
@@ -709,7 +682,7 @@ function runEngine() {
     hvacPoints = 10; 
   }
   
-  // TRACK 2: CORE BUILDING DNA LOGIC MATRIX POINTS
+  // TRACK 2: ENERGY DNA METADATA REALIZATION BALANCER
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   if (schedulePoints === 0) finalScore = 0;
   
@@ -730,7 +703,7 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // POSITION 1 PIN TIMELINE INDICATOR VECTOR INTERPOLATION
+  // HORIZON SCALE RADIAL POSITION TRACK SLIDER
   // -----------------------------------------------------------------
   let needle = document.getElementById("gauge_needle");
   gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
@@ -788,34 +761,22 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // POSITION 3 DYNAMIC SYSTEM CONGRUENCE CONSOLE OVERWRITING LOOP
+  // POSITION 3 DYNAMIC SYSTEM CONGRUENT PLAYBOOK ENGINE LIFT
   // -----------------------------------------------------------------
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
-  const statusText = document.getElementById("firewall_status_text");
-  const msgText = document.getElementById("firewall_message_text");
 
   if (isFirewallDisqualified) {
-    ribbon.classList.add("congruent-red");
     playbookBox.classList.add("congruent-red");
-    statusText.textContent = "🛑 DISQUALIFIED / SCALE FIREWALL BLOCK";
-    msgText.textContent = `CRITICAL DEPLOYMENT GAP DETECTED — ACCOUNT VOLUME INSUFFICIENT`;
-    
     pTitle.textContent = "🛑 OPERATION REJECTED: PORTFOLIO SCALE REJECTION FLOOR";
     pText.textContent = `This account falls below the clear operational line in the sand. A footprint of ${bracketString} requires a minimum power bill of $${firewallRequiredFloor.toLocaleString()}/month per location to absorb physical deployment crew mobilization. A current monthly footprint of $${monthlyBill.toLocaleString()} renders installation unprofitable due to site travel premiums. Terminate velocity path.`;
   } else if (schedulePoints === 0) {
-    ribbon.classList.add("congruent-red");
     playbookBox.classList.add("congruent-red");
-    statusText.textContent = "🛑 CRITICAL ERROR BLOCK";
-    msgText.textContent = "FIREWALL CRITICAL TRIGGER: RUNTIME KILL SWITCH IN OPERATION";
-    
     pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
     pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
   } 
   else if (activeZone === "purple") {
-    ribbon.classList.add("congruent-purple");
     playbookBox.classList.add("congruent-purple");
-    
     if (selectedFacility === "datactr") {
       pTitle.textContent = "🔮 SOVEREIGN JACKPOT MATCH: DATA CENTER INFRASTRUCTURE STACK";
       pText.textContent = "Non-linear plug load distortion bypass active. Extreme computing tier density unlocks absolute enterprise processing rules (Harmonization L0, Retrofit L1, and Smart Starts L3). Maximum prioritization pipeline.";
@@ -824,26 +785,20 @@ function runEngine() {
       pText.textContent = "Holy grail vector matched. Extreme compressor footprint compounded by target financial utility premium levels. Request past 12 months' commercial utility statement data instantly for structural conversion.";
     }
   } else if (activeZone === "green") {
-    ribbon.classList.add("congruent-green");
     playbookBox.classList.add("congruent-green");
-    
     pTitle.textContent = "🟢 HIGH VIABILITY PROFILE: ACTIVE CONTRACT CONVERSION";
     pText.textContent = "Legitimate structural capacity confirmed. Solid engineering density footprint aligns with core technology parameters. Initiate authorization protocol processing path.";
   } else if (activeZone === "yellow") {
-    ribbon.classList.add("congruent-yellow");
     playbookBox.classList.add("congruent-yellow");
-    
     pTitle.textContent = "💛 BREAD-AND-BUTTER LINEAR MARGIN: CONDITIONAL DISCOVERY";
     pText.textContent = "Standard tier target match. Verify central asset structural layout parameters on call. Only pursue if localized engineering systems use centralized systems to compress setup logging overhead.";
   } else {
-    ribbon.classList.add("congruent-red");
     playbookBox.classList.add("congruent-red");
-    
     pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
     pText.textContent = "Do not initiate contact. The property configuration parameters return sub-baseline values. Margins fail to clear tracking logging limits and technical engineering overhead thresholds.";
   }
 
-  // Value Output Presentation Calculations
+  // Value Output presentation parameters mappings
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24 * facilitiesCount; 
   let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24 * facilitiesCount;
   
