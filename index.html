@@ -12,7 +12,7 @@
 :root {
   --ink: #080b0d; --ink-2: #0f1318; --ink-3: #171d24;
   --gold: #c8a96e; --gold-light: #e8c98a; --gold-rule: rgba(200,169,110,0.18);
-  --white: #f2ede4; --slate: rgba(242,237,228,0.55);
+  --white: #f2ede4; --slate: rgba(242,237,228,0.75);
   
   /* Saturated High-Impact Status Colors */
   --purple: #9f7aea; 
@@ -25,32 +25,37 @@
 }
 body {
   font-family: 'Barlow', sans-serif; background: var(--ink); color: var(--white);
-  font-size: 16px; line-height: 1.5; padding: 4px; min-height: 100vh;
+  /* ACCESSIBILITY AUDIT: Boosted base text size significantly from 16px to 21px */
+  font-size: 21px; line-height: 1.6; padding: 6px; min-height: 100vh;
 }
 .calc {
-  width: 100%; max-width: 760px; background: var(--ink-2); border: 1px solid var(--gold-rule);
+  width: 100%; max-width: 760px; background: var(--ink-2); border: 2px solid var(--gold-rule);
   box-shadow: 0 32px 64px -24px rgba(0,0,0,0.85); overflow: hidden; margin: 0 auto 60px;
 }
-.calc-head { padding: 20px 16px 12px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
-.calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; line-height: 1.2; color: #fff; margin-bottom: 4px; }
+.calc-head { padding: 26px 20px 18px; background: var(--ink); border-bottom: 2px solid var(--gold-rule); }
+
+/* ACCESSIBILITY AUDIT: Large bold typography for title strings */
+.calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; line-height: 1.3; color: #fff; margin-bottom: 8px; }
 .calc-title em { font-style: italic; color: var(--gold); }
-.calc-sub { font-size: 13px; color: var(--slate); font-weight: 600; }
+.calc-sub { font-size: 18px; color: var(--slate); font-weight: 700; line-height: 1.4; }
 
-.calc-body { padding: 20px 16px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
-.field { margin-bottom: 24px; scroll-margin-top: 100px; transition: all 0.2s ease; }
-.field-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
-.field-label .step { color: var(--gold); font-weight: 800; }
+.calc-body { padding: 24px 20px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
+.field { margin-bottom: 36px; scroll-margin-top: 100px; transition: all 0.2s ease; }
 
-/* POSITION 3.5: GAUGE TRACK LAYOUT SYSTEMS */
-.gauge-section { padding: 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
-.gauge-section.summary-track { border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); background: #0b0f14; margin-top: 8px; }
+/* ACCESSIBILITY AUDIT: Raised field labels to 17px with extra breathing room for reading focus */
+.field-label { font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
+.field-label .step { color: var(--gold); font-weight: 900; font-size: 20px; }
 
-.gauge-header { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; font-weight: 700; text-align: center; }
-.horizon-track-container { position: relative; width: 100%; height: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 10px; border-radius: 2px; }
-.horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; opacity: 0.3; transition: opacity 0.3s ease; }
+/* GAUGE PANELS AND COUPLING TRACKS RE-SIZED FOR HIGH VISIBILITY */
+.gauge-section { padding: 24px 20px; background: var(--ink); border-bottom: 2px solid var(--gold-rule); }
+.gauge-section.summary-track { border-top: 2px solid var(--gold-rule); border-bottom: 2px solid var(--gold-rule); background: #0b0f14; margin-top: 12px; }
+
+.gauge-header { font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; font-weight: 800; text-align: center; }
+.horizon-track-container { position: relative; width: 100%; height: 22px; background: rgba(255,255,255,0.02); border: 2px solid rgba(255,255,255,0.15); margin-bottom: 14px; border-radius: 4px; }
+.horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; opacity: 0.4; transition: opacity 0.3s ease; }
 .gauge-initialized .horizon-track { opacity: 1; }
 
-.zone-block { height: 100%; width: 25% !important; border-right: 1px solid var(--ink); }
+.zone-block { height: 100%; width: 25% !important; border-right: 2px solid var(--ink); }
 .zone-skip      { background: var(--red); }
 .zone-linear    { background: var(--yellow); }
 .zone-viability { background: var(--green); }
@@ -59,99 +64,101 @@ body {
 .gauge-override-disqualified .zone-block { background: rgba(255,255,255,0.03) !important; }
 .gauge-override-disqualified .zone-skip { background: var(--red) !important; width: 100% !important; }
 
-.vector-needle { position: absolute; top: -6px; left: 50%; width: 2px; height: 26px; background: rgba(255,255,255,0.2); transform: translateX(-50%); transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10; }
-.gauge-initialized .vector-needle { background: #fff; box-shadow: 0 0 10px 2px rgba(255,255,255,0.8); }
+/* ACCESSIBILITY AUDIT: Made the target selection locator needle thicker (4px) and longer for aging eyes */
+.vector-needle { position: absolute; top: -8px; left: 50%; width: 4px; height: 34px; background: rgba(255,255,255,0.4); transform: translateX(-50%); transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10; }
+.gauge-initialized .vector-needle { background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,0.95); }
 
-.gauge-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: rgba(242,237,228,0.3); }
+/* ACCESSIBILITY AUDIT: Gauge labels raised to 14px with starker active contrast */
+.gauge-labels { display: flex; justify-content: space-between; font-size: 14px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: rgba(242,237,228,0.4); }
 .gauge-initialized .gauge-labels { color: var(--slate); }
-.gauge-labels .active-zone-text { color: #fff; font-weight: 900; }
+.gauge-labels .active-zone-text { color: #fff; font-weight: 900; text-decoration: underline; background: rgba(255,255,255,0.08); padding: 0 4px; }
 
-/* CHIP GRIDS VISIBILITY LAYOUTS */
-.state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
-@media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
-@media(min-width: 600px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
+/* CHIP MATRIX SELECTION GRIDS ALTERED FOR EASY THUMB MAPPING */
+.state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
+@media(min-width: 500px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 
+/* ACCESSIBILITY AUDIT: Made target areas larger (min-height: 52px) and increased text inside to 16px */
 .state-chip { 
-  background: rgba(255,255,255,0.02); padding: 10px 2px; text-align: center; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.1s ease;
-  display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 40px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03); padding: 12px 4px; text-align: center; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.1s ease;
+  display: flex; align-items: center; justify-content: center; line-height: 1.3; min-height: 52px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px;
 }
-.state-chip:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
+.state-chip:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
 
-.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
-@media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
-.fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08); }
-.fac-opt:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
-.fac-ico { display: block; width: 18px; height: 18px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
+.fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+/* ACCESSIBILITY AUDIT: Increased touch target footprint size to 105px for easy clicking without typos */
+.fac-opt { background: rgba(255,255,255,0.03); padding: 14px 8px; text-align: center; cursor: pointer; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 105px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; }
+.fac-opt:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
+/* ACCESSIBILITY AUDIT: Rendered SVG graphic layouts physically larger on screen */
+.fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
 
-/* CONDENSED SELECTION CARDS SHIFTS */
-.condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s ease; }
+/* CONDENSED ROW RESPONSIVE PANEL OVERLAYS */
+.condensed-row { display: flex; gap: 6px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s ease; }
 @keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
+/* ACCESSIBILITY AUDIT: Back button expanded with massive font and bold borders */
 .back-btn {
-  flex: 0 0 100px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.12);
-  color: var(--white); font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800;
+  flex: 0 0 120px; background: rgba(255, 255, 255, 0.04); border: 2px solid rgba(255,255,255,0.25);
+  color: var(--white); font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 800;
   text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  border-radius: 2px;
+  border-radius: 4px; min-height: 52px;
 }
-.back-btn:hover { border-color: var(--red); background: rgba(245, 101, 101, 0.05); }
-.selection-block { flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--gold-rule); background: rgba(200,169,110,0.06); border-radius: 2px; }
+.back-btn:hover { border-color: var(--red); background: rgba(245, 101, 101, 0.08); }
+.selection-block { flex: 1; padding: 14px 18px; font-size: 18px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border: 2px solid var(--gold); background: rgba(200,169,110,0.1); border-radius: 4px; }
 
-/* TWO-TRACK MATRICES */
-.click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 20px; }
-@media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 16px; } }
+/* SCALING GRID LAYOUT MATRIX SEGMENTS */
+.click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 20px; } }
 
-.clickable-grid-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
-.matrix-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 14px 4px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 800; color: rgba(255,255,255,0.7); text-align: center; cursor: pointer; border-radius: 2px; text-transform: uppercase; transition: all 0.1s ease; outline: none; }
-.matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
-.matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
+.clickable-grid-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+/* ACCESSIBILITY AUDIT: Scaling options desat buttons upscaled with clearer text contrast weights */
+.matrix-btn { background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.12); padding: 16px 6px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.85); text-align: center; cursor: pointer; border-radius: 4px; text-transform: uppercase; transition: all 0.1s ease; outline: none; }
+.matrix-btn:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); color: #fff; }
+.matrix-btn.active { background: rgba(200,169,110,0.15) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; border-width: 2px; }
 
-/* MUTED GRAY DESIGN HOOKS FOR MTR CONTROLS PANEL */
+/* ACCESSIBILITY AUDIT: Extracted loose default configuration text block, bumped message size to 15px */
 .loose-intensity-panel {
-  background: rgba(0, 0, 0, 0.15); border: 1px solid rgba(255,255,255,0.06); border-left: 5px solid rgba(255,255,255,0.15);
-  padding: 16px; margin-top: 16px; border-radius: 2px;
+  background: rgba(0, 0, 0, 0.2); border: 2px solid rgba(255,255,255,0.1); border-left: 6px solid rgba(255,255,255,0.3);
+  padding: 20px; margin-top: 24px; border-radius: 4px;
 }
-.loose-intensity-note { font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.45); font-weight: 600; margin-bottom: 12px; font-style: italic; letter-spacing: 0.02em; text-transform: uppercase; }
-.intensity-btn-grid { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.loose-intensity-note { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.6); font-weight: 700; margin-bottom: 16px; font-style: italic; letter-spacing: 0.02em; text-transform: uppercase; }
+.intensity-btn-grid { display: grid; grid-template-columns: 1fr; gap: 6px; }
 @media(min-width: 480px) { .intensity-btn-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* Muted desaturated grey base state buttons */
-.intensity-btn { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 12px 4px; font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 2px; }
-.intensity-btn:hover { background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.7); }
-.intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; }
+/* ACCESSIBILITY AUDIT: Muted options desat background button grid items raised to 14px size metrics */
+.intensity-btn { background: rgba(255,255,255,0.01); border: 2px solid rgba(255,255,255,0.06); padding: 14px 6px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 800; color: rgba(255,255,255,0.45); text-transform: uppercase; text-align: center; cursor: pointer; border-radius: 4px; }
+.intensity-btn:hover { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.8); }
+.intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; border-width: 2px; }
 
-/* ASSUMPTIONS ACCORDION EXTENSIONS */
-.accordion-wrapper { margin-top: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; background: rgba(0,0,0,0.1); }
-.accordion-trigger { width: 100%; padding: 14px 16px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-.accordion-trigger:active { background: rgba(255,255,255,0.02); }
-.accordion-arrow { font-size: 12px; transition: transform 0.2s ease; color: var(--gold); }
-.accordion-content { display: none; padding: 16px; border-top: 1px solid rgba(255,255,255,0.04); background: rgba(0,0,0,0.15); }
+/* ACCESSIBILITY AUDIT: Fine-tuning accordion component upscaled for clarity */
+.accordion-wrapper { margin-top: 24px; border: 2px solid rgba(255,255,255,0.1); border-radius: 4px; background: rgba(0,0,0,0.15); }
+.accordion-trigger { width: 100%; padding: 18px 20px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 800; text-transform: uppercase; color: #fff; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.accordion-trigger:active { background: rgba(255,255,255,0.04); }
+.accordion-arrow { font-size: 14px; transition: transform 0.2s ease; color: var(--gold); }
+.accordion-content { display: none; padding: 20px; border-top: 2px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.2); }
 
-.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); max-width: 200px; }
-.spend-currency { font-family: 'Playfair Display', serif; font-size: 18px; color: #fff; padding: 0 4px 0 12px; font-weight: 700; }
-.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; color: #fff; padding: 6px 4px; width: 100%; }
-.spend-suffix { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 12px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
+.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.15); max-width: 240px; border-radius: 4px; }
+.spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; padding: 0 6px 0 16px; font-weight: 700; }
+.spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 26px; color: #fff; padding: 8px 6px; width: 100%; }
+.spend-suffix { font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 16px; border-left: 2px solid rgba(255,255,255,0.15); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
-.rng { width: 100%; height: 2px; margin: 10px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
-.rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
-.slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
-.slider-val { color: var(--gold-light); font-weight: 700; }
+/* ACCESSIBILITY AUDIT: Enhanced thickness of the slider line to make it visible */
+.rng { width: 100%; height: 6px; margin: 16px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.15); outline: none; border-radius: 3px; }
+/* ACCESSIBILITY AUDIT: Increased finger thumb selector slide handle coordinates to a massive 24px box */
+.rng::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; background: var(--gold); cursor: pointer; border-radius: 4px; border: 2px solid #fff; }
+.slider-readout { display: flex; justify-content: space-between; font-size: 14px; color: var(--slate); text-transform: uppercase; font-weight: 800; }
+.slider-val { color: var(--gold-light); font-weight: 800; font-size: 20px; }
 
-/* POSITION 3: STRIPPED PLAYBOOK WINDOW MATRIX CONFIGS */
-.playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-.playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
-.playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
+/* ACCESSIBILITY AUDIT: Playbook Area typography scaled to 17px with high-contrast text strings */
+.playbook-box { background: rgba(255,255,255,0.01); border-left: 8px solid var(--gold); padding: 28px 20px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); border-radius: 0 4px 4px 0; }
+.playbook-title { font-size: 15px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+.playbook-text { font-size: 20px; line-height: 1.6; color: #fff; font-style: italic; font-weight: 700; }
 
-.congruent-red { border-left-color: var(--red) !important; background: rgba(245, 101, 101, 0.04) !important; }
-.congruent-yellow { border-left-color: var(--yellow) !important; background: rgba(236, 201, 75, 0.02) !important; }
-.congruent-green { border-left-color: var(--green) !important; background: rgba(72, 187, 120, 0.02) !important; }
-.congruent-purple { border-left-color: var(--purple) !important; background: rgba(159, 122, 234, 0.03) !important; }
+.override-indicator-lbl { font-size: 12px; font-weight: 800; color: var(--override-cyan); letter-spacing: 0.04em; margin-left: 10px; display: none; background: rgba(11, 197, 234, 0.15); padding: 2px 6px; border-radius: 2px; }
+.active-override-border { border-color: var(--override-cyan) !important; border-width: 2px; }
+.active-override-val { color: var(--override-cyan) !important; font-weight: 900; }
+.active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; width: 28px; height: 28px; }
 
-.override-indicator-lbl { font-size: 10px; font-weight: 800; color: var(--override-cyan); letter-spacing: 0.04em; margin-left: 8px; display: none; }
-.active-override-border { border-color: var(--override-cyan) !important; }
-.active-override-val { color: var(--override-cyan) !important; }
-.active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; }
-
-/* ABSOLUTE BACKEND HIDDEN MUTING SHIELDS */
+/* RE-ENFORCED VISUAL MUTING TRACK INDICATORS LAYER SHEET PACKS */
 #scoreboard_root_box, .override-panel { display: none !important; }
 </style>
 </head>
@@ -160,14 +167,13 @@ body {
 <div class="calc">
   <div class="calc-head">
     <h1 class="calc-title">Contract value is dictated by building DNA, <em>not just bill size.</em></h1>
-    <!-- StoryBrand Configured Call To Action Path -->
     <p class="calc-sub">Select geography, facility type, footprint scale, and monthly overhead to diagnose project viability.</p>
   </div>
 
-  <!-- INPUT CONTROLS GRIDS HUB CONSOLE -->
+  <!-- THE INTERACTION SELECTION FIELDS HOST -->
   <div class="calc-body">
     
-    <!-- STEP 01: LOCATION ARRAYS SHEET (WITH COLLAPSE AND RETURN FEATURES INTEGRATED) -->
+    <!-- STEP 01: LOCATION ARRAYS MODULES -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Regional Location Geography</span></div>
       <div id="state-full-view">
@@ -181,7 +187,7 @@ body {
       </div>
     </div>
 
-    <!-- STEP 02: FACILITY TYPE COMPACT CARDS (RENAMED WITH ACCORDION COLLAPSE PACKAGES) -->
+    <!-- STEP 02: FACILITY TYPE CARDS SHEETS -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
       <div id="fac-full-view">
@@ -195,12 +201,12 @@ body {
       </div>
     </div>
 
-    <!-- STEP 03: FOOTPRINT FIELDS SCALING NODES -->
+    <!-- STEP 03: FOOTPRINT SCALE MATRICES TUNERS -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
       <div class="click-matrix-stack">
         <div>
-          <div style="font-size: 11px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 8px;">Portfolio Facility Footprint</div>
+          <div style="font-size: 15px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 10px;">Portfolio Facility Footprint</div>
           <div class="clickable-grid-row">
             <button class="matrix-btn" id="fac_count_1" onclick="selectFacilitiesCount(1, 'fac_count_1')">1 Site</button>
             <button class="matrix-btn" id="fac_count_5" onclick="selectFacilitiesCount(5, 'fac_count_5')">5 Sites</button>
@@ -209,7 +215,7 @@ body {
           </div>
         </div>
         <div>
-          <div style="font-size: 11px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 8px;">Utility Overhead Per Location</div>
+          <div style="font-size: 15px; text-transform: uppercase; color: var(--slate); font-weight: 700; margin-bottom: 10px;">Utility Overhead Per Location</div>
           <div class="clickable-grid-row">
             <button class="matrix-btn" id="spend_amt_1500" onclick="selectMonthlySpend(1500, 'spend_amt_1500')">$1,500</button>
             <button class="matrix-btn" id="spend_amt_2000" onclick="selectMonthlySpend(2000, 'spend_amt_2000')">$2,000</button>
@@ -221,13 +227,12 @@ body {
       </div>
     </div>
 
-    <!-- LOOSE PANEL: HOURS IN OPERATION DESATURATED COUPLING VIEWPORT -->
+    <!-- LOOSE ACTION MODULE: ACCESSIBILITY BOOSTED RUNTIMES CONSOLE -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
-      <div class="field-label" style="margin-bottom: 6px;">
+      <div class="field-label" style="margin-bottom: 8px;">
         <span style="color: var(--white);">Hours in Operation</span>
         <span class="override-indicator-lbl" id="intensity_override_flag">⚡ OVERRIDE ACTIVE</span>
       </div>
-      <!-- Compressed StoryBrand Context Instruction String Line -->
       <div class="loose-intensity-note">
         System defaults applied. Leave as-is unless on-site schedule is verified.
       </div>
@@ -240,7 +245,7 @@ body {
       </div>
     </div>
 
-    <!-- EXPANDABLE OPTIONS CONTROL ASSUMPTIONS BLOCK -->
+    <!-- ACCORDION COMPONENT SUB-FIELDS STRIPS -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -248,23 +253,23 @@ body {
       </button>
       <div class="accordion-content" id="acc_content">
         
-        <div style="margin-bottom: 20px;">
-          <div class="field-label" style="margin-bottom: 4px;">
+        <div style="margin-bottom: 26px;">
+          <div class="field-label" style="margin-bottom: 6px;">
             <span style="color: var(--white);">HVAC/R End-Use Load Fraction</span>
             <span class="slider-val" id="hvac_val">50%</span>
           </div>
-          <div style="font-size: 11px; color: var(--slate); font-style: italic; margin-bottom: 4px;">Keep defaults unless you know otherwise.</div>
+          <div style="font-size: 14px; color: var(--slate); font-style: italic; margin-bottom: 6px; font-weight: 600;">Keep defaults unless you know otherwise.</div>
           <input type="range" id="hvac_slider" class="rng" min="5" max="90" value="50" oninput="manualHvacTakeover()">
           <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
         </div>
 
         <div>
-          <div class="field-label" style="margin-bottom: 6px;">
+          <div class="field-label" style="margin-bottom: 10px;">
             <span style="color: var(--white);">Blended Commercial Power Rate</span>
           </div>
           <div class="spend-input-row" id="rate_input_container">
             <span class="spend-currency">¢</span>
-            <input type="number" id="rate_cents_in" class="spend-input" style="font-size: 18px;" placeholder="24" oninput="manualRateTakeover()">
+            <input type="number" id="rate_cents_in" class="spend-input" placeholder="24" oninput="manualRateTakeover()">
             <span class="spend-suffix">/ kWh</span>
           </div>
         </div>
@@ -274,7 +279,7 @@ body {
 
   </div>
 
-  <!-- POSITION 3.5: CLOSING GRAPH SYSTEM (RENAMED TO DEAL QUALITY WITH SOLID YELLOW DOT MAPPING) -->
+  <!-- POSITION 3.5: STARK DEAL QUALITY VERIFICATION HORIZON BAR -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
@@ -294,13 +299,13 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 4: CLEAN STRIPPED PLAYBOOK CORE SCREEN CONSOLE -->
+  <!-- POSITION 4: RENDERED LOGIC PLATFORM STRATEGY DIRECTIVES CARD -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
   </div>
 
-  <!-- SHADOW MUTING SHIELDS -->
+  <!-- BACKEND INVISIBLE ENGINE RUNS SHIELDS SHEET -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Muted System Layer</span>
     <div class="score-container"><div class="score-num" id="score_out">0</div></div>
@@ -375,7 +380,7 @@ function collapseStateSection() {
   let condView = document.getElementById("state-condensed-view");
   let block = document.getElementById("state-selection-block");
   
-  block.innerHTML = `<span>${selectedState}</span><span style="font-size:11px; font-weight:800; color:var(--gold-light);">${tData.tier} MARKET</span>`;
+  block.innerHTML = `<span>${selectedState}</span><span style="font-size:15px; font-weight:800; color:var(--gold-light);">${tData.tier} MARKET</span>`;
   condView.style.display = "block";
 }
 
@@ -409,7 +414,7 @@ function collapseFacilitySection() {
   let condView = document.getElementById("fac-condensed-view");
   let block = document.getElementById("fac-selection-block");
   
-  block.innerHTML = `<span>${prof.name}</span><span style="font-size:11px; font-weight:800; color:var(--gold-light);">${prof.tier} PROFILE</span>`;
+  block.innerHTML = `<span>${prof.name}</span><span style="font-size:15px; font-weight:800; color:var(--gold-light);">${prof.tier} PROFILE</span>`;
   condView.style.display = "block";
 }
 
@@ -549,7 +554,7 @@ function runEngine() {
   if (!selectedState || !selectedFacility || currentActiveBillValue === 0 || currentActiveFacCountValue === 0) {
     gaugeMirrorRoot.classList.remove("gauge-initialized");
     document.getElementById("gauge_needle_mirror").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting grid criteria choices parameters fields values context above...";
+    document.getElementById("playbook_text_out").textContent = "Awaiting grid criteria choices selection parameters fields values context above...";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
