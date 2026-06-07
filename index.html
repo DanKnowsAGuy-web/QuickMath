@@ -112,7 +112,7 @@ body {
 .back-btn:hover { background: rgba(229,62,62,0.08); border-color: var(--red); color: #fff; }
 .selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
 
-/* Section 03 Native Structural Redesign */
+/* Section 03 Splits inputs matrix */
 .split-input-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media(min-width: 500px) { .split-input-container { display: grid; grid-template-columns: 1fr 140px; } }
 
@@ -121,11 +121,10 @@ body {
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 10px 4px; width: 100%; }
 .spend-suffix { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
-/* Clean Native Typography Extraction (Nuked Spinner Handles) */
-.fac-count-input { text-align: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; background: transparent; border: none; outline: none; width: 100%; padding: 10px 4px; -moz-appearance: textfield; appearance: textfield; }
+.fac-count-input { text-align: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; background: transparent; border: none; outline: none; width: 100%; padding: 10px 4px; appearance: textfield; -moz-appearance: textfield; }
 .fac-count-input::-webkit-outer-spin-button, .fac-count-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-/* POSITION 3: CONGRUENT DISCOVERY CORE AND PANEL WINDOW */
+/* POSITION 3: CONGRUENT PLAYBOOK COMMUNICATIONS CENTER */
 .firewall-ribbon {
   background: rgba(0, 0, 0, 0.2); padding: 12px 24px; border-left: 4px solid var(--gold);
   border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -137,7 +136,7 @@ body {
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
 
-/* Structural Color Match System Classes */
+/* Structural Congruence Modifiers mapping rules */
 .congruent-red { border-left-color: var(--red) !important; }
 .congruent-red.firewall-ribbon { background: rgba(229,62,62,0.05); }
 .congruent-red .firewall-status { color: var(--red) !important; }
@@ -154,11 +153,7 @@ body {
 .congruent-purple.firewall-ribbon { background: rgba(128,90,213,0.04); }
 .congruent-purple .firewall-status { color: var(--purple) !important; }
 
-.hud-actions-wrapper { display: none; margin-top: 14px; }
-.hud-btn-route { background: transparent; color: var(--red); border: 1px solid var(--red); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 18px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
-.hud-btn-route:hover { background: var(--red); color: #fff; }
-
-/* POSITION 4: OVERRIDES WORKSPACE DESIGN CORE */
+/* POSITION 4: OVERRIDES INPUT MATRIX STRUCTURE */
 .override-panel {
   background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06);
   padding: 28px 38px; position: relative; transition: all 0.25s ease; opacity: 0.2; pointer-events: none;
@@ -166,7 +161,7 @@ body {
 .gauge-initialized-wrapper.override-panel { opacity: 1; pointer-events: auto; }
 .override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 20px; }
 .takeover-chip-row { display: flex; flex-direction: column; gap: 5px; width: 100%; }
-@media(min-width: 640px) { .takeover-chip-row { display: flex; flex-direction: row; } }
+@media(min-width: 640px) { .takeover-chip-row { flex-direction: row; } }
 .takeover-chip-btn {
   flex: 1; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 12px 4px;
   font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase;
@@ -195,7 +190,7 @@ body {
 .slider-val { color: var(--gold-light); font-weight: 700; }
 .hvac-manual-state .slider-val { color: var(--override-cyan); }
 
-/* POSITION 5: HIGH-END VALUATION PRESENTATION SCOREBOARD */
+/* POSITION 5: QUANTITATIVE SCOREBOARD ARCHITECTURE BASE */
 .scoreboard { padding: 40px 38px 44px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
 .score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 16px; color: var(--ink); opacity: 0.4; transition: opacity 0.3s ease; }
 .gauge-initialized .score-badge { opacity: 1; }
@@ -243,7 +238,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== POSITION 2: THE CORE INPUT PANELS ==================== -->
+  <!-- ==================== POSITION 2: CORE FIELD CHIP SELECTION matrices ==================== -->
   <div class="calc-body">
     
     <div class="field" id="field_geo_root">
@@ -285,7 +280,7 @@ body {
         <div>
           <div class="field-label"><span>Facilities</span></div>
           <div class="spend-input-row">
-            <!-- Plain numeric type tag input layout withSpinner controls removed via CSS style sheet hooks -->
+            <!-- Spinner handles completely nuked from HTML footprint context layout structure -->
             <input type="text" pattern="[0-9]*" inputmode="numeric" id="fac_count_in" class="fac-count-input" value="1" oninput="onFacCountInput()">
           </div>
         </div>
@@ -294,7 +289,7 @@ body {
 
   </div>
 
-  <!-- ==================== POSITION 3: DYNAMIC CONGRUENT HUB PROTOCOL INTERFACE ==================== -->
+  <!-- ==================== POSITION 3: DYNAMIC UNIFIED HUD COUPLING FRAMEWORK ==================== -->
   <div class="firewall-ribbon" id="firewall_ribbon">
     <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
     <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
@@ -303,13 +298,9 @@ body {
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting selection discovery parameters modifications...</div>
-    
-    <div class="hud-actions-wrapper" id="hud_red_actions">
-      <button class="hud-btn-route" onclick="alert('Routing to Automated DIY Email Track...')">✉️ Route to Automated DIY Email Track</button>
-    </div>
   </div>
 
-  <!-- ==================== POSITION 4: MANUAL OVERRIDES MATRIX PANEL ==================== -->
+  <!-- ==================== POSITION 4: OVERRIDES WORKSPACE DESIGN PANEL ==================== -->
   <div class="override-panel" id="manual_override_wrapper">
     <div class="override-panel-header">Manual Overrides Matrix Context</div>
     
@@ -359,7 +350,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== POSITION 5: QUANTITATIVE SCOREBOARD BASE ==================== -->
+  <!-- ==================== POSITION 5: QUANTITATIVE SCOREBOARD DISPLAY CORE ==================== -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
@@ -608,6 +599,12 @@ function syncIntensityButtonsUI(activeBtnId) {
 
 function runEngine() {
   let gaugeRoot = document.getElementById("gauge_component_root");
+  let ribbon = document.getElementById("firewall_ribbon");
+  let playbookBox = document.getElementById("playbook_box_container");
+
+  // Reset System congruence classes before computing checks
+  ribbon.className = "firewall-ribbon";
+  playbookBox.className = "playbook-box";
   
   if (!selectedState || !selectedFacility) {
     gaugeRoot.classList.remove("gauge-initialized");
@@ -620,10 +617,6 @@ function runEngine() {
     document.getElementById("sav_floor").textContent = "$0";
     document.getElementById("sav_ceil").textContent = "$0";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
-    
-    // Clear out Ribbon Congruence State classes
-    document.getElementById("firewall_ribbon").className = "firewall-ribbon";
-    document.getElementById("playbook_box_container").className = "playbook-box";
     return;
   }
 
@@ -636,7 +629,7 @@ function runEngine() {
   let facilitiesCount = parseInt(document.getElementById("fac_count_in").value.replace(/[^0-9]/g, "")) || 1;
   
   // -----------------------------------------------------------------
-  // TRACK 1: THE FOUR EXPLICIT SCALE BRACKET SAFETY FIREWALLS
+  // TRACK 1: HARD PORTFOLIO BRACKET FIREWALL GATES
   // -----------------------------------------------------------------
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
@@ -707,7 +700,7 @@ function runEngine() {
     hvacPoints = 10; 
   }
   
-  // TRACK 2: CORE BUILDING DNA POINTS MATH
+  // TRACK 2: CORE BUILDING DNA MATHEMATICS
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   if (schedulePoints === 0) finalScore = 0;
   
@@ -728,7 +721,7 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // HORIZON SCALE VECTOR INTERPOLATION
+  // HORIZON SCALE PIN POINT INTERPOLATOR CONTROLLER
   // -----------------------------------------------------------------
   let needle = document.getElementById("gauge_needle");
   gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
@@ -786,25 +779,16 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // POSITION 3 DYNAMIC SYSTEM CONGRUENCE COUPLER
+  // POSITION 3 DYNAMIC CONGRUENT UI INTERACTION MAPPER
   // -----------------------------------------------------------------
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
-  const ribbon = document.getElementById("firewall_ribbon");
   const statusText = document.getElementById("firewall_status_text");
   const msgText = document.getElementById("firewall_message_text");
-  const redActions = document.getElementById("hud_red_actions");
-  const playbookBox = document.getElementById("playbook_box_container");
 
-  // Reset Congruence style layouts modifiers strings before evaluations
-  ribbon.className = "firewall-ribbon";
-  playbookBox.className = "playbook-box";
-  
   statusText.textContent = isIntensityOverridden || isHvacOverridden || isRateOverridden ? "⚡ MANUAL OVERRIDE ACTIVE" : "🔥 AUTOMATION MODE ACTIVE";
   msgText.textContent = "SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED";
-  redActions.style.display = "none";
 
-  // Check absolute failures first to force Red solid configurations
   if (isFirewallDisqualified) {
     ribbon.classList.add("congruent-red");
     playbookBox.classList.add("congruent-red");
@@ -813,7 +797,6 @@ function runEngine() {
     
     pTitle.textContent = "🛑 OPERATION REJECTED: PORTFOLIO SCALE REJECTION FLOOR";
     pText.textContent = `This account falls below the clear operational line in the sand. A footprint of ${bracketString} requires a minimum power bill of $${firewallRequiredFloor.toLocaleString()}/month per location to absorb physical deployment crew mobilization. A current monthly footprint of $${monthlyBill.toLocaleString()} renders installation unprofitable due to site travel premiums. Terminate velocity path.`;
-    redActions.style.display = "block";
   } else if (schedulePoints === 0) {
     ribbon.classList.add("congruent-red");
     playbookBox.classList.add("congruent-red");
@@ -822,9 +805,7 @@ function runEngine() {
     
     pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
     pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
-    redActions.style.display = "block";
   } 
-  // Map standard variable active states matching layout gauge thresholds
   else if (activeZone === "purple") {
     ribbon.classList.add("congruent-purple");
     playbookBox.classList.add("congruent-purple");
@@ -854,10 +835,9 @@ function runEngine() {
     
     pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
     pText.textContent = "Do not initiate contact. The property configuration parameters return sub-baseline values. Margins fail to clear tracking logging limits and technical engineering overhead thresholds.";
-    redActions.style.display = "block";
   }
 
-  // Final Scoreboard Badge outputs mapping
+  // Value Output presentation matrices constants
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24 * facilitiesCount; 
   let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24 * facilitiesCount;
   
