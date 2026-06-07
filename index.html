@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Field PIE System — Mission Control Dashboard</title>
+<title>Field PIE System — Vector Horizon Mission Control</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@600;700;800&display=swap" rel="stylesheet">
@@ -43,7 +43,34 @@ body {
 .field-label { font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
-/* Grid Layout Workspace Components */
+/* POSITION 1: VECTOR HORIZON GAUGE SYSTEM */
+.gauge-section { padding: 28px 38px 32px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
+.gauge-header { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 24px; font-weight: 700; text-align: center; }
+.horizon-track-container { position: relative; width: 100%; height: 36px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 14px; border-radius: 4px; }
+.horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; transition: background 0.3s ease; }
+
+.zone-block { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; height: 100%; border-right: 1px solid rgba(8, 11, 13, 0.4); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+.zone-skip      { background: linear-gradient(90deg, #501d1d 0%, var(--red) 100%); color: #ffb3b3; width: 25%; }
+.zone-linear    { background: linear-gradient(90deg, #56461a 0%, var(--yellow) 100%); color: var(--ink); width: 25%; }
+.zone-viability { background: linear-gradient(90deg, #1b4d32 0%, var(--green) 100%); color: #bffff3; width: 25%; }
+.zone-sovereign { background: linear-gradient(90deg, #3c1e70 0%, var(--purple) 100%); color: #e6d3ff; width: 25%; border-right: none; }
+
+/* Elastic Scale Multipliers styling classes */
+.gauge-override-anthill .horizon-track { background: var(--red) !important; }
+.gauge-override-anthill .zone-block { background: transparent !important; color: rgba(255,255,255,0.3) !important; font-weight: 600; }
+.gauge-override-anthill .zone-skip { color: #fff !important; font-weight: 800 !important; }
+
+.gauge-override-whale .zone-skip      { width: 15%; }
+.gauge-override-whale .zone-linear    { width: 15%; }
+.gauge-override-whale .zone-viability { width: 20%; }
+.gauge-override-whale .zone-sovereign { width: 50%; }
+
+/* Indicator needle */
+.vector-needle { position: absolute; top: -6px; left: 0%; width: 4px; height: 48px; background: var(--gold-light); transform: translateX(-50%); transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 14px 3px var(--gold), 0 0 4px 1px #fff; z-index: 10; border-radius: 2px; pointer-events: none; }
+.vector-needle::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); border-width: 6px 5px 0 5px; border-style: solid; border-color: var(--gold-light) transparent transparent transparent; }
+.vector-needle::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); border-width: 0 5px 6px 5px; border-style: solid; border-color: transparent transparent var(--gold-light) transparent; }
+
+/* POSITION 2: CORE INPUTS GRAPHICS */
 .state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.2); }
 @media(min-width: 480px) { .state-grid { grid-template-columns: repeat(4, 1fr); } }
 @media(min-width: 640px) { .state-grid { grid-template-columns: repeat(5, 1fr); } }
@@ -70,7 +97,7 @@ body {
 .fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.5); flex-shrink: 0; }
 .fac-opt.active .fac-ico { color: var(--gold-light); }
 
-/* Condensing Logic Framework Selection Rows */
+/* Condensing UI Selection Blocks */
 .condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.25s ease-out; }
 @keyframes rowEntrance { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -92,20 +119,35 @@ body {
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 32px; color: #fff; padding: 12px 4px; width: 100%; }
 .spend-suffix { font-size: 15px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.15); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
-/* Tier 2: Structural Firewall Ribbon */
+/* POSITION 3: INTEGRATED ENGINEERING FEEDBACK CORE */
 .firewall-ribbon {
   background: rgba(0, 0, 0, 0.4); padding: 14px 24px; border-left: 4px solid var(--gold);
-  margin-bottom: 32px; border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);
   font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between;
 }
 .firewall-status { color: var(--gold-light); display: flex; align-items: center; gap: 8px; }
 .firewall-ribbon.triggered { border-left-color: var(--red); background: rgba(229,62,62,0.08); }
 .firewall-ribbon.triggered .firewall-status { color: var(--red); }
 
-/* Tier 3: Manual Overrides Panel Layout Engine */
+.playbook-box { background: rgba(255,255,255,0.02); border-left: 3px solid var(--gold); padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.playbook-title { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
+.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
+
+/* Dashboard Interactive Action Items Modules */
+.hud-actions-wrapper { display: none; margin-top: 14px; animation: rowEntrance 0.2s ease-out; }
+.hud-btn-route { background: var(--red); color: #fff; border: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 12px 20px; cursor: pointer; transition: background 0.15s; border-radius: 2px; }
+.hud-btn-route:hover { background: #ff4d4d; }
+
+.hud-unlocked-panel { display: none; flex-direction: column; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); animation: rowEntrance 0.2s ease-out; }
+.hud-checkbox-label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); cursor: pointer; user-select: none; }
+.hud-checkbox-label input { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+.hud-btn-auth { background: transparent; border: 1px solid var(--gold); color: var(--gold-light); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 16px; align-self: flex-start; cursor: pointer; transition: all 0.15s; margin-top: 4px; }
+.hud-btn-auth:hover { background: var(--gold); color: var(--ink); }
+
+/* POSITION 4: MANUAL OVERRIDES MATRIX PANEL */
 .override-panel {
   background: rgba(255, 255, 255, 0.01); border: 1px dashed rgba(200, 169, 110, 0.2);
-  padding: 24px; margin-bottom: 32px; position: relative;
+  padding: 24px; position: relative; margin-top: 32px;
 }
 .override-panel::before {
   content: 'MANUAL OVERRIDES CONFIGURATION MATRIX'; position: absolute; top: -10px; left: 16px;
@@ -123,7 +165,7 @@ body {
   background: linear-gradient(135deg, rgba(200,169,110,0.2) 0%, rgba(200,169,110,0.05) 100%) !important;
   border-color: var(--gold) !important; color: var(--gold-light) !important; box-shadow: inset 0 1px 0 rgba(200,169,110,0.15);
 }
-/* Live Manual Takeover Visual Signatures */
+
 .takeover-active-indicator { font-size: 11px; font-weight: 800; letter-spacing: 0.05em; color: var(--override-cyan); text-transform: uppercase; display: none; }
 .manual-takeover-state .takeover-active-indicator { display: block; }
 .manual-takeover-state .takeover-chip-btn.active {
@@ -139,38 +181,7 @@ body {
 .slider-val { color: var(--gold-light); font-weight: 700; }
 .manual-takeover-state .slider-val { color: var(--override-cyan); }
 
-/* Tier 4: Live Intuition Intersection Table Map Grid */
-.matrix-section { padding: 28px 38px 32px; background: var(--ink); border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); }
-.matrix-header { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; font-weight: 700; text-align: center; }
-.matrix-table { display: grid; grid-template-rows: repeat(4, auto); gap: 6px; width: 100%; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
-.matrix-row { display: grid; grid-template-columns: 120px repeat(4, 1fr); gap: 6px; align-items: stretch; }
-.matrix-label-cell { display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 8px; color: var(--slate); text-transform: uppercase; font-size: 11px; font-weight: 800; border-left: 2px solid rgba(255,255,255,0.1); }
-.matrix-header-row .matrix-label-cell { border-left: none; background: transparent; justify-content: center; padding-bottom: 8px; }
-
-.matrix-cell { padding: 14px 4px; text-align: center; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1); position: relative; font-weight: 800; }
-.matrix-cell.cell-purple { background: rgba(128,90,213,0.15); color: rgba(183,148,244,0.45); }
-.matrix-cell.cell-green  { background: rgba(56,161,105,0.15);  color: rgba(104,211,145,0.45); }
-.matrix-cell.cell-yellow { background: rgba(236,201,75,0.08);  color: rgba(250,240,137,0.45); }
-.matrix-cell.cell-red    { background: rgba(229,62,62,0.12);   color: rgba(252,129,129,0.35); }
-
-.matrix-cell.active-target {
-  color: #fff !important; transform: scale(1.06); z-index: 10;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.8), 0 0 0 1px var(--gold);
-}
-.matrix-cell.active-target.cell-purple { background: var(--purple) !important; border-color: #b794f4 !important; }
-.matrix-cell.active-target.cell-green  { background: var(--green) !important; border-color: #68d391 !important; }
-.matrix-cell.active-target.cell-yellow { background: var(--yellow) !important; border-color: #faf089 !important; color: var(--ink) !important; }
-.matrix-cell.active-target.cell-red    { background: var(--red) !important; border-color: #fc8181 !important; }
-
-.cell-lbl-str { font-size: 13px; font-weight: 800; text-transform: uppercase; display: block; opacity: 0.35; }
-.matrix-cell.active-target .cell-lbl-str { opacity: 1; }
-.cell-tag-str { font-size: 10px; font-weight: 700; text-transform: uppercase; }
-
-/* Tier 5: Operational Protocol Playbook Box & Quantitative Valuation Scoreboard */
-.playbook-box { margin: 32px 38px 24px; background: rgba(255,255,255,0.02); border-left: 3px solid var(--gold); padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.03); }
-.playbook-title { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
-.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
-
+/* Valuation Quantitative Outputs Badge Base Styling */
 .scoreboard { padding: 32px 38px 38px; background: rgba(0,0,0,0.2); border-top: 1px solid var(--gold-rule); text-align: center; }
 .score-badge { display: inline-block; padding: 6px 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 14px; color: var(--ink); }
 .score-container { margin: 4px 0; }
@@ -193,6 +204,19 @@ body {
   <div class="calc-head">
     <h1 class="calc-title">Contract value is dictated by building DNA, <em>not just bill size.</em></h1>
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
+  </div>
+
+  <div class="gauge-section" id="gauge_component_root">
+    <div class="gauge-header">Intuition Horizon Track</div>
+    <div class="horizon-track-container">
+      <div class="vector-needle" id="gauge_needle"></div>
+      <div class="horizon-track" id="gauge_track">
+        <div class="zone-block zone-skip">🚫 Skip Lead</div>
+        <div class="zone-block zone-linear">🟡 Linear Margin</div>
+        <div class="zone-block zone-viability">🟢 High Viability</div>
+        <div class="zone-block zone-sovereign">🔮 Sovereign Jackpot</div>
+      </div>
+    </div>
   </div>
 
   <div class="calc-body">
@@ -232,96 +256,34 @@ body {
       </div>
     </div>
 
-    <div class="firewall-ribbon" id="firewall_ribbon">
-      <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
-      <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
-    </div>
-
-    <div class="override-panel" id="manual_override_wrapper">
-      
-      <div class="field" style="margin-bottom: 24px;">
-        <div class="field-label">
-          <span style="color: var(--white);">Operational Intensity Mode</span>
-          <span class="takeover-active-indicator" id="intensity_takeover_lbl">⚡ MANUAL TAKEOVER</span>
-        </div>
-        <div class="takeover-chip-row">
-          <div class="takeover-chip-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT (<20 HRS/WK)</div>
-          <div class="takeover-chip-btn" id="chip_hours_45" onclick="manualIntensityTakeover(45, 'chip_hours_45')">SINGLE-SHIFT (40-50 HRS/WK)</div>
-          <div class="takeover-chip-btn" id="chip_hours_75" onclick="manualIntensityTakeover(75, 'chip_hours_75')">DOUBLE-SHIFT (60-90 HRS/WK)</div>
-          <div class="takeover-chip-btn" id="chip_hours_112" onclick="manualIntensityTakeover(112, 'chip_hours_112')">HEAVY COMM. (100-130 HRS/WK)</div>
-          <div class="takeover-chip-btn" id="chip_hours_168" onclick="manualIntensityTakeover(168, 'chip_hours_168')">CONTINUOUS 24/7 (144-168 HRS/WK)</div>
-        </div>
-      </div>
-
-      <div class="field" style="margin-bottom: 24px;">
-        <div class="field-label">
-          <span style="color: var(--white);">HVAC/R End-Use Load Fraction</span>
-          <span class="slider-val" id="hvac_val">50%</span>
-        </div>
-        <input type="range" id="hvac_slider" class="rng" min="5" max="90" value="50" oninput="manualHvacTakeover()">
-        <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
-      </div>
-
-      <div class="field" style="margin-bottom: 0;">
-        <div class="field-label">
-          <span style="color: var(--white);">Blended Commercial Power Rate (Whole Cents)</span>
-          <span class="takeover-active-indicator" id="rate_takeover_lbl">⚡ MANUAL TAKEOVER</span>
-        </div>
-        <div class="spend-input-row" style="max-width: 250px;" id="rate_input_container">
-          <span class="spend-currency" style="font-size: 16px;">¢</span>
-          <input type="number" id="rate_cents_in" class="spend-input" style="font-size: 20px; padding: 8px 4px;" placeholder="e.g. 24" oninput="manualRateTakeover()">
-          <span class="spend-suffix" style="font-size: 12px;">/ kWh</span>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
-  <div class="matrix-section">
-    <div class="matrix-header">Live 10-Second Intuition Intersection Map</div>
-    <div class="matrix-table">
-      <div class="matrix-row matrix-header-row">
-        <div></div>
-        <div class="matrix-label-cell">Whale ($10K+)</div>
-        <div class="matrix-label-cell">Sweet Spot ($3.5K+)</div>
-        <div class="matrix-label-cell">Boundary ($1.5K+)</div>
-        <div class="matrix-label-cell">Anthill (&lt;$1.5K)</div>
-      </div>
-      <div class="matrix-row" id="row_high">
-        <div class="matrix-label-cell">High Ore (25+)</div>
-        <div class="matrix-cell cell-purple" id="cell_high_whale"><span class="cell-lbl-str">S-Tier</span><span class="cell-tag-str">Jackpot</span></div>
-        <div class="matrix-cell cell-green" id="cell_high_sweet"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Premium Target</span></div>
-        <div class="matrix-cell cell-green" id="cell_high_bound"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Viable Density</span></div>
-        <div class="matrix-cell cell-red" id="cell_high_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Too Small</span></div>
-      </div>
-      <div class="matrix-row" id="row_mid">
-        <div class="matrix-label-cell">Mid Ore (10-24)</div>
-        <div class="matrix-cell cell-green" id="cell_mid_whale"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Scale Target</span></div>
-        <div class="matrix-cell cell-yellow" id="cell_mid_sweet"><span class="cell-lbl-str">Yellow</span><span class="cell-tag-str">Bread & Butter</span></div>
-        <div class="matrix-cell cell-red" id="cell_mid_bound"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Low Margin</span></div>
-        <div class="matrix-cell cell-red" id="cell_mid_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Skip Lead</span></div>
-      </div>
-      <div class="matrix-row" id="row_low">
-        <div class="matrix-label-cell">Low Ore (&lt;10)</div>
-        <div class="matrix-cell cell-red" id="cell_low_whale"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
-        <div class="matrix-cell cell-red" id="cell_low_sweet"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
-        <div class="matrix-cell cell-red" id="cell_low_bound"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Dead End</span></div>
-        <div class="matrix-cell cell-red" id="cell_low_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Dead End</span></div>
-      </div>
-    </div>
+  <div class="firewall-ribbon" id="firewall_ribbon">
+    <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
+    <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
   </div>
 
   <div class="playbook-box">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting analytical system parameters modifications...</div>
+    
+    <div class="hud-actions-wrapper" id="hud_red_actions">
+      <button class="hud-btn-route" onclick="alert('Routing to Automated DIY Email Track...')">✉️ Route to Automated DIY Email Track</button>
+    </div>
+    
+    <div class="hud-unlocked-panel" id="hud_premium_actions">
+      <label class="hud-checkbox-label">
+        <input type="checkbox" id="chk_interval_data"> Request 12-Month Utility Statement Interval Data
+      </label>
+      <button class="hud-btn-auth" onclick="alert('Generating Engineering Logging Authorization Form Template...')">📄 Generate Engineering Logging Authorization Form</button>
+    </div>
   </div>
 
   <div class="scoreboard">
     <span class="score-badge bg-purple" id="temp_badge">Awaiting Configuration</span>
     <div class="score-container">
       <div class="score-num-label">Calculated Temperature Rating</div>
-      <div class="score-out" style="display:none;"></div> <div class="score-num" id="score_out">0</div>
+      <div class="score-num" id="score_out">0</div>
     </div>
     <div class="savings-output">
       <div class="savings-cell">
@@ -333,6 +295,45 @@ body {
         <div class="savings-lbl">Contract Max (2-Yr Value)</div>
       </div>
     </div>
+  </div>
+
+  <div class="override-panel" id="manual_override_wrapper">
+    
+    <div class="field" style="margin-bottom: 24px;">
+      <div class="field-label">
+        <span style="color: var(--white);">Operational Intensity Mode</span>
+        <span class="takeover-active-indicator" id="intensity_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+      </div>
+      <div class="takeover-chip-row">
+        <div class="takeover-chip-btn" id="chip_hours_15" onclick="manualIntensityTakeover(15, 'chip_hours_15')">INTERMITTENT (&lt;20 HRS/WK)</div>
+        <div class="takeover-chip-btn" id="chip_hours_45" onclick="manualIntensityTakeover(45, 'chip_hours_45')">SINGLE-SHIFT (40-50 HRS/WK)</div>
+        <div class="takeover-chip-btn" id="chip_hours_75" onclick="manualIntensityTakeover(75, 'chip_hours_75')">DOUBLE-SHIFT (60-90 HRS/WK)</div>
+        <div class="takeover-chip-btn" id="chip_hours_112" onclick="manualIntensityTakeover(112, 'chip_hours_112')">HEAVY COMM. (100-130 HRS/WK)</div>
+        <div class="takeover-chip-btn" id="chip_hours_168" onclick="manualIntensityTakeover(168, 'chip_hours_168')">CONTINUOUS 24/7 (144-168 HRS/WK)</div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom: 24px;">
+      <div class="field-label">
+        <span style="color: var(--white);">HVAC/R End-Use Load Fraction</span>
+        <span class="slider-val" id="hvac_val">50%</span>
+      </div>
+      <input type="range" id="hvac_slider" class="rng" min="5" max="90" value="50" oninput="manualHvacTakeover()">
+      <div class="slider-readout"><span>Plug Load Dominant</span><span>Compressor Dominant</span></div>
+    </div>
+
+    <div class="field" style="margin-bottom: 0;">
+      <div class="field-label">
+        <span style="color: var(--white);">Blended Commercial Power Rate (Whole Cents)</span>
+        <span class="takeover-active-indicator" id="rate_takeover_lbl">⚡ MANUAL TAKEOVER</span>
+      </div>
+      <div class="spend-input-row" style="max-width: 250px;" id="rate_input_container">
+        <span class="spend-currency" style="font-size: 16px;">¢</span>
+        <input type="number" id="rate_cents_in" class="spend-input" style="font-size: 20px; padding: 8px 4px;" placeholder="e.g. 24" oninput="manualRateTakeover()">
+        <span class="spend-suffix" style="font-size: 12px;">/ kWh</span>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -372,7 +373,6 @@ const FACILITY_PROFILES = {
   mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "mid",  name: "Mixed Use Property", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
 };
 
-// State Machine Automation Constraints Tracking Registers
 let selectedState = "California";
 let selectedFacility = "cold";
 
@@ -396,7 +396,6 @@ function initStatesGrid() {
       selectedState = stateName;
       collapseStateSection();
       
-      // Automation Synchronization Routine
       if (!isRateOverridden) {
         automatedActiveRateCents = US_STATE_TIERS[selectedState].avgCents;
         document.getElementById("rate_cents_in").value = automatedActiveRateCents;
@@ -420,7 +419,6 @@ function initFacilityMatrix() {
       selectedFacility = key;
       collapseFacilitySection();
       
-      // Automation Loop Sync Intersections
       let defs = FACILITY_PROFILES[selectedFacility];
       
       if (!isIntensityOverridden) {
@@ -472,7 +470,6 @@ function resetFacilitySelection() {
   document.getElementById("fac-full-view").style.display = "block";
   initFacilityMatrix();
   
-  // Re-sync on structural reset
   let defs = FACILITY_PROFILES[selectedFacility];
   if (!isIntensityOverridden) {
     automatedActiveHoursValue = defs.weeklyHours;
@@ -505,7 +502,6 @@ function onBillInput() {
   runEngine();
 }
 
-// ==================== TAKEOVER RULE ENGINE CONTROLLERS ====================
 function manualIntensityTakeover(hoursVal, activeBtnId) {
   isIntensityOverridden = true;
   document.getElementById("manual_override_wrapper").classList.add("manual-takeover-state");
@@ -528,7 +524,6 @@ function manualRateTakeover() {
 }
 
 function syncIntensityButtonsUI(activeBtnId) {
-  // Clear layout highlighting rings
   document.querySelectorAll('.takeover-chip-btn').forEach(btn => btn.classList.remove('active'));
   let activeElement = document.getElementById(activeBtnId);
   if (activeElement) {
@@ -539,14 +534,12 @@ function syncIntensityButtonsUI(activeBtnId) {
   }
 }
 
-// ==================== CALCULATION CORE PROCESSING STREAM ====================
 function runEngine() {
   let tierData = US_STATE_TIERS[selectedState] || { tier: "B", mult: 1.5, avgCents: 15 };
   let rateMultiplier = tierData.mult;
   
   let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
   
-  // Resolve Live Operational Runtime Weights
   let weeklyHours = automatedActiveHoursValue;
   if (isIntensityOverridden) {
     let activeChip = document.querySelector('.takeover-chip-btn.active');
@@ -559,7 +552,6 @@ function runEngine() {
     }
   }
   
-  // Resolve HVAC Load Fraction Weight Parameters
   let hvacFractionPercent = automatedActiveHvacValue;
   if (isHvacOverridden) {
     hvacFractionPercent = parseInt(document.getElementById("hvac_slider").value);
@@ -567,13 +559,11 @@ function runEngine() {
   document.getElementById("hvac_val").textContent = hvacFractionPercent + "%";
   let hvacFraction = hvacFractionPercent / 100;
 
-  // Resolve Financial Lever Multipliers
   let currentCents = automatedActiveRateCents;
   if (isRateOverridden) {
     let rawCentsInput = document.getElementById("rate_cents_in").value;
     if (rawCentsInput !== "" && !isNaN(rawCentsInput)) {
       currentCents = parseFloat(rawCentsInput);
-      // Automatically divide whole cents to produce target engine decimal
       rateMultiplier = (currentCents / 100) / 0.13;
     }
   } else {
@@ -582,90 +572,166 @@ function runEngine() {
   
   let annualHours = weeklyHours * 52;
   
-  // PILLAR 2: Operational Intensity Points Check
+  // PILLAR 2 Raw Evaluation Mechanics
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
   else if (annualHours >= 3500) schedulePoints = 5;
   else if (annualHours >= 2000) schedulePoints = 3;
-  else schedulePoints = 0; // The Kill Switch Programmatic Gate
+  else schedulePoints = 0; // Gating Kill Switch Channel
   
-  // PILLAR 3: HVAC Fraction Density Floor Boundaries
+  // PILLAR 3 Density Verification Parameters
   let hvacPoints = 5;
   if (hvacFraction >= 0.65) hvacPoints = 10;
   else if (hvacFraction >= 0.50) hvacPoints = 7;
   else if (hvacFraction >= 0.15) hvacPoints = 5;
-  else hvacPoints = 1; // Process Trap Structural Guardrail
-  
-  // Infrastructure Stack Data Center Overrides Protection Loop
+  else hvacPoints = 1;
+
   if (selectedFacility === "datactr" && !isHvacOverridden) {
     hvacPoints = 10; 
   }
   
-  // Compounding Vector Matrix Engine Processing
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   if (schedulePoints === 0) finalScore = 0;
   
-  // Sovereign Jackpot Processing Cap Boundary Conditions Rules
-  if (selectedFacility === "datactr" && !isHvacOverridden && monthlyBill >= 10000) {
+  let billVol = "standard";
+  if (monthlyBill < 1500) billVol = "anthill";
+  else if (monthlyBill >= 10000) billVol = "whale";
+
+  if (selectedFacility === "datactr" && !isHvacOverridden && billVol === "whale") {
     finalScore = 300;
   }
   
   finalScore = Math.round(finalScore);
   document.getElementById("score_out").textContent = finalScore;
-  
-  // Map Volumetric Structural Columns Boundaries
-  let billVol = "anthill";
-  if (monthlyBill >= 10000) billVol = "whale";
-  else if (monthlyBill >= 3500) billVol = "sweet";
-  else if (monthlyBill >= 1500) billVol = "bound";
-  
-  // Floor-Minimum Rule Matrix Evaluator Engine Block
-  let oreTier = "low";
-  let geoTier = tierData.tier;
 
-  if (billVol === "whale") {
-    if (finalScore >= 65 || (geoTier !== 'D' && schedulePoints >= 7 && hvacPoints >= 7)) oreTier = "high";
-    else if (schedulePoints >= 3 && hvacPoints >= 5 && geoTier !== 'D') oreTier = "mid";
-  } 
-  else if (billVol === "sweet") {
-    if ((geoTier === 'S' || geoTier === 'A' || geoTier === 'B') && finalScore >= 25) oreTier = "high";
-    else if ((geoTier === 'B' || geoTier === 'C') && schedulePoints >= 5 && hvacPoints >= 5) oreTier = "mid";
-  } 
-  else if (billVol === "bound") {
-    if ((geoTier === 'S' || geoTier === 'A') && finalScore >= 35) oreTier = "high";
-    else if ((geoTier === 'A' || geoTier === 'B') && finalScore >= 15) oreTier = "mid";
-  } 
-  else if (billVol === "anthill") {
-    oreTier = "low";
+  // -----------------------------------------------------------------
+  // CONTINUOUS VECTOR HORIZON INDICATOR INTERPOLATION CONTROLLER
+  // -----------------------------------------------------------------
+  let gaugeRoot = document.getElementById("gauge_component_root");
+  let needle = document.getElementById("gauge_needle");
+
+  gaugeRoot.classList.remove("gauge-override-anthill", "gauge-override-whale");
+
+  let pctPosition = 0;
+
+  if (billVol === "anthill") {
+    gaugeRoot.classList.add("gauge-override-anthill");
+    pctPosition = Math.min(25, (finalScore / 300) * 100);
+  } else {
+    if (billVol === "whale") {
+      gaugeRoot.classList.add("gauge-override-whale");
+      if (finalScore >= 65) {
+        pctPosition = 50 + ((finalScore - 65) / (300 - 65)) * 50;
+      } else if (finalScore >= 25) {
+        pctPosition = 30 + ((finalScore - 25) / (65 - 25)) * 20;
+      } else if (finalScore >= 10) {
+        pctPosition = 15 + ((finalScore - 10) / (25 - 10)) * 15;
+      } else {
+        pctPosition = (finalScore / 10) * 15;
+      }
+    } else {
+      if (finalScore >= 65) {
+        pctPosition = 75 + ((finalScore - 65) / (300 - 65)) * 25;
+      } else if (finalScore >= 25) {
+        pctPosition = 50 + ((finalScore - 25) / (65 - 25)) * 25;
+      } else if (finalScore >= 10) {
+        pctPosition = 25 + ((finalScore - 10) / (25 - 10)) * 25;
+      } else {
+        pctPosition = (finalScore / 10) * 25;
+      }
+    }
   }
 
-  if (schedulePoints === 0) oreTier = "low";
+  // Hard gating overrides
+  if (schedulePoints === 0) pctPosition = 0;
+  if (pctPosition > 100) pctPosition = 100;
+  if (pctPosition < 0) pctPosition = 0;
 
-  // Force Layout Update Stream Sequence
-  updateIntuitionMatrix(oreTier, billVol, schedulePoints);
-  
-  // Valuation Outputs Faceplate Mathematical Constants Realization
+  needle.style.left = pctPosition + "%";
+
+  let activeZone = "red";
+  let activeZoneWidthThreshold = billVol === "whale" ? 15 : 25;
+  let midZoneWidthThreshold = billVol === "whale" ? 30 : 50;
+  let highZoneWidthThreshold = billVol === "whale" ? 50 : 75;
+
+  if (pctPosition < activeZoneWidthThreshold) activeZone = "red";
+  else if (pctPosition < midZoneWidthThreshold) activeZone = "yellow";
+  else if (pctPosition < highZoneWidthThreshold) activeZone = "green";
+  else activeZone = "purple";
+
+  if (billVol === "anthill") activeZone = "red";
+
+  // -----------------------------------------------------------------
+  // INTEGRATED POSITION 3 HUD PLAYBOOK INTERFACE COUPLING ROUTINES
+  // -----------------------------------------------------------------
+  const pTitle = document.getElementById("playbook_title_out");
+  const pText = document.getElementById("playbook_text_out");
+  const ribbon = document.getElementById("firewall_ribbon");
+  const statusText = document.getElementById("firewall_status_text");
+  const msgText = document.getElementById("firewall_message_text");
+  const redActions = document.getElementById("hud_red_actions");
+  const premiumActions = document.getElementById("hud_premium_actions");
+
+  ribbon.classList.remove("triggered");
+  statusText.textContent = isIntensityOverridden || isHvacOverridden || isRateOverridden ? "⚡ MANUAL OVERRIDE ACTIVE" : "🔥 AUTOMATION MODE ACTIVE";
+  msgText.textContent = "SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED";
+  redActions.style.display = "none";
+  premiumActions.style.display = "none";
+
+  if (schedulePoints === 0) {
+    ribbon.classList.add("triggered");
+    statusText.textContent = "🛑 CRITICAL ERROR BLOCK";
+    msgText.textContent = "FIREWALL CRITICAL TRIGGER: RUNTIME KILL SWITCH IN OPERATION";
+
+    pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
+    pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
+    redActions.style.display = "block";
+  } else if (billVol === "anthill") {
+    ribbon.classList.add("triggered");
+    statusText.textContent = "⚠️ LOW LEVEL EXCLUSION WALL";
+    msgText.textContent = "FIREWALL WARNING: SITE ENERGY OVERHEAD MATRICES COLLAPSED";
+
+    pTitle.textContent = "🛑 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
+    pText.textContent = "The prospective bill size volume represents an 'anthill'. Key financial metrics fail execution floor requirements regardless of local building profiles. Route lead out immediately.";
+    redActions.style.display = "block";
+  } else if (activeZone === "purple") {
+    if (selectedFacility === "datactr") {
+      pTitle.textContent = "🔮 SOVEREIGN JACKPOT MATCH: DATA CENTER INFRASTRUCTURE STACK";
+      pText.textContent = "Non-linear plug load distortion bypass active. Extreme computing tier density unlocks absolute enterprise processing rules (Harmonization L0, Retrofit L1, and Smart Starts L3). Maximum prioritization pipeline.";
+    } else {
+      pTitle.textContent = "🔮 SOVEREIGN GOLD PROTOCOL: ENGAGE HIGHEST PRIORITY TRACK";
+      pText.textContent = "Holy grail vector matched. Extreme compressor footprint compounded by target financial utility premium levels. Request past 12 months' commercial utility statement data instantly for structural conversion.";
+    }
+    premiumActions.style.display = "flex";
+  } else if (activeZone === "green") {
+    pTitle.textContent = "🟢 HIGH VIABILITY PROFILE: ACTIVE CONTRACT CONVERSION";
+    pText.textContent = "Legitimate structural capacity confirmed. Solid engineering density footprint aligns with core technology parameters. Initiate authorization protocol processing path.";
+    premiumActions.style.display = "flex";
+  } else if (activeZone === "yellow") {
+    pTitle.textContent = "💛 BREAD-AND-BUTTER LINEAR MARGIN: CONDITIONAL DISCOVERY";
+    pText.textContent = "Standard tier target match. Verify central asset structural layout parameters on call. Only pursue if localized engineering systems use centralized systems to compress setup logging overhead.";
+  } else {
+    pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
+    pText.textContent = "Do not initiate contact. The property configuration parameters return sub-baseline values. Margins fail to clear tracking logging limits and technical engineering overhead thresholds.";
+    redActions.style.display = "block";
+  }
+
+  // Value Output Updates
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
   let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24;
   
   let badge = document.getElementById("temp_badge");
   badge.className = "score-badge"; 
   
-  if (schedulePoints === 0) {
-    badge.textContent = "DISQUALIFIED / KILL SWITCH";
-    badge.classList.add("bg-red");
+  if (schedulePoints === 0 || billVol === "anthill") {
+    badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
     floorSavings = 0; ceilSavings = 0;
-  } else if (finalScore >= 65 || (oreTier === "high" && billVol !== "anthill")) {
+  } else if (activeZone === "purple") {
     badge.textContent = "Sovereign Asset"; badge.classList.add("bg-purple");
-  } else if (finalScore >= 25 || oreTier === "mid") {
-    if (oreTier === "low" || (billVol === "bound" && finalScore < 15)) {
-      badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
-      floorSavings = 0; ceilSavings = 0;
-    } else {
-      badge.textContent = "High Viability"; badge.classList.add("bg-green");
-    }
-  } else if (finalScore >= 10) {
+  } else if (activeZone === "green") {
+    badge.textContent = "High Viability"; badge.classList.add("bg-green");
+  } else if (activeZone === "yellow") {
     badge.textContent = "Linear Margin"; badge.classList.add("bg-yellow");
   } else {
     badge.textContent = "Dead Lead / Skip"; badge.classList.add("bg-red");
@@ -674,60 +740,6 @@ function runEngine() {
   
   document.getElementById("sav_floor").textContent = "$" + Math.round(floorSavings).toLocaleString("en-US");
   document.getElementById("sav_ceil").textContent = "$" + Math.round(ceilSavings).toLocaleString("en-US");
-}
-
-function updateIntuitionMatrix(ore, bill, schedulePoints) {
-  // Update Intersection Map Active Cell Highlighting
-  document.querySelectorAll(".matrix-cell").forEach(cell => cell.classList.remove("active-target"));
-  const targetId = `cell_${ore}_${bill}`;
-  const targetCell = document.getElementById(targetId);
-  if (targetCell) targetCell.classList.add("active-target");
-
-  const pTitle = document.getElementById("playbook_title_out");
-  const pText = document.getElementById("playbook_text_out");
-  const ribbon = document.getElementById("firewall_ribbon");
-  const statusText = document.getElementById("firewall_status_text");
-  const msgText = document.getElementById("firewall_message_text");
-
-  // Reset Firewall Ribbon Default Configurations States
-  ribbon.classList.remove("triggered");
-  statusText.textContent = isIntensityOverridden || isHvacOverridden || isRateOverridden ? "⚡ MANUAL OVERRIDE ACTIVE" : "🔥 AUTOMATION MODE ACTIVE";
-  msgText.textContent = "SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED";
-
-  // Tier 2 Firewall Diagnostics & Tier 5 Playbook Routing
-  if (schedulePoints === 0) {
-    ribbon.classList.add("triggered");
-    statusText.textContent = "🛑 CRITICAL ERROR BLOCK";
-    msgText.textContent = "FIREWALL CRITICAL TRIGGER: RUNTIME KILL SWITCH IN OPERATION";
-
-    pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
-    pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
-  } else if (bill === "anthill") {
-    ribbon.classList.add("triggered");
-    statusText.textContent = "⚠️ LOW LEVEL EXCLUSION WALL";
-    msgText.textContent = "FIREWALL WARNING: SITE ENERGY OVERHEAD MATRICES COLLAPSED";
-
-    pTitle.textContent = "🛑 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
-    pText.textContent = "Ore metrics match specifications, but the bill volume represents an 'anthill'. Key execution vector limits are compromised. Recommend equipment-only purchase path with guided self-install options.";
-  } else if (selectedFacility === "datactr" && bill === "whale") {
-    pTitle.textContent = "🔮 SOVEREIGN JACKPOT DETECTED: DATA CENTER INFRASTRUCTURE STACK";
-    pText.textContent = "Non-linear plug load distortion bypass active. Extreme computing tier density unlocks ecosystem processing rules (Harmonization L0, Retrofit L1, and Smart Starts L3). Maximum portfolio asset priority.";
-  } else if (ore === "low") {
-    pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
-    pText.textContent = "Do not initiate contact. The property's thermal blueprint is empty or process-dominated. Savings volume will fail to clear Sandia logging and structural overhead limits.";
-  } else if (ore === "high") {
-    pTitle.textContent = "🔮 SOVEREIGN GOLD PROTOCOL: ENGAGE HIGHEST PRIORITY TRACK";
-    pText.textContent = "Holy grail vector matched. Extreme compressor footprint compounded by target financial utility premium levels. Request past 12 months' commercial utility statement data instantly for structural conversion.";
-  } else if (ore === "mid" && bill === "whale") {
-    pTitle.textContent = "🟢 SCALE VOLUME INTEGRATION PROTOCOL: ACTIVE PURSUIT";
-    pText.textContent = "Standard thermal profile, but the sheer financial footprint of the whale account allows high revenue scale. Deploy multiple technology combinations ($L_0 + $L_1 + $L_3$) to expand gross margins.";
-  } else if (ore === "mid" && bill === "sweet") {
-    pTitle.textContent = "💛 BREAD-AND-BUTTER PROTOCOL: CONDITIONAL DISCOVERY";
-    pText.textContent = "Classic mid-tier target. Verify equipment array parameters on next communication. Only pursue if engineering asset configuration uses centralized systems (RTUs or chillers) to reduce log phase setup costs.";
-  } else {
-    pTitle.textContent = "🛑 PROTOCOL: LOW MARGIN HAZARD ZONE";
-    pText.textContent = "The absolute financial pool cannot maintain engineering overhead balance loops. Archive prospect record automatically and redirect resources toward higher density coordinates.";
-  }
 }
 
 // Global Application Core Entry Blocks Initialization Sequence
