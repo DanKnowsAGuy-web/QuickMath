@@ -314,7 +314,6 @@ const US_STATE_TIERS = {
 
 const FACILITY_PROFILES = {
   cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "high", name: "Cold Storage", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
-  // UPGRADED DATA CENTER LOAD MATRIX ENVIRONMENT LOGIC
   datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "high", name: "Data Center", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
   health:  { weeklyHours: 168, hvacShare: 0.50, tier: "high", name: "Healthcare / Hosp.", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
   research:{ weeklyHours: 120, hvacShare: 0.30, tier: "mid",  name: "Research Lab", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
@@ -332,7 +331,7 @@ const FACILITY_PROFILES = {
   mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "mid",  name: "Mixed Use Property", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
 };
 
-let selectedState = "CA";
+let selectedState = "California";
 let selectedFacility = "cold";
 let currentMode = "mode_1";
 
@@ -452,16 +451,18 @@ function shiftMode(mode) {
 }
 
 function runEngine() {
-  let tierData = US_STATE_TIERS[selectedState];
+  let tierData = US_STATE_TIERS[selectedState] || { tier: "B", mult: 1.5 };
   let rateMultiplier = tierData.mult;
   
   let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
-  let weeklyHours = FACILITY_PROFILES[selectedFacility].weeklyHours;
-  let hvacFraction = FACILITY_PROFILES[selectedFacility].hvacShare;
+  let weeklyHours = parseInt(document.getElementById("hours_slider").value);
+  let hvacFraction = parseInt(document.getElementById("hvac_slider").value) / 100;
   
-  if (currentMode === "mode_2") {
-    weeklyHours = parseInt(document.getElementById("hours_slider").value);
-    hvacFraction = parseInt(document.getElementById("hvac_slider").value) / 100;
+  if (currentMode === "mode_1") {
+    let defs = FACILITY_PROFILES[selectedFacility];
+    weeklyHours = defs.weeklyHours;
+    hvacFraction = defs.hvacShare;
+  } else {
     let rateOverride = parseFloat(document.getElementById("rate_override").value) || 0;
     if (rateOverride > 0) rateMultiplier = rateOverride / 0.13;
   }
@@ -471,43 +472,69 @@ function runEngine() {
   
   let annualHours = weeklyHours * 52;
   
+  // PILLAR 2: Operational Intensity Runtime Points
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
   else if (annualHours >= 3500) schedulePoints = 5;
-  else if (annualHours < 2000) schedulePoints = 0; 
+  else if (annualHours >= 2000) schedulePoints = 3;
+  else schedulePoints = 0; // KILL SWITCH PROGRAMMATIC GATE
   
+  // PILLAR 3: HVAC/R End-Use Fraction Points
   let hvacPoints = 5;
   if (hvacFraction >= 0.65) hvacPoints = 10;
   else if (hvacFraction >= 0.50) hvacPoints = 7;
-  else if (hvacFraction < 0.15) hvacPoints = 1; 
-
+  else if (hvacFraction >= 0.15) hvacPoints = 5;
+  else hvacPoints = 1; // Process Trap Floor
+  
+  // DATA CENTER MATRIX SYSTEM CRITICAL OVERRIDE
+  if (selectedFacility === "datactr" && currentMode === "mode_1") {
+    hvacPoints = 10; // Hardcode High Tonnage Intensity Override to trigger processing rules
+  }
+  
+  // COMPOUNDING ECONOMIC ENGINE MATRIX
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   
-  if (schedulePoints === 0) finalScore = 0;
-  if (schedulePoints === 10 && hvacPoints === 10) finalScore = 300;
+  // PROGRAMMATIC GATE OVERRIDES
+  if (schedulePoints === 0) {
+    finalScore = 0; // Continuous Kill Switch Hard Freeze
+  }
+  
+  // Sovereign Jackpot Processing Cap Rule
+  if (selectedFacility === "datactr" && currentMode === "mode_1" && monthlyBill >= 10000) {
+    finalScore = 300;
+  }
   
   finalScore = Math.round(finalScore);
   document.getElementById("score_out").textContent = finalScore;
   
+  // Ore Quality Structural Realignment (Mapping perfectly to the Intuition UI grid rows)
   let oreTier = "mid";
-  if (finalScore >= 65) oreTier = "high";
+  if (finalScore >= 25) oreTier = "high";
   else if (finalScore < 10) oreTier = "low";
   
+  // Volumetric Bill Size Target Mapping
   let billVol = "anthill";
   if (monthlyBill >= 10000) billVol = "whale";
   else if (monthlyBill >= 3500) billVol = "sweet";
   else if (monthlyBill >= 1500) billVol = "bound";
-
+  
   updateIntuitionMatrix(oreTier, billVol);
+  
+  // Financial Volumetric Bounds Setup
+  let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
+  let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24;
   
   let badge = document.getElementById("temp_badge");
   badge.className = "score-badge"; 
   
-  let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24; 
-  let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24;
-  
-  if (finalScore >= 65) {
+  if (schedulePoints === 0) {
+    // Intermittent Kill Switch execution path override
+    badge.textContent = "DISQUALIFIED / KILL SWITCH";
+    badge.classList.add("bg-red");
+    floorSavings = 0;
+    ceilSavings = 0;
+  } else if (finalScore >= 65) {
     badge.textContent = "Sovereign Asset"; badge.classList.add("bg-purple");
   } else if (finalScore >= 25) {
     badge.textContent = "High Viability"; badge.classList.add("bg-green");
@@ -535,15 +562,24 @@ function updateIntuitionMatrix(ore, bill) {
 
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
+  
+  let weeklyHours = parseInt(document.getElementById("hours_slider").value);
+  if (currentMode === "mode_1") {
+    weeklyHours = FACILITY_PROFILES[selectedFacility].weeklyHours;
+  }
 
-  if (selectedFacility === "datactr" && bill === "whale") {
-    pTitle.textContent = "🔮 SYSTEM CONVERSION TIMEOUT: DATA CENTER INTEGRATION";
-    pText.textContent = "Non-linear plug load distortion detected. Extreme computing infrastructure density creates harmonic and line-loss billing metrics across the site meter. Deploy complete L0 Harmonization and L3 smart starts stack.";
+  // Real-time Override Alerts
+  if (weeklyHours * 52 < 2000) {
+    pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
+    pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
+  } else if (selectedFacility === "datactr" && bill === "whale") {
+    pTitle.textContent = "🔮 SOVEREIGN JACKPOT DETECTED: DATA CENTER INFRASTRUCTURE STACK";
+    pText.textContent = "Non-linear plug load distortion bypass active. Extreme computing tier density unlocks ecosystem processing rules (Harmonization L0, Retrofit L1, and Smart Starts L3). Maximum portfolio asset priority.";
   } else if (ore === "low") {
-    pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
+    pTitle.textContent = "料 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
     pText.textContent = "Do not initiate contact. The property's thermal blueprint is empty or process-dominated. Savings volume will fail to clear Sandia logging and structural overhead limits.";
   } else if (bill === "anthill") {
-    pTitle.textContent = "🔴 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
+    pTitle.textContent = "🛑 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
     pText.textContent = "Ore metrics match specifications, but the bill volume represents an 'anthill'. Key execution vector limits are compromised. Recommend equipment-only purchase path with guided self-install options.";
   } else if (ore === "high" && (bill === "whale" || bill === "sweet" || bill === "bound")) {
     pTitle.textContent = "🔮 SOVEREIGN GOLD PROTOCOL: ENGAGE HIGHEST PRIORITY TRACK";
@@ -555,7 +591,7 @@ function updateIntuitionMatrix(ore, bill) {
     pTitle.textContent = "💛 BREAD-AND-BUTTER PROTOCOL: CONDITIONAL DISCOVERY";
     pText.textContent = "Classic mid-tier target. Verify equipment array parameters on next communication. Only pursue if engineering asset configuration uses centralized systems (RTUs or chillers) to reduce log phase setup costs.";
   } else {
-    pTitle.textContent = "🔴 PROTOCOL: LOW MARGIN HAZARD ZONE";
+    pTitle.textContent = "🛑 PROTOCOL: LOW MARGIN HAZARD ZONE";
     pText.textContent = "The absolute financial pool cannot maintain engineering overhead balance loops. Archive prospect record automatically and redirect resources toward higher density coordinates.";
   }
 }
@@ -563,6 +599,9 @@ function updateIntuitionMatrix(ore, bill) {
 // Global Application Core Entry Blocks
 initStatesGrid();
 initFacilityMatrix();
+// Explicit default pre-configuration to match selection mechanics
+collapseStateSection(); 
+collapseFacilitySection();
 onFacChange();
 </script>
 </body>
