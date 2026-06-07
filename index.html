@@ -51,18 +51,14 @@ body {
 .horizon-track { display: flex; width: 100%; height: 100%; overflow: hidden; opacity: 0.3; transition: opacity 0.3s ease; }
 .gauge-initialized .horizon-track { opacity: 1; }
 
-.zone-block { height: 100%; transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1); border-right: 1px solid var(--ink); }
-.zone-skip      { background: var(--red); width: 25%; }
-.zone-linear    { background: var(--yellow); width: 25%; }
-.zone-viability { background: var(--green); width: 25%; }
-.zone-sovereign { background: var(--purple); width: 25%; border-right: none; }
+.zone-block { height: 100%; width: 25% !important; border-right: 1px solid var(--ink); }
+.zone-skip      { background: var(--red); }
+.zone-linear    { background: var(--yellow); }
+.zone-viability { background: var(--green); }
+.zone-sovereign { background: var(--purple); border-right: none; }
 
 .gauge-override-disqualified .zone-block { background: rgba(255,255,255,0.03) !important; }
 .gauge-override-disqualified .zone-skip { background: var(--red) !important; width: 100% !important; }
-.gauge-override-whale .zone-skip { width: 15%; }
-.gauge-override-whale .zone-linear { width: 15%; }
-.gauge-override-whale .zone-viability { width: 20%; }
-.gauge-override-whale .zone-sovereign { width: 50%; }
 
 .vector-needle { position: absolute; top: -6px; left: 50%; width: 2px; height: 26px; background: rgba(255,255,255,0.2); transform: translateX(-50%); transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10; }
 .gauge-initialized .vector-needle { background: #fff; box-shadow: 0 0 10px 2px rgba(255,255,255,0.8); }
@@ -71,39 +67,23 @@ body {
 .gauge-initialized .gauge-labels { color: var(--slate); }
 .gauge-labels .active-zone-text { color: #fff; font-weight: 900; }
 
-/* CHIP GRIDS FIXED PERMANENT VISIBILITY */
+/* CHIP GRIDS FIXED PERMANENT VISIBILITY (COLORS EREASED, CLEAN BORDERS RETAINED) */
 .state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
 @media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 @media(min-width: 600px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
 
 .state-chip { 
   background: rgba(255,255,255,0.02); padding: 10px 2px; text-align: center; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.1s ease;
-  display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 40px; text-transform: uppercase; border: 1px solid transparent;
+  display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 40px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08);
 }
-.state-chip.tier-s, .state-chip.tier-a { border-left: 5px solid var(--purple); }
-.state-chip.tier-b { border-left: 5px solid var(--green); }
-.state-chip.tier-c { border-left: 5px solid var(--yellow); }
-.state-chip.tier-d { border-left: 5px solid var(--red); }
-
-.state-chip.active { font-weight: 800; color: #fff !important; border-color: #fff !important; }
-.state-chip.tier-s.active, .state-chip.tier-a.active { background: rgba(159, 122, 234, 0.25) !important; }
-.state-chip.tier-b.active { background: rgba(72, 187, 120, 0.25) !important; }
-.state-chip.tier-c.active { background: rgba(236, 201, 75, 0.2) !important; color: #fff !important; }
-.state-chip.tier-d.active { background: rgba(245, 101, 101, 0.25) !important; }
+.state-chip:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
+.state-chip.active { font-weight: 800; color: #fff !important; border-color: var(--gold) !important; background: rgba(200,169,110,0.1) !important; }
 
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
 @media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
-.fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border-top: 1px solid transparent; border-bottom: 1px solid transparent; }
-
-.fac-opt.tier-high { border-left: 5px solid var(--purple); border-right: 5px solid var(--purple); }
-.fac-opt.tier-mid  { border-left: 5px solid var(--green); border-right: 5px solid var(--green); }
-.fac-opt.tier-low  { border-left: 5px solid var(--red); border-right: 5px solid var(--red); }
-.fac-opt:hover { border-top-color: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; }
-
-.fac-opt.active { font-weight: 800; color: #fff !important; border-top-color: #fff !important; border-bottom-color: #fff !important; }
-.fac-opt.tier-high.active { background: rgba(159, 122, 234, 0.25) !important; }
-.fac-opt.tier-mid.active  { background: rgba(72, 187, 120, 0.25) !important; }
-.fac-opt.tier-low.active  { background: rgba(245, 101, 101, 0.25) !important; }
+.fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08); }
+.fac-opt:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
+.fac-opt.active { font-weight: 800; color: #fff !important; border-color: var(--gold) !important; background: rgba(200,169,110,0.1) !important; }
 .fac-ico { display: block; width: 18px; height: 18px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
 .fac-opt.active .fac-ico { color: #fff; }
 
@@ -116,7 +96,7 @@ body {
 .matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
 .matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-/* LOOSE CONFIGURATION HOUSING TRACK */
+/* UNRESTRICTED LOOSE INTENSITY OPERATIONAL PANEL */
 .loose-intensity-panel {
   background: rgba(0, 0, 0, 0.15); border: 1px solid var(--gold-rule); border-left: 5px solid var(--gold);
   padding: 16px; margin-top: 16px; border-radius: 2px;
@@ -128,7 +108,7 @@ body {
 .intensity-btn:hover { background: rgba(255,255,255,0.04); color: #fff; }
 .intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; }
 
-/* DROPDOWN ACCORDION ARCHITECTURE MODULES */
+/* THE ASSUMPTIONS ACCORDION EXTENSIONS */
 .accordion-wrapper { margin-top: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; background: rgba(0,0,0,0.1); }
 .accordion-trigger { width: 100%; padding: 14px 16px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .accordion-trigger:active { background: rgba(255,255,255,0.02); }
@@ -145,7 +125,7 @@ body {
 .slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 
-/* POSITION 3: CLEAN PLAYBOOK CORE DISPLAY WINDOW */
+/* POSITION 3: CLEAN WORKSPACE PROTOCOL MATRIX CARD */
 .playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
@@ -160,7 +140,7 @@ body {
 .active-override-val { color: var(--override-cyan) !important; }
 .active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; }
 
-/* ENFORCED VISUAL MUTING MATRIX (100% INVISIBLE FRAMEWORKS) */
+/* HARDWARE LAYER ABSOLUTE UI MUTING GATES */
 #scoreboard_root_box, .override-panel { display: none !important; }
 </style>
 </head>
@@ -172,6 +152,7 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
+  <!-- POSITION 1: TRACK SCALE GAUGE COMPONENT -->
   <div class="gauge-section sticky-track" id="gauge_component_root">
     <div class="gauge-header">Intuition Horizon Track</div>
     <div class="horizon-track-container">
@@ -191,18 +172,22 @@ body {
     </div>
   </div>
 
+  <!-- MAIN ACTION CONTROLS HUB BODY -->
   <div class="calc-body">
     
+    <!-- STEP 01 -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Regional Location Geography</span></div>
       <div class="state-grid" id="state-grid-box"></div>
     </div>
 
+    <!-- STEP 02 -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span></div>
       <div class="fac-grid" id="fac-matrix-box"></div>
     </div>
 
+    <!-- STEP 03 -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
       <div class="click-matrix-stack">
@@ -228,6 +213,7 @@ body {
       </div>
     </div>
 
+    <!-- LOOSE ACTION MODULE RUNTIME LAYER -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 6px;">
         <span style="color: var(--white);">Hours in Operation</span>
@@ -245,6 +231,7 @@ body {
       </div>
     </div>
 
+    <!-- EXTRA ACCORDION OPTIONS SLIDERS COMPONENT -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -278,6 +265,7 @@ body {
 
   </div>
 
+  <!-- POSITION 3.5: SUMMARY CLOSING MIRRORED GAUGE -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Prescriptive Diagnostic Horizon</div>
     <div class="horizon-track-container">
@@ -297,11 +285,13 @@ body {
     </div>
   </div>
 
+  <!-- POSITION 4: PLAYBOOK PRESENTATION CONSOLE -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
   </div>
 
+  <!-- INVISIBLE SYSTEM MUTING SHEET LAYER -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Muted System Layer</span>
     <div class="score-container"><div class="score-num" id="score_out">0</div></div>
@@ -311,38 +301,38 @@ body {
 
 <script>
 const US_STATE_TIERS = {
-  "Alabama": { tier: "B", mult: 1.5, avgCents: 15 }, "Alaska": { tier: "S", mult: 3.0, avgCents: 28 }, "Arizona": { tier: "B", mult: 1.5, avgCents: 14 }, "Arkansas": { tier: "C", mult: 1.0, avgCents: 11 },
-  "California": { tier: "S", mult: 3.0, avgCents: 34 }, "Colorado": { tier: "B", mult: 1.5, avgCents: 13 }, "Connecticut": { tier: "A", mult: 2.2, avgCents: 24 }, "Delaware": { tier: "B", mult: 1.5, avgCents: 15 },
-  "Florida": { tier: "C", mult: 1.0, avgCents: 12 }, "Georgia": { tier: "C", mult: 1.0, avgCents: 12 }, "Hawaii": { tier: "S", mult: 3.0, avgCents: 43 }, "Idaho": { tier: "D", mult: 0.7, avgCents: 9 },
-  "Illinois": { tier: "B", mult: 1.5, avgCents: 16 }, "Indiana": { tier: "B", mult: 1.5, avgCents: 13 }, "Iowa": { tier: "D", mult: 0.7, avgCents: 10 }, "Kansas": { tier: "C", mult: 1.0, avgCents: 12 },
-  "Kentucky": { tier: "B", mult: 1.5, avgCents: 11 }, "Louisiana": { tier: "C", mult: 1.0, avgCents: 11 }, "Maine": { tier: "S", mult: 3.0, avgCents: 23 }, "Maryland": { tier: "B", mult: 1.5, avgCents: 15 },
-  "Massachusetts": { tier: "S", mult: 3.0, avgCents: 28 }, "Michigan": { tier: "B", mult: 1.5, avgCents: 17 }, "Minnesota": { tier: "C", mult: 1.0, avgCents: 13 }, "Mississippi": { tier: "B", mult: 1.5, avgCents: 12 },
-  "Missouri": { tier: "C", mult: 1.0, avgCents: 11 }, "Montana": { tier: "C", mult: 1.0, avgCents: 11 }, "Nebraska": { tier: "D", mult: 0.7, avgCents: 10 }, "Nevada": { tier: "B", mult: 1.5, avgCents: 11 },
-  "New Hampshire": { tier: "A", mult: 2.2, avgCents: 22 }, "New Jersey": { tier: "A", mult: 2.2, avgCents: 19 }, "New Mexico": { tier: "C", mult: 1.0, avgCents: 12 }, "New York": { tier: "A", mult: 2.2, avgCents: 24 },
-  "North Carolina": { tier: "C", mult: 1.0, avgCents: 11 }, "North Dakota": { tier: "D", mult: 0.7, avgCents: 10 }, "Ohio": { tier: "B", mult: 1.5, avgCents: 13 }, "Oklahoma": { tier: "C", mult: 1.0, avgCents: 10 },
-  "Oregon": { tier: "D", mult: 0.7, avgCents: 9 }, "Pennsylvania": { tier: "B", mult: 1.5, avgCents: 15 }, "Rhode Island": { tier: "A", mult: 2.2, avgCents: 23 }, "South Carolina": { tier: "C", mult: 1.0, avgCents: 11 },
-  "South Dakota": { tier: "C", mult: 1.0, avgCents: 11 }, "Tennessee": { tier: "C", mult: 1.0, avgCents: 11 }, "Texas": { tier: "B", mult: 1.5, avgCents: 15 }, "Utah": { tier: "D", mult: 0.7, avgCents: 9 },
-  "Vermont": { tier: "A", mult: 2.2, avgCents: 20 }, "Virginia": { tier: "B", mult: 1.5, avgCents: 12 }, "Washington": { tier: "D", mult: 0.7, avgCents: 9 }, "West Virginia": { tier: "D", mult: 0.7, avgCents: 11 },
-  "Wisconsin": { tier: "B", mult: 1.5, avgCents: 14 }, "Wyoming": { tier: "C", mult: 1.0, avgCents: 11 }
+  "Alabama": { tier: "A-", mult: 1.5, avgCents: 15 }, "Alaska": { tier: "A+", mult: 3.0, avgCents: 28 }, "Arizona": { tier: "A-", mult: 1.5, avgCents: 14 }, "Arkansas": { tier: "C-", mult: 1.0, avgCents: 11 },
+  "California": { tier: "A+", mult: 3.0, avgCents: 34 }, "Colorado": { tier: "A-", mult: 1.5, avgCents: 13 }, "Connecticut": { tier: "A+", mult: 2.2, avgCents: 24 }, "Delaware": { tier: "A-", mult: 1.5, avgCents: 15 },
+  "Florida": { tier: "C-", mult: 1.0, avgCents: 12 }, "Georgia": { tier: "C-", mult: 1.0, avgCents: 12 }, "Hawaii": { tier: "A+", mult: 3.0, avgCents: 43 }, "Idaho": { tier: "F", mult: 0.7, avgCents: 9 },
+  "Illinois": { tier: "A-", mult: 1.5, avgCents: 16 }, "Indiana": { tier: "A-", mult: 1.5, avgCents: 13 }, "Iowa": { tier: "F", mult: 0.7, avgCents: 10 }, "Kansas": { tier: "C-", mult: 1.0, avgCents: 12 },
+  "Kentucky": { tier: "A-", mult: 1.5, avgCents: 11 }, "Louisiana": { tier: "C-", mult: 1.0, avgCents: 11 }, "Maine": { tier: "A+", mult: 3.0, avgCents: 23 }, "Maryland": { tier: "A-", mult: 1.5, avgCents: 15 },
+  "Massachusetts": { tier: "A+", mult: 3.0, avgCents: 28 }, "Michigan": { tier: "A-", mult: 1.5, avgCents: 17 }, "Minnesota": { tier: "C-", mult: 1.0, avgCents: 13 }, "Mississippi": { tier: "A-", mult: 1.5, avgCents: 12 },
+  "Missouri": { tier: "C-", mult: 1.0, avgCents: 11 }, "Montana": { tier: "C-", mult: 1.0, avgCents: 11 }, "Nebraska": { tier: "F", mult: 0.7, avgCents: 10 }, "Nevada": { tier: "A-", mult: 1.5, avgCents: 11 },
+  "New Hampshire": { tier: "A+", mult: 2.2, avgCents: 22 }, "New Jersey": { tier: "A+", mult: 2.2, avgCents: 19 }, "New Mexico": { tier: "C-", mult: 1.0, avgCents: 12 }, "New York": { tier: "A+", mult: 2.2, avgCents: 24 },
+  "North Carolina": { tier: "C-", mult: 1.0, avgCents: 11 }, "North Dakota": { tier: "F", mult: 0.7, avgCents: 10 }, "Ohio": { tier: "A-", mult: 1.5, avgCents: 13 }, "Oklahoma": { tier: "C-", mult: 1.0, avgCents: 10 },
+  "Oregon": { tier: "F", mult: 0.7, avgCents: 9 }, "Pennsylvania": { tier: "A-", mult: 1.5, avgCents: 15 }, "Rhode Island": { tier: "A+", mult: 2.2, avgCents: 23 }, "South Carolina": { tier: "C-", mult: 1.0, avgCents: 11 },
+  "South Dakota": { tier: "C-", mult: 1.0, avgCents: 11 }, "Tennessee": { tier: "C-", mult: 1.0, avgCents: 11 }, "Texas": { tier: "A-", mult: 1.5, avgCents: 15 }, "Utah": { tier: "F", mult: 0.7, avgCents: 9 },
+  "Vermont": { tier: "A+", mult: 2.2, avgCents: 20 }, "Virginia": { tier: "A-", mult: 1.5, avgCents: 12 }, "Washington": { tier: "F", mult: 0.7, avgCents: 9 }, "West Virginia": { tier: "F", mult: 0.7, avgCents: 11 },
+  "Wisconsin": { tier: "A-", mult: 1.5, avgCents: 14 }, "Wyoming": { tier: "C-", mult: 1.0, avgCents: 11 }
 };
 
 const FACILITY_PROFILES = {
-  cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "high", name: "Cold Storage", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
-  datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "high", name: "Data Center", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
-  health:  { weeklyHours: 168, hvacShare: 0.50, tier: "high", name: "Healthcare / Hosp.", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12 Barb-5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
-  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "mid",  name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
-  super:   { weeklyHours: 112, hvacShare: 0.60, tier: "high", name: "Supermarket", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
-  edu:     { weeklyHours: 65,  hvacShare: 0.50, tier: "mid",  name: "Education Facility", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="12,3 22,8 12,13 2,8"/><path d="M7 10.8v4.7a7 2.8 0 0010 0v-4.7"/></svg>' },
-  whse:    { weeklyHours: 50,  hvacShare: 0.20, tier: "low",  name: "Distribution Whse", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"/></svg>' },
-  hotel:   { weeklyHours: 168, hvacShare: 0.45, tier: "mid",  name: "Hospitality / Hotel", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="13" width="20" height="8" rx="1"/><path d="M6 13V9a6 6 0 0112 0v4"/></svg>' },
-  multi:   { weeklyHours: 168, hvacShare: 0.35, tier: "mid",  name: "Multifamily Lobby", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="16" x2="21" y2="16"/></svg>' },
-  office:  { weeklyHours: 60,  hvacShare: 0.40, tier: "mid",  name: "Commercial Office", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>' },
-  fitness: { weeklyHours: 105, hvacShare: 0.45, tier: "mid",  name: "Fitness / Gym", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/><line x1="6" y1="12" x2="18" y2="12"/></svg>' },
-  retail:  { weeklyHours: 84,  hvacShare: 0.40, tier: "mid",  name: "Big-Box Retail", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/></svg>' },
-  qsr:     { weeklyHours: 115, hvacShare: 0.40, tier: "mid",  name: "Fast Food Kitchen", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 8h16M4 12h16M4 16h16"/><path d="M4 8Q4 3 12 3 20 3 20 8"/></svg>' },
-  cstore:  { weeklyHours: 168, hvacShare: 0.45, tier: "mid",  name: "Convenience Store", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 22V6a2 2 0 012-2h8a2 2 0 012 2v16M4 22h12"/></svg>' },
-  ind:     { weeklyHours: 144, hvacShare: 0.10, tier: "low",  name: "Industrial / Mfg", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>' },
-  mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "mid",  name: "Mixed Use Property", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
+  cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "A+", name: "Cold Storage", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
+  datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "A+", name: "Data Center", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
+  health:  { weeklyHours: 168, hvacShare: 0.50, tier: "A+", name: "Healthcare / Hosp.", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
+  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "A-", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
+  super:   { weeklyHours: 112, hvacShare: 0.60, tier: "A+", name: "Supermarket", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
+  edu:     { weeklyHours: 65,  hvacShare: 0.50, tier: "A-", name: "Education Facility", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="12,3 22,8 12,13 2,8"/><path d="M7 10.8v4.7a7 2.8 0 0010 0v-4.7"/></svg>' },
+  whse:    { weeklyHours: 50,  hvacShare: 0.20, tier: "F",  name: "Distribution Whse", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"/></svg>' },
+  hotel:   { weeklyHours: 168, hvacShare: 0.45, tier: "A-", name: "Hospitality / Hotel", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="13" width="20" height="8" rx="1"/><path d="M6 13V9a6 6 0 0112 0v4"/></svg>' },
+  multi:   { weeklyHours: 168, hvacShare: 0.35, tier: "A-", name: "Multifamily Lobby", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="16" x2="21" y2="16"/></svg>' },
+  office:  { weeklyHours: 60,  hvacShare: 0.40, tier: "A-", name: "Commercial Office", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>' },
+  fitness: { weeklyHours: 105, hvacShare: 0.45, tier: "A-", name: "Fitness / Gym", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/><line x1="6" y1="12" x2="18" y2="12"/></svg>' },
+  retail:  { weeklyHours: 84,  hvacShare: 0.40, tier: "A-", name: "Big-Box Retail", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/></svg>' },
+  qsr:     { weeklyHours: 115, hvacShare: 0.40, tier: "A-", name: "Fast Food Kitchen", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 8h16M4 12h16M4 16h16"/><path d="M4 8Q4 3 12 3 20 3 20 8"/></svg>' },
+  cstore:  { weeklyHours: 168, hvacShare: 0.45, tier: "A-", name: "Convenience Store", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M4 22V6a2 2 0 012-2h8a2 2 0 012 2v16M4 22h12"/></svg>' },
+  ind:     { weeklyHours: 144, hvacShare: 0.10, tier: "F",  name: "Industrial / Mfg", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>' },
+  mixed:   { weeklyHours: 90,  hvacShare: 0.35, tier: "A-", name: "Mixed Use Property", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="10" width="6" height="12"/><rect x="9" y="5" width="6" height="17"/><rect x="16" y="13" width="6" height="9"/></svg>' }
 };
 
 let accordionExpanded = false;
@@ -394,8 +384,9 @@ function initStatesGrid() {
   Object.keys(US_STATE_TIERS).sort().forEach(stateName => {
     let tData = US_STATE_TIERS[stateName];
     let chip = document.createElement("div");
-    chip.className = `state-chip tier-${tData.tier.toLowerCase()}`;
-    chip.textContent = stateName;
+    chip.className = "state-chip";
+    // Appends the letter tier label context inside parenthetical text layouts instead of running side borders
+    chip.textContent = `${stateName} (${tData.tier})`;
     chip.onclick = function() { selectStateDirectly(stateName, this); };
     box.appendChild(chip);
   });
@@ -407,8 +398,9 @@ function initFacilityMatrix() {
   Object.keys(FACILITY_PROFILES).forEach(key => {
     let prof = FACILITY_PROFILES[key];
     let opt = document.createElement("div");
-    opt.className = `fac-opt tier-${prof.tier}`;
-    opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div>${prof.name}</div>`;
+    opt.className = "fac-opt";
+    // Appends the layout variables into non-colored clear panels 
+    opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div>${prof.name} (${prof.tier})</div>`;
     opt.onclick = function() { selectFacilityDirectly(key, this); };
     box.appendChild(opt);
   });
@@ -481,13 +473,11 @@ function runEngine() {
     document.getElementById("score_out").textContent = "- -";
     document.getElementById("gauge_needle").style.left = "50%";
     document.getElementById("gauge_needle_mirror").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting structural field choices across metrics selection matrix fields context parameters above...";
-    document.getElementById("temp_badge").textContent = "Awaiting Configuration";
+    document.getElementById("playbook_text_out").textContent = "Awaiting grid selection choices parameters fields context values above...";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
 
-  // FIXED: Standard string interpolation calls restored cleanly
   gaugeRoot.classList.add("gauge-initialized");
   gaugeMirrorRoot.classList.add("gauge-initialized");
 
@@ -573,18 +563,16 @@ function runEngine() {
     hvacPoints = 10; 
   }
   
-  let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
-  if (schedulePoints === 0) finalScore = 0;
+  let coreDnaScore = (schedulePoints * hvacPoints) * rateMultiplier;
+  if (schedulePoints === 0) coreDnaScore = 0;
   
-  let billVol = "standard";
-  if (monthlyBill < 1500) billVol = "anthill";
-  else if (monthlyBill >= 10000) billVol = "whale";
+  let billBonusMultiplier = 1.0;
+  if (monthlyBill === 2000) billBonusMultiplier = 1.05;
+  else if (monthlyBill === 3500) billBonusMultiplier = 1.12;
+  else if (monthlyBill === 5000) billBonusMultiplier = 1.20;
+  else if (monthlyBill >= 10000) billBonusMultiplier = 1.35;
 
-  if (selectedFacility === "datactr" && !isHvacOverridden && billVol === "whale") {
-    finalScore = 300;
-  }
-  
-  finalScore = Math.round(finalScore);
+  let finalScore = Math.round(coreDnaScore * billBonusMultiplier);
   
   if (isFirewallDisqualified) {
     document.getElementById("score_out").textContent = "0";
@@ -592,36 +580,22 @@ function runEngine() {
     document.getElementById("score_out").textContent = finalScore;
   }
 
-  // NEEDLE INDICATOR ADJUSTMENTS 
   let needle = document.getElementById("gauge_needle");
   let needleMirror = document.getElementById("gauge_needle_mirror");
   
-  gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
-  gaugeMirrorRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
+  gaugeRoot.classList.remove("gauge-override-disqualified");
+  gaugeMirrorRoot.classList.remove("gauge-override-disqualified");
   document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
 
   let pctPosition = 0;
 
   if (isFirewallDisqualified) {
-    gaugeRoot.classList.add("gauge-override-disqualified");
-    gaugeMirrorRoot.classList.add("gauge-override-disqualified");
     pctPosition = 0;
   } else {
-    if (billVol === "whale") {
-      gaugeRoot.classList.add("gauge-override-whale");
-      gaugeMirrorRoot.classList.add("gauge-override-whale");
-      if (finalScore >= 65) pctPosition = 50 + ((finalScore - 65) / (300 - 65)) * 50;
-      else if (finalScore >= 25) pctPosition = 30 + ((finalScore - 25) / (65 - 25)) * 20;
-      else if (finalScore >= 10) pctPosition = 15 + ((finalScore - 10) / (25 - 10)) * 15;
-      else pctPosition = (finalScore / 10) * 15;
-    } else {
-      gaugeRoot.classList.add("gauge-override-whale");
-      gaugeMirrorRoot.classList.add("gauge-override-whale");
-      if (finalScore >= 65) pctPosition = 75 + ((finalScore - 65) / (300 - 65)) * 25;
-      else if (finalScore >= 25) pctPosition = 50 + ((finalScore - 25) / (65 - 25)) * 25;
-      else if (finalScore >= 10) pctPosition = 25 + ((finalScore - 10) / (25 - 10)) * 25;
-      else pctPosition = (finalScore / 10) * 25;
-    }
+    if (finalScore >= 75) pctPosition = 75 + ((finalScore - 75) / (350 - 75)) * 25;
+    else if (finalScore >= 35) pctPosition = 50 + ((finalScore - 35) / (75 - 35)) * 25;
+    else if (finalScore >= 12) pctPosition = 25 + ((finalScore - 12) / (35 - 12)) * 25;
+    else pctPosition = (finalScore / 12) * 25;
   }
 
   if (schedulePoints === 0) pctPosition = 0;
@@ -632,19 +606,15 @@ function runEngine() {
   needleMirror.style.left = pctPosition + "%";
 
   let activeZone = "red";
-  let activeZoneWidthThreshold = billVol === "whale" ? 15 : 25;
-  let midZoneWidthThreshold = billVol === "whale" ? 30 : 50;
-  let highZoneWidthThreshold = billVol === "whale" ? 50 : 75;
-
-  if (pctPosition < activeZoneWidthThreshold) {
+  if (pctPosition < 25) {
     activeZone = "red";
     document.getElementById("lbl_skip").classList.add("active-zone-text");
     document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
-  } else if (pctPosition < midZoneWidthThreshold) {
+  } else if (pctPosition < 50) {
     activeZone = "yellow";
     document.getElementById("lbl_linear").classList.add("active-zone-text");
     document.getElementById("lbl_linear_mirror").classList.add("active-zone-text");
-  } else if (pctPosition < highZoneWidthThreshold) {
+  } else if (pctPosition < 75) {
     activeZone = "green";
     document.getElementById("lbl_viability").classList.add("active-zone-text");
     document.getElementById("lbl_viability_mirror").classList.add("active-zone-text");
@@ -656,6 +626,8 @@ function runEngine() {
 
   if (isFirewallDisqualified) {
     activeZone = "red";
+    gaugeRoot.classList.add("gauge-override-disqualified");
+    gaugeMirrorRoot.classList.add("gauge-override-disqualified");
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     document.getElementById("lbl_skip").classList.add("active-zone-text");
     document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
