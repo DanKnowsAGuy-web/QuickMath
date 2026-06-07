@@ -6,7 +6,7 @@
 <title>Field PIE System — Mobile Control Panel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -73,11 +73,15 @@ body {
   background: rgba(255,255,255,0.03); padding: 10px 4px; text-align: center; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.1s ease;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3; min-height: 64px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px;
 }
-.state-chip span.tier-sub-lbl { font-size: 12px; font-weight: 700; color: var(--slate); margin-top: 2px; }
+/* extra-bold rating styles */
+.tier-sub-lbl { font-size: 13px; font-weight: 900; color: var(--gold-light); margin-top: 3px; letter-spacing: 0.05em; }
 .state-chip:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
 
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.fac-opt { background: rgba(255,255,255,0.03); padding: 14px 8px; text-align: center; cursor: pointer; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 105px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; }
+/* Modified layout block to natively process separate line entries */
+.fac-opt { background: rgba(255,255,255,0.03); padding: 14px 8px; text-align: center; cursor: pointer; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; }
+.fac-name-line { margin-top: 4px; }
+.fac-tier-line { font-size: 12px; font-weight: 900; color: var(--gold-light); margin-top: 4px; letter-spacing: 0.05em; }
 .fac-opt:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
 .fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
 
@@ -154,7 +158,6 @@ body {
 
   <div class="calc-body">
     
-    <!-- STEP 01: CHOOSE STATE (WITH SMART SCROLL SHIFT ADJUSTMENTS) -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Choose State</span></div>
       <div id="state-full-view">
@@ -168,7 +171,6 @@ body {
       </div>
     </div>
 
-    <!-- STEP 02: FACILITY TYPE (WITH SMART SCROLL SHIFT ADJUSTMENTS) -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
       <div id="fac-full-view">
@@ -182,7 +184,6 @@ body {
       </div>
     </div>
 
-    <!-- STEP 03: PORTFOLIO FOOTPRINT -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Portfolio Footprint</span></div>
       <div class="click-matrix-stack">
@@ -208,7 +209,6 @@ body {
       </div>
     </div>
 
-    <!-- LOOSE ACTION MODULE: ACCESSIBILITY BOOSTED RUNTIMES CONSOLE -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 8px;">
         <span style="color: var(--white);">Hours in Operation</span>
@@ -232,7 +232,6 @@ body {
       </div>
     </div>
 
-    <!-- ACCORDION ASSUMPTIONS BLOCK -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -266,7 +265,6 @@ body {
 
   </div>
 
-  <!-- POSITION 3.5: DEAL QUALITY HORIZON SCALE -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
@@ -286,7 +284,6 @@ body {
     </div>
   </div>
 
-  <!-- POSITION 4: RENDERED LOGIC PLATFORM STRATEGY DIRECTIVES CARD -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
@@ -343,7 +340,6 @@ function selectStateDirectly(stateName) {
     document.getElementById("rate_cents_in").value = automatedActiveRateCents;
   }
   runEngine();
-  // SHIFT GATES: Snap top boundary coordinate layout to section title viewport anchor link
   smoothScrollToElement("field_geo_root");
 }
 
@@ -353,7 +349,7 @@ function collapseStateSection() {
   let condView = document.getElementById("state-condensed-view");
   let block = document.getElementById("state-selection-block");
   
-  block.innerHTML = `<span>${selectedState}</span><span style="font-size:15px; font-weight:800; color:var(--gold-light);">${tData.tier} MARKET</span>`;
+  block.innerHTML = `<span>${selectedState}</span><span style="font-size:15px; font-weight:900; color:var(--gold-light);">${tData.tier} MARKET</span>`;
   condView.style.display = "block";
 }
 
@@ -379,7 +375,6 @@ function selectFacilityDirectly(key) {
     document.getElementById("hvac_slider").value = automatedActiveHvacValue;
   }
   runEngine();
-  // SHIFT GATES: Snap top boundary coordinate layout to section title viewport anchor link
   smoothScrollToElement("field_fac_root");
 }
 
@@ -389,7 +384,7 @@ function collapseFacilitySection() {
   let condView = document.getElementById("fac-condensed-view");
   let block = document.getElementById("fac-selection-block");
   
-  block.innerHTML = `<span>${prof.name}</span><span style="font-size:15px; font-weight:800; color:var(--gold-light);">${prof.tier} PROFILE</span>`;
+  block.innerHTML = `<span>${prof.name}</span><span style="font-size:15px; font-weight:900; color:var(--gold-light);">${prof.tier} PROFILE</span>`;
   condView.style.display = "block";
 }
 
@@ -409,7 +404,8 @@ function initStatesGrid() {
     let tData = US_STATE_TIERS[stateName];
     let chip = document.createElement("div");
     chip.className = "state-chip";
-    chip.innerHTML = `<span>${stateName}</span><span class="tier-sub-lbl">(${tData.tier})</span>`;
+    // Removed parentheses, formatting rating as a clean separate line block
+    chip.innerHTML = `<span>${stateName}</span><span class="tier-sub-lbl">${tData.tier}</span>`;
     chip.onclick = function() { selectStateDirectly(stateName); };
     box.appendChild(chip);
   });
@@ -422,7 +418,8 @@ function initFacilityMatrix() {
     let prof = FACILITY_PROFILES[key];
     let opt = document.createElement("div");
     opt.className = "fac-opt";
-    opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div>${prof.name} (${prof.tier})</div>`;
+    // Removed parentheses, separated name and rating onto distinct rows natively
+    opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div class="fac-name-line">${prof.name}</div><div class="fac-tier-line">${prof.tier}</div>`;
     opt.onclick = function() { selectFacilityDirectly(key); };
     box.appendChild(opt);
   });
@@ -537,7 +534,7 @@ function smoothScrollToElement(targetId) {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, 150); // Fluid animation timeline buffering delay block
+  }, 150);
 }
 
 function runEngine() {
@@ -730,13 +727,4 @@ function runEngine() {
   } else {
     playbookBox.classList.add("congruent-red");
     pTitle.textContent = "🔴 LEAD DISQUALIFIED: REGIONAL ECONOMIC OVERHEAD BALANCER";
-    pText.textContent = "Low-density profile. The combination of cheap regional utility rates and low asset power draw cannot recover basic engineering overhead.";
-  }
-}
-
-initStatesGrid();
-initFacilityMatrix();
-runEngine();
-</script>
-</body>
-</html>
+    pText.textContent
