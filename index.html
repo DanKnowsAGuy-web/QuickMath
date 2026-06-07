@@ -29,15 +29,9 @@ body {
   width: 100%; max-width: 760px; background: var(--ink-2); border: 1px solid var(--gold-rule);
   box-shadow: 0 24px 60px -28px rgba(0,0,0,0.72); overflow: hidden; margin-bottom: 60px;
 }
-.calc-head { padding: 34px 38px 30px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
-.calc-eyebrow {
-  font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--gold-light); margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
-}
-.calc-eyebrow::before { content: ''; display: block; width: 22px; height: 1px; background: var(--gold); }
-.calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; line-height: 1.2; color: #fff; margin-bottom: 10px; }
+.calc-head { padding: 34px 38px 24px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
+.calc-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 24px; line-height: 1.2; color: #fff; }
 .calc-title em { font-style: italic; color: var(--gold); }
-.calc-sub { font-size: 16px; color: rgba(255,255,255,0.66); font-weight: 600; }
 
 .calc-body { padding: 32px 38px 24px; background: linear-gradient(162deg, #131921 0%, var(--ink-2) 100%); }
 .field { margin-bottom: 32px; }
@@ -109,8 +103,8 @@ body {
 .slider-val { color: var(--gold-light); font-weight: 700; }
 
 /* Live Intuition Table Grid Map */
-.matrix-section { padding: 32px 38px; background: var(--ink); border-top: 1px solid var(--gold-rule); }
-.matrix-header { font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; font-weight: 700; text-align: center; }
+.matrix-section { padding: 28px 38px 32px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
+.matrix-header { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; font-weight: 700; text-align: center; }
 .matrix-table { display: grid; grid-template-rows: repeat(4, auto); gap: 6px; width: 100%; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
 .matrix-row { display: grid; grid-template-columns: 120px repeat(4, 1fr); gap: 6px; align-items: stretch; }
 .matrix-label-cell { display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 8px; color: var(--slate); text-transform: uppercase; font-size: 11px; font-weight: 800; border-left: 2px solid rgba(255,255,255,0.1); }
@@ -164,9 +158,42 @@ body {
 
 <div class="calc">
   <div class="calc-head">
-    <div class="calc-eyebrow">Field PIE System Dashboard</div>
     <h1 class="calc-title">Contract value is dictated by building DNA, <em>not bill size.</em></h1>
-    <p class="calc-sub">Track spatial indicators point metrics to monitor active lead criteria positions instantly.</p>
+  </div>
+
+  <!-- Live Intuition Matrix relocated right beneath the headline section -->
+  <div class="matrix-section">
+    <div class="matrix-header">Live 10-Second Intuition Intersection Map</div>
+    <div class="matrix-table">
+      <div class="matrix-row matrix-header-row">
+        <div></div>
+        <div class="matrix-label-cell">Whale ($10K+)</div>
+        <div class="matrix-label-cell">Sweet Spot ($3.5K+)</div>
+        <div class="matrix-label-cell">Boundary ($1.5K+)</div>
+        <div class="matrix-label-cell">Anthill (&lt;$1.5K)</div>
+      </div>
+      <div class="matrix-row" id="row_high">
+        <div class="matrix-label-cell">High Ore (25+)</div>
+        <div class="matrix-cell cell-purple" id="cell_high_whale"><span class="cell-lbl-str">S-Tier</span><span class="cell-tag-str">Jackpot</span></div>
+        <div class="matrix-cell cell-green" id="cell_high_sweet"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Premium Target</span></div>
+        <div class="matrix-cell cell-green" id="cell_high_bound"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Viable Density</span></div>
+        <div class="matrix-cell cell-red" id="cell_high_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Too Small</span></div>
+      </div>
+      <div class="matrix-row" id="row_mid">
+        <div class="matrix-label-cell">Mid Ore (10-24)</div>
+        <div class="matrix-cell cell-green" id="cell_mid_whale"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Scale Target</span></div>
+        <div class="matrix-cell cell-yellow" id="cell_mid_sweet"><span class="cell-lbl-str">Yellow</span><span class="cell-tag-str">Bread & Butter</span></div>
+        <div class="matrix-cell cell-red" id="cell_mid_bound"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Low Margin</span></div>
+        <div class="matrix-cell cell-red" id="cell_mid_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Skip Lead</span></div>
+      </div>
+      <div class="matrix-row" id="row_low">
+        <div class="matrix-label-cell">Low Ore (&lt;10)</div>
+        <div class="matrix-cell cell-red" id="cell_low_whale"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
+        <div class="matrix-cell cell-red" id="cell_low_sweet"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
+        <div class="matrix-cell cell-red" id="cell_low_bound"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Dead End</span></div>
+        <div class="matrix-cell cell-red" id="cell_low_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Dead End</span></div>
+      </div>
+    </div>
   </div>
 
   <div class="calc-body">
@@ -233,40 +260,6 @@ body {
             <span class="spend-suffix">/ kWh</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="matrix-section">
-    <div class="matrix-header">Live 10-Second Intuition Intersection Map</div>
-    <div class="matrix-table">
-      <div class="matrix-row matrix-header-row">
-        <div></div>
-        <div class="matrix-label-cell">Whale ($10K+)</div>
-        <div class="matrix-label-cell">Sweet Spot ($3.5K+)</div>
-        <div class="matrix-label-cell">Boundary ($1.5K+)</div>
-        <div class="matrix-label-cell">Anthill (&lt;$1.5K)</div>
-      </div>
-      <div class="matrix-row" id="row_high">
-        <div class="matrix-label-cell">High Ore (25+)</div>
-        <div class="matrix-cell cell-purple" id="cell_high_whale"><span class="cell-lbl-str">S-Tier</span><span class="cell-tag-str">Jackpot</span></div>
-        <div class="matrix-cell cell-green" id="cell_high_sweet"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Premium Target</span></div>
-        <div class="matrix-cell cell-green" id="cell_high_bound"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Viable Density</span></div>
-        <div class="matrix-cell cell-red" id="cell_high_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Too Small</span></div>
-      </div>
-      <div class="matrix-row" id="row_mid">
-        <div class="matrix-label-cell">Mid Ore (10-24)</div>
-        <div class="matrix-cell cell-green" id="cell_mid_whale"><span class="cell-lbl-str">Green</span><span class="cell-tag-str">Scale Target</span></div>
-        <div class="matrix-cell cell-yellow" id="cell_mid_sweet"><span class="cell-lbl-str">Yellow</span><span class="cell-tag-str">Bread & Butter</span></div>
-        <div class="matrix-cell cell-red" id="cell_mid_bound"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Low Margin</span></div>
-        <div class="matrix-cell cell-red" id="cell_mid_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Skip Lead</span></div>
-      </div>
-      <div class="matrix-row" id="row_low">
-        <div class="matrix-label-cell">Low Ore (&lt;10)</div>
-        <div class="matrix-cell cell-red" id="cell_low_whale"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
-        <div class="matrix-cell cell-red" id="cell_low_sweet"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Trap / Mirage</span></div>
-        <div class="matrix-cell cell-red" id="cell_low_bound"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Dead End</span></div>
-        <div class="matrix-cell cell-red" id="cell_low_anthill"><span class="cell-lbl-str">Red</span><span class="cell-tag-str">Dead End</span></div>
       </div>
     </div>
   </div>
@@ -478,7 +471,7 @@ function runEngine() {
   else if (annualHours >= 5000) schedulePoints = 7;
   else if (annualHours >= 3500) schedulePoints = 5;
   else if (annualHours >= 2000) schedulePoints = 3;
-  else schedulePoints = 0; // KILL SWITCH PROGRAMMATIC GATE
+  else schedulePoints = 0; // KILL SWITCH
   
   // PILLAR 3: HVAC/R End-Use Fraction Points
   let hvacPoints = 5;
@@ -489,13 +482,12 @@ function runEngine() {
   
   // DATA CENTER MATRIX SYSTEM CRITICAL OVERRIDE
   if (selectedFacility === "datactr" && currentMode === "mode_1") {
-    hvacPoints = 10; // Hardcode High Tonnage Intensity Override to trigger processing rules
+    hvacPoints = 10;
   }
   
   // COMPOUNDING ECONOMIC ENGINE MATRIX
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
   
-  // PROGRAMMATIC GATE OVERRIDES
   if (schedulePoints === 0) {
     finalScore = 0; // Continuous Kill Switch Hard Freeze
   }
@@ -508,7 +500,7 @@ function runEngine() {
   finalScore = Math.round(finalScore);
   document.getElementById("score_out").textContent = finalScore;
   
-  // Ore Quality Structural Realignment (Mapping perfectly to the Intuition UI grid rows)
+  // Ore Quality Structural Realignment (Matches Intuition UI Grid rows)
   let oreTier = "mid";
   if (finalScore >= 25) oreTier = "high";
   else if (finalScore < 10) oreTier = "low";
@@ -529,7 +521,6 @@ function runEngine() {
   badge.className = "score-badge"; 
   
   if (schedulePoints === 0) {
-    // Intermittent Kill Switch execution path override
     badge.textContent = "DISQUALIFIED / KILL SWITCH";
     badge.classList.add("bg-red");
     floorSavings = 0;
@@ -576,7 +567,7 @@ function updateIntuitionMatrix(ore, bill) {
     pTitle.textContent = "🔮 SOVEREIGN JACKPOT DETECTED: DATA CENTER INFRASTRUCTURE STACK";
     pText.textContent = "Non-linear plug load distortion bypass active. Extreme computing tier density unlocks ecosystem processing rules (Harmonization L0, Retrofit L1, and Smart Starts L3). Maximum portfolio asset priority.";
   } else if (ore === "low") {
-    pTitle.textContent = "料 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
+    pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
     pText.textContent = "Do not initiate contact. The property's thermal blueprint is empty or process-dominated. Savings volume will fail to clear Sandia logging and structural overhead limits.";
   } else if (bill === "anthill") {
     pTitle.textContent = "🛑 OPERATION PROTOCOL: VALUE VOLUME FLOOR COLLAPSE";
@@ -599,7 +590,6 @@ function updateIntuitionMatrix(ore, bill) {
 // Global Application Core Entry Blocks
 initStatesGrid();
 initFacilityMatrix();
-// Explicit default pre-configuration to match selection mechanics
 collapseStateSection(); 
 collapseFacilitySection();
 onFacChange();
