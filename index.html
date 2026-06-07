@@ -41,9 +41,8 @@ body {
 .field-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 .field-label .step { color: var(--gold); font-weight: 800; }
 
-/* POSITION 1 & POSITION 3.5: GAUGE TRACK LAYOUT SYSTEMS */
+/* RE-ENGINEERED COMPACT ACCORDION HORIZON GAUGES */
 .gauge-section { padding: 20px 16px; background: var(--ink); border-bottom: 1px solid var(--gold-rule); }
-.gauge-section.sticky-track { position: sticky; top: 0; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
 .gauge-section.summary-track { border-top: 1px solid var(--gold-rule); border-bottom: 1px solid var(--gold-rule); background: #0b0f14; margin-top: 8px; }
 
 .gauge-header { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; font-weight: 700; text-align: center; }
@@ -67,7 +66,7 @@ body {
 .gauge-initialized .gauge-labels { color: var(--slate); }
 .gauge-labels .active-zone-text { color: #fff; font-weight: 900; }
 
-/* CHIP GRIDS FIXED PERMANENT VISIBILITY (COLORS EREASED, CLEAN BORDERS RETAINED) */
+/* GRID SYSTEMS WITH CONDENSED BACK STRIPS FOR MOBILE OVERLAY REALIZATION */
 .state-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
 @media(min-width: 400px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 @media(min-width: 600px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
@@ -77,17 +76,27 @@ body {
   display: flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 40px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08);
 }
 .state-chip:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
-.state-chip.active { font-weight: 800; color: #fff !important; border-color: var(--gold) !important; background: rgba(200,169,110,0.1) !important; }
 
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
 @media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
 .fac-opt { background: rgba(255,255,255,0.02); padding: 12px 6px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 84px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.08); }
 .fac-opt:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
-.fac-opt.active { font-weight: 800; color: #fff !important; border-color: var(--gold) !important; background: rgba(200,169,110,0.1) !important; }
 .fac-ico { display: block; width: 18px; height: 18px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
-.fac-opt.active .fac-ico { color: #fff; }
 
-/* TWO-TRACK MATRICES CHIP WORKSPACE */
+/* CONDENSED CARDS ARRAYS SPEC SHEET SPECIFIC DESIGN HOOKS */
+.condensed-row { display: flex; gap: 4px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s ease; }
+@keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.back-btn {
+  flex: 0 0 100px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white); font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800;
+  text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  border-radius: 2px;
+}
+.back-btn:hover { border-color: var(--red); background: rgba(245, 101, 101, 0.05); }
+.selection-block { flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--gold-rule); background: rgba(200,169,110,0.06); border-radius: 2px; }
+
+/* TWO-TRACK MATRICES SPLIT COUPLING MODULES */
 .click-matrix-stack { display: grid; grid-template-columns: 1fr; gap: 20px; }
 @media(min-width: 600px) { .click-matrix-stack { grid-template-columns: 1fr 1fr; gap: 16px; } }
 
@@ -96,7 +105,7 @@ body {
 .matrix-btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); color: #fff; }
 .matrix-btn.active { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; color: #fff !important; font-weight: 800; }
 
-/* UNRESTRICTED LOOSE INTENSITY OPERATIONAL PANEL */
+/* LOOSE CONFIGURATION DATA HOUSING BLOCK */
 .loose-intensity-panel {
   background: rgba(0, 0, 0, 0.15); border: 1px solid var(--gold-rule); border-left: 5px solid var(--gold);
   padding: 16px; margin-top: 16px; border-radius: 2px;
@@ -108,7 +117,7 @@ body {
 .intensity-btn:hover { background: rgba(255,255,255,0.04); color: #fff; }
 .intensity-btn.active { background: var(--override-cyan-dim) !important; border-color: var(--override-cyan) !important; color: #fff !important; font-weight: 800; }
 
-/* THE ASSUMPTIONS ACCORDION EXTENSIONS */
+/* THE ASSUMPTIONS DROPDOWN CONTROL EXTENSIONS */
 .accordion-wrapper { margin-top: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 2px; background: rgba(0,0,0,0.1); }
 .accordion-trigger { width: 100%; padding: 14px 16px; background: transparent; border: none; outline: none; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--slate); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .accordion-trigger:active { background: rgba(255,255,255,0.02); }
@@ -125,7 +134,7 @@ body {
 .slider-readout { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 
-/* POSITION 3: CLEAN WORKSPACE PROTOCOL MATRIX CARD */
+/* POSITION 3: CLEAN WORKSPACE LAYOUT DIRECTIVE VIEWPORTS */
 .playbook-box { background: rgba(255,255,255,0.01); border-left: 5px solid var(--gold); padding: 24px 16px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
 .playbook-text { font-size: 14px; line-height: 1.5; color: var(--white); font-style: italic; font-weight: 600; }
@@ -140,7 +149,7 @@ body {
 .active-override-val { color: var(--override-cyan) !important; }
 .active-override-thumb::-webkit-slider-thumb { background: var(--override-cyan) !important; }
 
-/* HARDWARE LAYER ABSOLUTE UI MUTING GATES */
+/* VISUAL HARDWARE BLOCK MUTING SHIELDS (100% INVISIBLE) */
 #scoreboard_root_box, .override-panel { display: none !important; }
 </style>
 </head>
@@ -152,42 +161,34 @@ body {
     <p class="calc-sub">If the target box isn't Green or Purple, hang up the phone.</p>
   </div>
 
-  <!-- POSITION 1: TRACK SCALE GAUGE COMPONENT -->
-  <div class="gauge-section sticky-track" id="gauge_component_root">
-    <div class="gauge-header">Intuition Horizon Track</div>
-    <div class="horizon-track-container">
-      <div class="vector-needle" id="gauge_needle"></div>
-      <div class="horizon-track" id="gauge_track">
-        <div class="zone-block zone-skip"></div>
-        <div class="zone-block zone-linear"></div>
-        <div class="zone-block zone-viability"></div>
-        <div class="zone-block zone-sovereign"></div>
-      </div>
-    </div>
-    <div class="gauge-labels">
-      <span id="lbl_skip">Skip Lead</span>
-      <span id="lbl_linear">Linear</span>
-      <span id="lbl_viability">Viable</span>
-      <span id="lbl_sovereign">Highest Priority</span>
-    </div>
-  </div>
-
-  <!-- MAIN ACTION CONTROLS HUB BODY -->
   <div class="calc-body">
     
-    <!-- STEP 01 -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Regional Location Geography</span></div>
-      <div class="state-grid" id="state-grid-box"></div>
+      <div id="state-full-view">
+        <div class="state-grid" id="state-grid-box"></div>
+      </div>
+      <div id="state-condensed-view" style="display: none;">
+        <div class="condensed-row">
+          <button class="back-btn" onclick="resetStateSelection()">← Change</button>
+          <div class="selection-block" id="state-selection-block"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- STEP 02 -->
     <div class="field" id="field_fac_root">
-      <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Thermal Configuration Profile</span></div>
-      <div class="fac-grid" id="fac-matrix-box"></div>
+      <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
+      <div id="fac-full-view">
+        <div class="fac-grid" id="fac-matrix-box"></div>
+      </div>
+      <div id="fac-condensed-view" style="display: none;">
+        <div class="condensed-row">
+          <button class="back-btn" onclick="resetFacilitySelection()">← Change</button>
+          <div class="selection-block" id="fac-selection-block"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- STEP 03 -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Operational Footprint Scale Metrics</span></div>
       <div class="click-matrix-stack">
@@ -213,7 +214,6 @@ body {
       </div>
     </div>
 
-    <!-- LOOSE ACTION MODULE RUNTIME LAYER -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 6px;">
         <span style="color: var(--white);">Hours in Operation</span>
@@ -231,7 +231,6 @@ body {
       </div>
     </div>
 
-    <!-- EXTRA ACCORDION OPTIONS SLIDERS COMPONENT -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -265,9 +264,8 @@ body {
 
   </div>
 
-  <!-- POSITION 3.5: SUMMARY CLOSING MIRRORED GAUGE -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
-    <div class="gauge-header">Prescriptive Diagnostic Horizon</div>
+    <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
       <div class="vector-needle" id="gauge_needle_mirror"></div>
       <div class="horizon-track" id="gauge_track_mirror">
@@ -279,19 +277,17 @@ body {
     </div>
     <div class="gauge-labels">
       <span id="lbl_skip_mirror">Skip Lead</span>
-      <span id="lbl_linear_mirror">Linear</span>
+      <span id="lbl_linear_mirror">Thin Margins</span>
       <span id="lbl_viability_mirror">Viable</span>
       <span id="lbl_sovereign_mirror">Highest Priority</span>
     </div>
   </div>
 
-  <!-- POSITION 4: PLAYBOOK PRESENTATION CONSOLE -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
   </div>
 
-  <!-- INVISIBLE SYSTEM MUTING SHEET LAYER -->
   <div class="scoreboard" id="scoreboard_root_box">
     <span class="score-badge" id="temp_badge">Muted System Layer</span>
     <div class="score-container"><div class="score-num" id="score_out">0</div></div>
@@ -320,7 +316,7 @@ const FACILITY_PROFILES = {
   cold:    { weeklyHours: 168, hvacShare: 0.75, tier: "A+", name: "Cold Storage", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>' },
   datactr: { weeklyHours: 168, hvacShare: 0.45, tier: "A+", name: "Data Center", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="18" cy="4.5" r="1" fill="currentColor"/><circle cx="18" cy="9.5" r="1" fill="currentColor"/></svg>' },
   health:  { weeklyHours: 168, hvacShare: 0.50, tier: "A+", name: "Healthcare / Hosp.", targetIntensityBtn: "chip_hours_168", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>' },
-  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "A-", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>' },
+  research:{ weeklyHours: 120, hvacShare: 0.30, tier: "A-", name: "Research Lab", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h20 M20 12h2"/></svg>' },
   super:   { weeklyHours: 112, hvacShare: 0.60, tier: "A+", name: "Supermarket", targetIntensityBtn: "chip_hours_112", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1.5"/><circle cx="20" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39A2 2 0 009.66 16h8.68a2 2 0 001.97-1.67L22 6H6"/></svg>' },
   edu:     { weeklyHours: 65,  hvacShare: 0.50, tier: "A-", name: "Education Facility", targetIntensityBtn: "chip_hours_75", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="12,3 22,8 12,13 2,8"/><path d="M7 10.8v4.7a7 2.8 0 0010 0v-4.7"/></svg>' },
   whse:    { weeklyHours: 50,  hvacShare: 0.20, tier: "F",  name: "Distribution Whse", targetIntensityBtn: "chip_hours_45", ico: '<svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73z"/></svg>' },
@@ -350,10 +346,9 @@ let automatedActiveHoursValue = 168;
 let automatedActiveHvacValue = 50;
 let automatedActiveRateCents = 15;
 
-function selectStateDirectly(stateName, element) {
+function selectStateDirectly(stateName) {
   selectedState = stateName;
-  document.querySelectorAll(".state-chip").forEach(c => c.classList.remove("active"));
-  element.classList.add("active");
+  collapseStateSection();
   if (!isRateOverridden) {
     automatedActiveRateCents = US_STATE_TIERS[selectedState].avgCents;
     document.getElementById("rate_cents_in").value = automatedActiveRateCents;
@@ -361,10 +356,27 @@ function selectStateDirectly(stateName, element) {
   runEngine();
 }
 
-function selectFacilityDirectly(key, element) {
+function collapseStateSection() {
+  let tData = US_STATE_TIERS[selectedState];
+  document.getElementById("state-full-view").style.display = "none";
+  let condView = document.getElementById("state-condensed-view");
+  let block = document.getElementById("state-selection-block");
+  
+  block.innerHTML = `<span>${selectedState}</span><span style="font-size:11px; font-weight:800; color:var(--gold-light);">${tData.tier} MARKET</span>`;
+  condView.style.display = "block";
+}
+
+function resetStateSelection() {
+  selectedState = "";
+  document.getElementById("state-condensed-view").style.display = "none";
+  document.getElementById("state-full-view").style.display = "block";
+  resetRateToAuto();
+  runEngine();
+}
+
+function selectFacilityDirectly(key) {
   selectedFacility = key;
-  document.querySelectorAll(".fac-opt").forEach(c => c.classList.remove("active"));
-  element.classList.add("active");
+  collapseFacilitySection();
   
   let defs = FACILITY_PROFILES[selectedFacility];
   if (!isIntensityOverridden) {
@@ -378,6 +390,25 @@ function selectFacilityDirectly(key, element) {
   runEngine();
 }
 
+function collapseFacilitySection() {
+  let prof = FACILITY_PROFILES[selectedFacility];
+  document.getElementById("fac-full-view").style.display = "none";
+  let condView = document.getElementById("fac-condensed-view");
+  let block = document.getElementById("fac-selection-block");
+  
+  block.innerHTML = `<span>${prof.name}</span><span style="font-size:11px; font-weight:800; color:var(--gold-light);">${prof.tier} PROFILE</span>`;
+  condView.style.display = "block";
+}
+
+function resetFacilitySelection() {
+  selectedFacility = "";
+  document.getElementById("fac-condensed-view").style.display = "none";
+  document.getElementById("fac-full-view").style.display = "block";
+  resetIntensityToAuto();
+  resetHvacToAuto();
+  runEngine();
+}
+
 function initStatesGrid() {
   const box = document.getElementById("state-grid-box");
   box.innerHTML = "";
@@ -385,9 +416,8 @@ function initStatesGrid() {
     let tData = US_STATE_TIERS[stateName];
     let chip = document.createElement("div");
     chip.className = "state-chip";
-    // Appends the letter tier label context inside parenthetical text layouts instead of running side borders
     chip.textContent = `${stateName} (${tData.tier})`;
-    chip.onclick = function() { selectStateDirectly(stateName, this); };
+    chip.onclick = function() { selectStateDirectly(stateName); };
     box.appendChild(chip);
   });
 }
@@ -399,9 +429,8 @@ function initFacilityMatrix() {
     let prof = FACILITY_PROFILES[key];
     let opt = document.createElement("div");
     opt.className = "fac-opt";
-    // Appends the layout variables into non-colored clear panels 
     opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div>${prof.name} (${prof.tier})</div>`;
-    opt.onclick = function() { selectFacilityDirectly(key, this); };
+    opt.onclick = function() { selectFacilityDirectly(key); };
     box.appendChild(opt);
   });
 }
@@ -454,6 +483,44 @@ function manualRateTakeover() {
   runEngine();
 }
 
+function resetIntensityToAuto() {
+  isIntensityOverridden = false;
+  document.getElementById("intensity_override_flag").style.display = "none";
+  if (selectedFacility) {
+    automatedActiveHoursValue = FACILITY_PROFILES[selectedFacility].weeklyHours;
+    syncIntensityButtonsUI(FACILITY_PROFILES[selectedFacility].targetIntensityBtn);
+  } else {
+    document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
+  }
+  runEngine();
+}
+
+function resetHvacToAuto() {
+  isHvacOverridden = false;
+  let s = document.getElementById("hvac_slider");
+  s.classList.remove("active-override-thumb");
+  document.getElementById("hvac_val").classList.remove("active-override-val");
+  if (selectedFacility) {
+    automatedActiveHvacValue = Math.round(FACILITY_PROFILES[selectedFacility].hvacShare * 100);
+  } else {
+    automatedActiveHvacValue = 50;
+  }
+  s.value = automatedActiveHvacValue;
+  runEngine();
+}
+
+function resetRateToAuto() {
+  isRateOverridden = false;
+  document.getElementById("rate_input_container").classList.remove("active-override-border");
+  if (selectedState) {
+    automatedActiveRateCents = US_STATE_TIERS[selectedState].avgCents;
+  } else {
+    automatedActiveRateCents = 15;
+  }
+  document.getElementById("rate_cents_in").value = automatedActiveRateCents;
+  runEngine();
+}
+
 function syncIntensityButtonsUI(activeBtnId) {
   document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
   let activeElement = document.getElementById(activeBtnId);
@@ -461,24 +528,19 @@ function syncIntensityButtonsUI(activeBtnId) {
 }
 
 function runEngine() {
-  let gaugeRoot = document.getElementById("gauge_component_root");
   let gaugeMirrorRoot = document.getElementById("gauge_component_root_mirror");
   let playbookBox = document.getElementById("playbook_box_container");
 
   playbookBox.className = "playbook-box";
   
   if (!selectedState || !selectedFacility || currentActiveBillValue === 0 || currentActiveFacCountValue === 0) {
-    gaugeRoot.classList.remove("gauge-initialized");
     gaugeMirrorRoot.classList.remove("gauge-initialized");
-    document.getElementById("score_out").textContent = "- -";
-    document.getElementById("gauge_needle").style.left = "50%";
     document.getElementById("gauge_needle_mirror").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting grid selection choices parameters fields context values above...";
+    document.getElementById("playbook_text_out").textContent = "Awaiting grid selection configuration variables checks above...";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
 
-  gaugeRoot.classList.add("gauge-initialized");
   gaugeMirrorRoot.classList.add("gauge-initialized");
 
   let tierData = US_STATE_TIERS[selectedState];
@@ -580,10 +642,7 @@ function runEngine() {
     document.getElementById("score_out").textContent = finalScore;
   }
 
-  let needle = document.getElementById("gauge_needle");
   let needleMirror = document.getElementById("gauge_needle_mirror");
-  
-  gaugeRoot.classList.remove("gauge-override-disqualified");
   gaugeMirrorRoot.classList.remove("gauge-override-disqualified");
   document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
 
@@ -602,34 +661,27 @@ function runEngine() {
   if (pctPosition > 100) pctPosition = 100;
   if (pctPosition < 0) pctPosition = 0;
 
-  needle.style.left = pctPosition + "%";
   needleMirror.style.left = pctPosition + "%";
 
   let activeZone = "red";
   if (pctPosition < 25) {
     activeZone = "red";
-    document.getElementById("lbl_skip").classList.add("active-zone-text");
     document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
   } else if (pctPosition < 50) {
     activeZone = "yellow";
-    document.getElementById("lbl_linear").classList.add("active-zone-text");
     document.getElementById("lbl_linear_mirror").classList.add("active-zone-text");
   } else if (pctPosition < 75) {
     activeZone = "green";
-    document.getElementById("lbl_viability").classList.add("active-zone-text");
     document.getElementById("lbl_viability_mirror").classList.add("active-zone-text");
   } else {
     activeZone = "purple";
-    document.getElementById("lbl_sovereign").classList.add("active-zone-text");
     document.getElementById("lbl_sovereign_mirror").classList.add("active-zone-text");
   }
 
   if (isFirewallDisqualified) {
     activeZone = "red";
-    gaugeRoot.classList.add("gauge-override-disqualified");
     gaugeMirrorRoot.classList.add("gauge-override-disqualified");
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
-    document.getElementById("lbl_skip").classList.add("active-zone-text");
     document.getElementById("lbl_skip_mirror").classList.add("active-zone-text");
   }
 
