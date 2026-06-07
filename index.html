@@ -73,17 +73,15 @@ body {
   background: rgba(255,255,255,0.03); padding: 10px 4px; text-align: center; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.1s ease;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3; min-height: 64px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px;
 }
-/* extra-bold rating styles */
 .tier-sub-lbl { font-size: 13px; font-weight: 900; color: var(--gold-light); margin-top: 3px; letter-spacing: 0.05em; }
 .state-chip:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
 
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-/* Modified layout block to natively process separate line entries */
 .fac-opt { background: rgba(255,255,255,0.03); padding: 14px 8px; text-align: center; cursor: pointer; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; }
 .fac-name-line { margin-top: 4px; }
 .fac-tier-line { font-size: 12px; font-weight: 900; color: var(--gold-light); margin-top: 4px; letter-spacing: 0.05em; }
 .fac-opt:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
-.fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
+.fac-ico { block; width: 24px; height: 24px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
 
 .condensed-row { display: flex; gap: 6px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s ease; }
 @keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
@@ -158,6 +156,7 @@ body {
 
   <div class="calc-body">
     
+    <!-- STEP 01: CHOOSE STATE -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Choose State</span></div>
       <div id="state-full-view">
@@ -171,6 +170,7 @@ body {
       </div>
     </div>
 
+    <!-- STEP 02: FACILITY TYPE -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
       <div id="fac-full-view">
@@ -184,6 +184,7 @@ body {
       </div>
     </div>
 
+    <!-- STEP 03: PORTFOLIO FOOTPRINT -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Portfolio Footprint</span></div>
       <div class="click-matrix-stack">
@@ -209,6 +210,7 @@ body {
       </div>
     </div>
 
+    <!-- HOURS IN OPERATION ADAPTIVE INTERACTION PANEL -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 8px;">
         <span style="color: var(--white);">Hours in Operation</span>
@@ -232,6 +234,7 @@ body {
       </div>
     </div>
 
+    <!-- ADVANCED CONFIGURATIONS DROPDOWN ACCORDION -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -265,6 +268,7 @@ body {
 
   </div>
 
+  <!-- THE DIAGNOSTIC DEAL QUALITY BAR -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
@@ -284,6 +288,7 @@ body {
     </div>
   </div>
 
+  <!-- THE DYNAMIC PROTOCOL CARD -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
@@ -404,7 +409,6 @@ function initStatesGrid() {
     let tData = US_STATE_TIERS[stateName];
     let chip = document.createElement("div");
     chip.className = "state-chip";
-    // Removed parentheses, formatting rating as a clean separate line block
     chip.innerHTML = `<span>${stateName}</span><span class="tier-sub-lbl">${tData.tier}</span>`;
     chip.onclick = function() { selectStateDirectly(stateName); };
     box.appendChild(chip);
@@ -418,7 +422,6 @@ function initFacilityMatrix() {
     let prof = FACILITY_PROFILES[key];
     let opt = document.createElement("div");
     opt.className = "fac-opt";
-    // Removed parentheses, separated name and rating onto distinct rows natively
     opt.innerHTML = `<div class="fac-ico">${prof.ico}</div><div class="fac-name-line">${prof.name}</div><div class="fac-tier-line">${prof.tier}</div>`;
     opt.onclick = function() { selectFacilityDirectly(key); };
     box.appendChild(opt);
@@ -488,6 +491,7 @@ function resetIntensityToAuto() {
     syncIntensityButtonsUI(FACILITY_PROFILES[selectedFacility].targetIntensityBtn);
   } else {
     document.querySelectorAll('.intensity-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById("isolated_default_placeholder_btn").textContent = "Awaiting Configuration";
   }
   runEngine();
 }
@@ -546,7 +550,7 @@ function runEngine() {
   if (!selectedState || !selectedFacility || currentActiveBillValue === 0 || currentActiveFacCountValue === 0) {
     gaugeMirrorRoot.classList.remove("gauge-initialized");
     document.getElementById("gauge_needle_mirror").style.left = "50%";
-    document.getElementById("playbook_text_out").textContent = "Awaiting grid criteria choices selection parameters fields values context automotive engine steps above...";
+    document.getElementById("playbook_text_out").textContent = "Awaiting selections above to diagnose project viability...";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
     return;
   }
@@ -560,19 +564,19 @@ function runEngine() {
   
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
-  let bracketString = "1 Location";
+  let bracketString = "1-4 Sites";
 
   if (facilitiesCount === 1) {
-    firewallRequiredFloor = 5000; bracketString = "1-4 Locations";
+    firewallRequiredFloor = 5000; bracketString = "1-4 Sites";
     if (monthlyBill < 5000) isFirewallDisqualified = true;
   } else if (facilitiesCount === 5) {
-    firewallRequiredFloor = 3500; bracketString = "5-9 Locations";
+    firewallRequiredFloor = 3500; bracketString = "5-9 Sites";
     if (monthlyBill < 3500) isFirewallDisqualified = true;
   } else if (facilitiesCount === 10) {
-    firewallRequiredFloor = 2000; bracketString = "10-19 Locations";
+    firewallRequiredFloor = 2000; bracketString = "10-19 Sites";
     if (monthlyBill < 2000) isFirewallDisqualified = true;
   } else if (facilitiesCount === 20) {
-    firewallRequiredFloor = 1500; bracketString = "20+ Locations";
+    firewallRequiredFloor = 1500; bracketString = "20+ Sites";
     if (monthlyBill < 1500) isFirewallDisqualified = true;
   }
 
@@ -727,4 +731,13 @@ function runEngine() {
   } else {
     playbookBox.classList.add("congruent-red");
     pTitle.textContent = "🔴 LEAD DISQUALIFIED: REGIONAL ECONOMIC OVERHEAD BALANCER";
-    pText.textContent
+    pText.textContent = "Low-density profile. The combination of cheap regional utility rates and low asset power draw cannot recover basic engineering overhead.";
+  }
+}
+
+initStatesGrid();
+initFacilityMatrix();
+runEngine();
+</script>
+</body>
+</html>
