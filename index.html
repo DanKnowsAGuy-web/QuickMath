@@ -37,7 +37,9 @@ body {
 .calc-sub { font-size: 18px; color: var(--slate); font-weight: 700; line-height: 1.4; }
 
 .calc-body { padding: 24px 20px; background: linear-gradient(180deg, #11161d 0%, var(--ink-2) 100%); }
-.field { margin-bottom: 36px; scroll-margin-top: 10px; transition: all 0.2s ease; }
+
+/* FIXED SCROLL PIN TARGET DESIGN SHIFTS */
+.field { margin-bottom: 36px; scroll-margin-top: 15px; transition: all 0.2s ease; }
 
 .field-label { font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
 .field-label .step { color: var(--gold); font-weight: 900; font-size: 20px; }
@@ -70,18 +72,18 @@ body {
 @media(min-width: 500px) { .state-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .state-chip { 
-  background: rgba(255,255,255,0.03); padding: 10px 4px; text-align: center; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.1s ease;
+  background: rgba(255,255,255,0.03); padding: 10px 2px; text-align: center; font-size: 16px; font-weight: 800; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.1s ease;
   display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.3; min-height: 64px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px;
 }
 .tier-sub-lbl { font-size: 13px; font-weight: 900; color: var(--gold-light); margin-top: 3px; letter-spacing: 0.05em; }
 .state-chip:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
 
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.fac-opt { background: rgba(255,255,255,0.03); padding: 14px 8px; text-align: center; cursor: pointer; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; }
+.fac-opt { padding: 14px 8px; text-align: center; cursor: pointer; font-size: 15px; font-weight: 800; color: rgba(255,255,255,0.9); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.12); border-radius: 4px; }
 .fac-name-line { margin-top: 4px; }
 .fac-tier-line { font-size: 12px; font-weight: 900; color: var(--gold-light); margin-top: 4px; letter-spacing: 0.05em; }
 .fac-opt:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.3); }
-.fac-ico { block; width: 24px; height: 24px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
+.fac-ico { display: block; width: 24px; height: 24px; color: rgba(255,255,255,0.35); flex-shrink: 0; }
 
 .condensed-row { display: flex; gap: 6px; width: 100%; align-items: stretch; animation: rowEntrance 0.2s ease; }
 @keyframes rowEntrance { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
@@ -124,7 +126,7 @@ body {
 .accordion-arrow { font-size: 14px; transition: transform 0.2s ease; color: var(--gold); }
 .accordion-content { display: none; padding: 20px; border-top: 2px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.2); }
 
-.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.15); max-width: 240px; border-radius: 4px; }
+.spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 2px solid var(--gold-rule); max-width: 240px; border-radius: 4px; }
 .spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; padding: 0 6px 0 16px; font-weight: 700; }
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 26px; color: #fff; padding: 8px 6px; width: 100%; }
 .spend-suffix { font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 16px; border-left: 2px solid rgba(255,255,255,0.15); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
@@ -156,7 +158,6 @@ body {
 
   <div class="calc-body">
     
-    <!-- STEP 01: CHOOSE STATE -->
     <div class="field" id="field_geo_root">
       <div class="field-label"><span><span class="step">01</span> &nbsp;Choose State</span></div>
       <div id="state-full-view">
@@ -170,7 +171,6 @@ body {
       </div>
     </div>
 
-    <!-- STEP 02: FACILITY TYPE -->
     <div class="field" id="field_fac_root">
       <div class="field-label"><span><span class="step">02</span> &nbsp;Facility Type</span></div>
       <div id="fac-full-view">
@@ -184,7 +184,6 @@ body {
       </div>
     </div>
 
-    <!-- STEP 03: PORTFOLIO FOOTPRINT -->
     <div class="field" id="field_spend_root">
       <div class="field-label"><span><span class="step">03</span> &nbsp;Portfolio Footprint</span></div>
       <div class="click-matrix-stack">
@@ -210,7 +209,6 @@ body {
       </div>
     </div>
 
-    <!-- HOURS IN OPERATION ADAPTIVE INTERACTION PANEL -->
     <div class="loose-intensity-panel" id="loose_hours_panel_root">
       <div class="field-label" style="margin-bottom: 8px;">
         <span style="color: var(--white);">Hours in Operation</span>
@@ -234,7 +232,6 @@ body {
       </div>
     </div>
 
-    <!-- ADVANCED CONFIGURATIONS DROPDOWN ACCORDION -->
     <div class="accordion-wrapper" id="accordion_root">
       <button class="accordion-trigger" onclick="toggleAccordion()">
         <span>Change Assumptions (Keep defaults unless you know otherwise)</span>
@@ -268,7 +265,6 @@ body {
 
   </div>
 
-  <!-- THE DIAGNOSTIC DEAL QUALITY BAR -->
   <div class="gauge-section summary-track" id="gauge_component_root_mirror">
     <div class="gauge-header">Deal Quality</div>
     <div class="horizon-track-container">
@@ -288,7 +284,6 @@ body {
     </div>
   </div>
 
-  <!-- THE DYNAMIC PROTOCOL CARD -->
   <div class="playbook-box" id="playbook_box_container">
     <div class="playbook-title" id="playbook_title_out">Operational Protocol Playbook</div>
     <div class="playbook-text" id="playbook_text_out">Awaiting grid criteria choices selection parameters adjustments above...</div>
@@ -345,6 +340,7 @@ function selectStateDirectly(stateName) {
     document.getElementById("rate_cents_in").value = automatedActiveRateCents;
   }
   runEngine();
+  // TARGET ALIGNMENT: Force immediate viewport anchor tracking lock
   smoothScrollToElement("field_geo_root");
 }
 
@@ -380,6 +376,7 @@ function selectFacilityDirectly(key) {
     document.getElementById("hvac_slider").value = automatedActiveHvacValue;
   }
   runEngine();
+  // TARGET ALIGNMENT: Force immediate viewport anchor tracking lock
   smoothScrollToElement("field_fac_root");
 }
 
@@ -533,12 +530,13 @@ function syncIntensityButtonsUI(activeBtnId) {
 }
 
 function smoothScrollToElement(targetId) {
+  // Balanced buffer to ensure screen anchors completely lock on mobile structure collapse
   setTimeout(() => {
     let target = document.getElementById(targetId);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, 150);
+  }, 120);
 }
 
 function runEngine() {
