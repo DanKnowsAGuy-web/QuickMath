@@ -76,7 +76,7 @@ body {
 /* GRID SYSTEMS & CORE INPUT WORKSPACES */
 .state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 12px; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); transition: all 0.25s ease; }
 @media(min-width: 480px) { .state-grid { grid-template-columns: repeat(4, 1fr); } }
-@media(min-width: 640px) { .state-grid { grid-template-columns: repeat(5, 1fr); } }
+@media(min-width: 640px) { .state-grid { display: grid; grid-template-columns: repeat(5, 1fr); } }
 
 .state-chip { 
   background: rgba(255,255,255,0.01); padding: 12px 4px; text-align: center; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.15s;
@@ -90,7 +90,7 @@ body {
 .state-chip.active { background: rgba(255,255,255,0.04) !important; border-color: var(--gold) !important; font-weight: 800; color: #fff; border-left-width: 2px !important; }
 
 .fac-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; transition: all 0.25s ease; }
-@media(min-width: 540px) { .fac-grid { grid-template-columns: repeat(4, 1fr); } }
+@media(min-width: 540px) { .fac-grid { display: grid; grid-template-columns: repeat(4, 1fr); } }
 .fac-opt { background: rgba(255,255,255,0.01); padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.15s; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); line-height: 1.3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 100px; text-transform: uppercase; border: 1px solid transparent; }
 .fac-opt.tier-high { border-top: 2px solid rgba(128,90,213,0.4); }
 .fac-opt.tier-mid  { border-top: 2px solid rgba(56,161,105,0.4); }
@@ -112,37 +112,53 @@ body {
 .back-btn:hover { background: rgba(229,62,62,0.08); border-color: var(--red); color: #fff; }
 .selection-block { flex: 1; padding: 14px 20px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
 
-/* Section 03 Matrix Configuration Splits */
+/* Section 03 Native Structural Redesign */
 .split-input-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
-@media(min-width: 500px) { .split-input-container { grid-template-columns: 1fr 120px; } }
+@media(min-width: 500px) { .split-input-container { display: grid; grid-template-columns: 1fr 140px; } }
 
 .spend-input-row { display: flex; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s ease, background-color 0.2s ease; }
 .spend-currency { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; padding: 0 4px 0 18px; font-weight: 700; }
 .spend-input { flex: 1; border: none; background: transparent; outline: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; padding: 10px 4px; width: 100%; }
 .spend-suffix { font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; padding: 0 18px; border-left: 1px solid rgba(255,255,255,0.08); align-self: stretch; display: flex; align-items: center; font-weight: 700; }
 
-.fac-count-input { text-align: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; background: transparent; border: none; outline: none; width: 100%; padding: 10px 4px; }
+/* Clean Native Typography Extraction (Nuked Spinner Handles) */
+.fac-count-input { text-align: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; background: transparent; border: none; outline: none; width: 100%; padding: 10px 4px; -moz-appearance: textfield; appearance: textfield; }
+.fac-count-input::-webkit-outer-spin-button, .fac-count-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-/* POSITION 3: MINIMALIST DISCOVERY AND FEEDBACK HUB */
+/* POSITION 3: CONGRUENT DISCOVERY CORE AND PANEL WINDOW */
 .firewall-ribbon {
-  background: rgba(0, 0, 0, 0.2); padding: 12px 24px; border-left: 3px solid var(--gold);
+  background: rgba(0, 0, 0, 0.2); padding: 12px 24px; border-left: 4px solid var(--gold);
   border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);
   font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: space-between;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.firewall-status { color: var(--gold-light); display: flex; align-items: center; gap: 6px; }
-.firewall-ribbon.triggered { border-left-color: var(--red); background: rgba(229,62,62,0.04); }
-.firewall-ribbon.triggered .firewall-status { color: var(--red); }
-
-.playbook-box { background: rgba(255,255,255,0.01); border-left: 3px solid var(--gold); padding: 20px 24px; transition: border-color 0.2s ease; }
+.firewall-status { color: var(--gold-light); display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; }
+.playbook-box { background: rgba(255,255,255,0.01); border-left: 4px solid var(--gold); padding: 20px 24px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
 .playbook-title { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
-.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; transition: color 0.2s ease; }
+.playbook-text { font-size: 15px; line-height: 1.6; color: var(--white); font-style: italic; font-weight: 600; }
+
+/* Structural Color Match System Classes */
+.congruent-red { border-left-color: var(--red) !important; }
+.congruent-red.firewall-ribbon { background: rgba(229,62,62,0.05); }
+.congruent-red .firewall-status { color: var(--red) !important; }
+
+.congruent-yellow { border-left-color: var(--yellow) !important; }
+.congruent-yellow.firewall-ribbon { background: rgba(236,201,75,0.03); }
+.congruent-yellow .firewall-status { color: var(--yellow) !important; }
+
+.congruent-green { border-left-color: var(--green) !important; }
+.congruent-green.firewall-ribbon { background: rgba(56,161,105,0.03); }
+.congruent-green .firewall-status { color: var(--green) !important; }
+
+.congruent-purple { border-left-color: var(--purple) !important; }
+.congruent-purple.firewall-ribbon { background: rgba(128,90,213,0.04); }
+.congruent-purple .firewall-status { color: var(--purple) !important; }
 
 .hud-actions-wrapper { display: none; margin-top: 14px; }
 .hud-btn-route { background: transparent; color: var(--red); border: 1px solid var(--red); font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 18px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
 .hud-btn-route:hover { background: var(--red); color: #fff; }
 
-/* POSITION 4: MINIMALIST OVERRIDES CONTAINER */
+/* POSITION 4: OVERRIDES WORKSPACE DESIGN CORE */
 .override-panel {
   background: rgba(0, 0, 0, 0.12); border-top: 1px dashed rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.06);
   padding: 28px 38px; position: relative; transition: all 0.25s ease; opacity: 0.2; pointer-events: none;
@@ -150,7 +166,7 @@ body {
 .gauge-initialized-wrapper.override-panel { opacity: 1; pointer-events: auto; }
 .override-panel-header { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 20px; }
 .takeover-chip-row { display: flex; flex-direction: column; gap: 5px; width: 100%; }
-@media(min-width: 640px) { .takeover-chip-row { flex-direction: row; } }
+@media(min-width: 640px) { .takeover-chip-row { display: flex; flex-direction: row; } }
 .takeover-chip-btn {
   flex: 1; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 12px 4px;
   font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.6); text-transform: uppercase;
@@ -172,14 +188,14 @@ body {
 .hvac-manual-state #hvac_field_container { border-color: rgba(11, 197, 234, 0.2); }
 .rate-manual-state #rate_input_container { border-color: var(--override-cyan) !important; background: var(--override-cyan-dim); }
 
-.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); outline: none; }
+.rng { width: 100%; height: 2px; margin: 12px 0; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.08); outline: none; }
 .rng::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: var(--gold); cursor: pointer; border-radius: 2px; }
 .hvac-manual-state .rng::-webkit-slider-thumb { background: var(--override-cyan); }
 .slider-readout { display: flex; justify-content: space-between; font-size: 12px; color: var(--slate); text-transform: uppercase; font-weight: 700; }
 .slider-val { color: var(--gold-light); font-weight: 700; }
 .hvac-manual-state .slider-val { color: var(--override-cyan); }
 
-/* POSITION 5: HIGH-END STRUCTURAL SCOREBOARD BASE */
+/* POSITION 5: HIGH-END VALUATION PRESENTATION SCOREBOARD */
 .scoreboard { padding: 40px 38px 44px; background: var(--ink); border-top: 1px solid var(--gold-rule); text-align: center; }
 .score-badge { display: inline-block; padding: 6px 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; margin-bottom: 16px; color: var(--ink); opacity: 0.4; transition: opacity 0.3s ease; }
 .gauge-initialized .score-badge { opacity: 1; }
@@ -256,7 +272,6 @@ body {
       </div>
     </div>
 
-    <!-- RE-ENGINEERED 2-TRACK TWIN INPUT SYSTEMS CONTAINER -->
     <div class="field" style="margin-bottom: 8px;">
       <div class="split-input-container">
         <div>
@@ -270,7 +285,8 @@ body {
         <div>
           <div class="field-label"><span>Facilities</span></div>
           <div class="spend-input-row">
-            <input type="number" id="fac_count_in" class="fac-count-input" value="1" min="1" max="5000" oninput="onFacCountInput()">
+            <!-- Plain numeric type tag input layout withSpinner controls removed via CSS style sheet hooks -->
+            <input type="text" pattern="[0-9]*" inputmode="numeric" id="fac_count_in" class="fac-count-input" value="1" oninput="onFacCountInput()">
           </div>
         </div>
       </div>
@@ -278,7 +294,7 @@ body {
 
   </div>
 
-  <!-- ==================== POSITION 3: DISCOVERY HUB AND PLAYBOOK WINDOW ==================== -->
+  <!-- ==================== POSITION 3: DYNAMIC CONGRUENT HUB PROTOCOL INTERFACE ==================== -->
   <div class="firewall-ribbon" id="firewall_ribbon">
     <div class="firewall-status" id="firewall_status_text">🔥 AUTOMATION MODE ACTIVE</div>
     <div id="firewall_message_text">SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED</div>
@@ -521,8 +537,9 @@ function onBillInput() {
 
 function onFacCountInput() {
   let el = document.getElementById("fac_count_in");
-  let v = parseInt(el.value) || 1;
-  if (v < 1) el.value = 1;
+  let v = parseInt(el.value.replace(/[^0-9]/g, "")) || 1;
+  if (v < 1) v = 1;
+  el.value = v;
   runEngine();
 }
 
@@ -592,7 +609,6 @@ function syncIntensityButtonsUI(activeBtnId) {
 function runEngine() {
   let gaugeRoot = document.getElementById("gauge_component_root");
   
-  // Guard validation layer
   if (!selectedState || !selectedFacility) {
     gaugeRoot.classList.remove("gauge-initialized");
     document.getElementById("manual_override_wrapper").classList.remove("gauge-initialized-wrapper");
@@ -604,6 +620,10 @@ function runEngine() {
     document.getElementById("sav_floor").textContent = "$0";
     document.getElementById("sav_ceil").textContent = "$0";
     document.querySelectorAll(".gauge-labels span").forEach(span => span.classList.remove("active-zone-text"));
+    
+    // Clear out Ribbon Congruence State classes
+    document.getElementById("firewall_ribbon").className = "firewall-ribbon";
+    document.getElementById("playbook_box_container").className = "playbook-box";
     return;
   }
 
@@ -613,30 +633,26 @@ function runEngine() {
   let tierData = US_STATE_TIERS[selectedState];
   let rateMultiplier = tierData.mult;
   let monthlyBill = parseInt(document.getElementById("bill_in").value.replace(/[^0-9]/g, "")) || 0;
-  let facilitiesCount = parseInt(document.getElementById("fac_count_in").value) || 1;
+  let facilitiesCount = parseInt(document.getElementById("fac_count_in").value.replace(/[^0-9]/g, "")) || 1;
   
   // -----------------------------------------------------------------
-  // TRACK 1: HARD OPERATION SCALE BRACKET FIREWALL
+  // TRACK 1: THE FOUR EXPLICIT SCALE BRACKET SAFETY FIREWALLS
   // -----------------------------------------------------------------
   let isFirewallDisqualified = false;
   let firewallRequiredFloor = 5000;
-  let bracketString = "1 to 4 Sites";
+  let bracketString = "1-4 Locations";
 
   if (facilitiesCount >= 1 && facilitiesCount <= 4) {
-    firewallRequiredFloor = 5000;
-    bracketString = "1-4 Locations";
+    firewallRequiredFloor = 5000; bracketString = "1-4 Locations";
     if (monthlyBill < 5000) isFirewallDisqualified = true;
   } else if (facilitiesCount >= 5 && facilitiesCount <= 9) {
-    firewallRequiredFloor = 3500;
-    bracketString = "5-9 Locations";
+    firewallRequiredFloor = 3500; bracketString = "5-9 Locations";
     if (monthlyBill < 3500) isFirewallDisqualified = true;
   } else if (facilitiesCount >= 10 && facilitiesCount <= 19) {
-    firewallRequiredFloor = 2000;
-    bracketString = "10-19 Locations";
+    firewallRequiredFloor = 2000; bracketString = "10-19 Locations";
     if (monthlyBill < 2000) isFirewallDisqualified = true;
   } else if (facilitiesCount >= 20) {
-    firewallRequiredFloor = 1500;
-    bracketString = "20+ Locations";
+    firewallRequiredFloor = 1500; bracketString = "20+ Locations";
     if (monthlyBill < 1500) isFirewallDisqualified = true;
   }
 
@@ -674,7 +690,6 @@ function runEngine() {
   
   let annualHours = weeklyHours * 52;
   
-  // PILLAR 2: Operational Tiers Weights
   let schedulePoints = 3;
   if (annualHours >= 7000) schedulePoints = 10;
   else if (annualHours >= 5000) schedulePoints = 7;
@@ -682,7 +697,6 @@ function runEngine() {
   else if (annualHours >= 2000) schedulePoints = 3;
   else schedulePoints = 0; 
   
-  // PILLAR 3: HVAC Load Density Bounds
   let hvacPoints = 5;
   if (hvacFraction >= 0.65) hvacPoints = 10;
   else if (hvacFraction >= 0.50) hvacPoints = 7;
@@ -693,9 +707,8 @@ function runEngine() {
     hvacPoints = 10; 
   }
   
-  // TRACK 2: CORE BUILDING DNA POINT SYSTEM
+  // TRACK 2: CORE BUILDING DNA POINTS MATH
   let finalScore = (schedulePoints * hvacPoints) * rateMultiplier;
-  
   if (schedulePoints === 0) finalScore = 0;
   
   let billVol = "standard";
@@ -708,7 +721,6 @@ function runEngine() {
   
   finalScore = Math.round(finalScore);
   
-  // Enforce Firewall output suppression on total tracking blocks
   if (isFirewallDisqualified) {
     document.getElementById("score_out").textContent = "0";
   } else {
@@ -716,7 +728,7 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // HORIZON TIMELINE POSITION INTERPOLATION MAPPER
+  // HORIZON SCALE VECTOR INTERPOLATION
   // -----------------------------------------------------------------
   let needle = document.getElementById("gauge_needle");
   gaugeRoot.classList.remove("gauge-override-disqualified", "gauge-override-whale");
@@ -725,7 +737,6 @@ function runEngine() {
   let pctPosition = 0;
 
   if (isFirewallDisqualified) {
-    // Peg needle immediately to zero if firewall blocks execution
     gaugeRoot.classList.add("gauge-override-disqualified");
     pctPosition = 0;
   } else {
@@ -775,7 +786,7 @@ function runEngine() {
   }
 
   // -----------------------------------------------------------------
-  // POSITION 3 DYNAMIC CORE HUD COMMUNICATIONS MATRIX CONTEXT
+  // POSITION 3 DYNAMIC SYSTEM CONGRUENCE COUPLER
   // -----------------------------------------------------------------
   const pTitle = document.getElementById("playbook_title_out");
   const pText = document.getElementById("playbook_text_out");
@@ -783,27 +794,41 @@ function runEngine() {
   const statusText = document.getElementById("firewall_status_text");
   const msgText = document.getElementById("firewall_message_text");
   const redActions = document.getElementById("hud_red_actions");
+  const playbookBox = document.getElementById("playbook_box_container");
 
-  ribbon.classList.remove("triggered");
+  // Reset Congruence style layouts modifiers strings before evaluations
+  ribbon.className = "firewall-ribbon";
+  playbookBox.className = "playbook-box";
+  
   statusText.textContent = isIntensityOverridden || isHvacOverridden || isRateOverridden ? "⚡ MANUAL OVERRIDE ACTIVE" : "🔥 AUTOMATION MODE ACTIVE";
   msgText.textContent = "SYSTEM CHECK CLEAR — ENGINEERING MATRIX SYNCED";
   redActions.style.display = "none";
 
+  // Check absolute failures first to force Red solid configurations
   if (isFirewallDisqualified) {
-    ribbon.classList.add("triggered");
+    ribbon.classList.add("congruent-red");
+    playbookBox.classList.add("congruent-red");
     statusText.textContent = "🛑 DISQUALIFIED / SCALE FIREWALL BLOCK";
     msgText.textContent = `CRITICAL DEPLOYMENT GAP DETECTED — ACCOUNT VOLUME INSUFFICIENT`;
+    
     pTitle.textContent = "🛑 OPERATION REJECTED: PORTFOLIO SCALE REJECTION FLOOR";
     pText.textContent = `This account falls below the clear operational line in the sand. A footprint of ${bracketString} requires a minimum power bill of $${firewallRequiredFloor.toLocaleString()}/month per location to absorb physical deployment crew mobilization. A current monthly footprint of $${monthlyBill.toLocaleString()} renders installation unprofitable due to site travel premiums. Terminate velocity path.`;
     redActions.style.display = "block";
   } else if (schedulePoints === 0) {
-    ribbon.classList.add("triggered");
+    ribbon.classList.add("congruent-red");
+    playbookBox.classList.add("congruent-red");
     statusText.textContent = "🛑 CRITICAL ERROR BLOCK";
     msgText.textContent = "FIREWALL CRITICAL TRIGGER: RUNTIME KILL SWITCH IN OPERATION";
+    
     pTitle.textContent = "🛑 INTERMITTENT RUNTIME KILL SWITCH CRITICAL GATE";
     pText.textContent = "Operational capacity dropped below the 2,000 annualized asset runtime hour threshold. Core energy system logic flatlined. Terminate call velocity immediately, force lead archival, and log out.";
     redActions.style.display = "block";
-  } else if (activeZone === "purple") {
+  } 
+  // Map standard variable active states matching layout gauge thresholds
+  else if (activeZone === "purple") {
+    ribbon.classList.add("congruent-purple");
+    playbookBox.classList.add("congruent-purple");
+    
     if (selectedFacility === "datactr") {
       pTitle.textContent = "🔮 SOVEREIGN JACKPOT MATCH: DATA CENTER INFRASTRUCTURE STACK";
       pText.textContent = "Non-linear plug load distortion bypass active. Extreme computing tier density unlocks absolute enterprise processing rules (Harmonization L0, Retrofit L1, and Smart Starts L3). Maximum prioritization pipeline.";
@@ -812,18 +837,27 @@ function runEngine() {
       pText.textContent = "Holy grail vector matched. Extreme compressor footprint compounded by target financial utility premium levels. Request past 12 months' commercial utility statement data instantly for structural conversion.";
     }
   } else if (activeZone === "green") {
+    ribbon.classList.add("congruent-green");
+    playbookBox.classList.add("congruent-green");
+    
     pTitle.textContent = "🟢 HIGH VIABILITY PROFILE: ACTIVE CONTRACT CONVERSION";
     pText.textContent = "Legitimate structural capacity confirmed. Solid engineering density footprint aligns with core technology parameters. Initiate authorization protocol processing path.";
   } else if (activeZone === "yellow") {
+    ribbon.classList.add("congruent-yellow");
+    playbookBox.classList.add("congruent-yellow");
+    
     pTitle.textContent = "💛 BREAD-AND-BUTTER LINEAR MARGIN: CONDITIONAL DISCOVERY";
     pText.textContent = "Standard tier target match. Verify central asset structural layout parameters on call. Only pursue if localized engineering systems use centralized systems to compress setup logging overhead.";
   } else {
+    ribbon.classList.add("congruent-red");
+    playbookBox.classList.add("congruent-red");
+    
     pTitle.textContent = "🔴 CRITICAL PROTOCOL: DEPLOYMENT REJECTED";
     pText.textContent = "Do not initiate contact. The property configuration parameters return sub-baseline values. Margins fail to clear tracking logging limits and technical engineering overhead thresholds.";
     redActions.style.display = "block";
   }
 
-  // Value Output Presentation Calculations
+  // Final Scoreboard Badge outputs mapping
   let floorSavings = (monthlyBill * hvacFraction) * 0.12 * 24 * facilitiesCount; 
   let ceilSavings = (monthlyBill * hvacFraction) * 0.22 * 24 * facilitiesCount;
   
